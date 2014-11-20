@@ -40,16 +40,6 @@
         android:ems="10"
         android:hint="Passwort" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_below="@+id/editText3"
-        android:layout_marginTop="48dp"
-        android:text="Weiter" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -58,5 +48,14 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="25dp"
         android:text="Registrierung" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText3"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="68dp"
+        android:text="Weiter" />
 
 </RelativeLayout>
