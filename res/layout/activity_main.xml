@@ -19,6 +19,7 @@
 
         <requestFocus />
     </EditText>
+    
 
     <EditText
         android:id="@+id/editText2"
