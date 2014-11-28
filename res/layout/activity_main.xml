@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="58dp"
         android:ems="10"
-        android:hint="Vorname" >
+        android:hint="@string/vorname" >
 
         <requestFocus />
     </EditText>
@@ -28,7 +28,7 @@
         android:layout_below="@+id/editText1"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:hint="Nachname" />
+        android:hint="@string/nachname" />
 
     <EditText
         android:id="@+id/editText3"
@@ -38,7 +38,7 @@
         android:layout_below="@+id/editText2"
         android:layout_marginTop="48dp"
         android:ems="10"
-        android:hint="Passwort" />
+        android:hint="@string/passwort" />
 
     <TextView
         android:id="@+id/textView1"
@@ -47,7 +47,7 @@
         android:layout_alignLeft="@+id/editText1"
         android:layout_alignParentTop="true"
         android:layout_marginTop="25dp"
-        android:text="Registrierung" />
+        android:text="@string/registrierung" />
 
     <Button
         android:id="@+id/button1"
@@ -57,6 +57,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/editText3"
         android:layout_marginBottom="68dp"
-        android:text="Weiter" />
+        android:text="@string/weiter" />
 
 </RelativeLayout>

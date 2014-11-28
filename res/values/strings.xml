@@ -4,5 +4,10 @@
     <string name="app_name">Pascals Hairdroid</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="vorname">Vorname</string>
+    <string name="nachname">Nachname</string>
+    <string name="passwort">Passwort</string>
+    <string name="registrierung">Registrierung</string>
+    <string name="weiter">Weiter</string>
 
 </resources>
