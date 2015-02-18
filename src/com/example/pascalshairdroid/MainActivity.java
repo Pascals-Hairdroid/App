@@ -1,9 +1,16 @@
 package com.example.pascalshairdroid;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.style.IconMarginSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.view.View.OnClickListener;
+
+
 
 
 public class MainActivity extends Activity {
@@ -12,6 +19,18 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        Button b= (Button) findViewById(R.id.button1);
+        b.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(MainActivity.this, Register.class));
+				
+			}
+		}); 
+			
+			
     }
 
 
@@ -33,4 +52,29 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-}
+    
+//    public MainActivity ()
+//    {
+//    
+//    	
+//    	
+//    }
+
+
+//	private void Actions() {
+//		
+//		final Button button = (Button) findViewById(R.id.button1);
+//		
+//		button.setOnClickListener(new View.OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View arg0) {
+//				startActivity(intent )
+//				
+//				
+//			}
+//		});
+		
+		
+	}
+

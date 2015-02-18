@@ -9,5 +9,6 @@
     <string name="passwort">Passwort</string>
     <string name="registrierung">Registrierung</string>
     <string name="weiter">Weiter</string>
+    <string name="title_activity_register">Register</string>
 
 </resources>
