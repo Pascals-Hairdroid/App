@@ -2,13 +2,31 @@
 <resources>
 
     <string name="app_name">Pascals Hairdroid</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="pascals_hairdroid">Pascals Hairdroid</string>
     <string name="action_settings">Settings</string>
     <string name="vorname">Vorname</string>
     <string name="nachname">Nachname</string>
     <string name="passwort">Passwort</string>
+    <string name="passwort_bestät">Passwort bestätigen</string>
     <string name="registrierung">Registrierung</string>
     <string name="weiter">Weiter</string>
-    <string name="title_activity_register">Register</string>
-
+    <string name="title_activity_register">Registerung</string>
+    <string name="telenr">Telefonnummer</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string-array name="navigation_items">
+        <item >Home</item>
+        <item >Termin eintragen</item>
+        <item >Angebot</item>
+        <item >Team</item>
+        <item >Kontakt</item>
+        <item >Öffnungszeiten</item>
+        </string-array>
+   	<string-array name="teamlist">
+        <item >Pascal Petritsch</item>
+        <item >Max Mustermann</item>
+        <item >Susi Mustermann</item>
+</string-array>
 </resources>
