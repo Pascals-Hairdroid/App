@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class TeamFragment extends Fragment {
@@ -30,7 +33,17 @@ public class TeamFragment extends Fragment {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_team, container,
 					false);
-			((TextView)rootView.findViewById(R.id.section_label)).setText(this.name + ", "+this.id);
+			WebView view = (WebView)rootView.findViewById(R.id.team_webview);
+			view.setWebViewClient(new WebViewClient(){
+				@Override
+				public boolean shouldOverrideUrlLoading(WebView view, String url) {
+					view.loadUrl(url);
+					return false;
+				}
+			});
+			view.loadUrl("http://google.com?id="+this.id);
+			
+			
 			return rootView;
 		}
 

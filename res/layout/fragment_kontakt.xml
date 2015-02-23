@@ -9,11 +9,35 @@
     tools:context="com.example.pascalshairdroid.Home$PlaceholderFragment" >
 
     <TextView
-        android:id="@+id/section_label"
+        android:id="@+id/company_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
-        
-        android:text="Kontakt"/>
-        
+        android:text="@string/pascals_hairdroid" />
+
+        <TextView
+            android:id="@+id/adresse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/company_name"
+            android:layout_below="@+id/company_name"
+            android:layout_marginTop="37dp"
+            android:text="@string/adresse" />
+
+        <TextView
+            android:id="@+id/ort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/adresse"
+            android:layout_below="@+id/adresse"
+            android:text="@string/ort" />
+
+        <TextView
+            android:id="@+id/petritsch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/adresse"
+            android:layout_alignLeft="@+id/adresse"
+            android:layout_marginBottom="16dp"
+            android:text="@string/pascal_petritsch" />
 
 </RelativeLayout>

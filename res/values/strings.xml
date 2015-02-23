@@ -16,17 +16,26 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
+    <string name="pascal_petritsch">Pascal Petritsch</string>
+    <string name="adresse">Wagramer Straße 154a</string>
+	<string name="ort">1220 Wien</string>
     <string-array name="navigation_items">
         <item >Home</item>
         <item >Termin eintragen</item>
-        <item >Angebot</item>
-        <item >Team</item>
+        <item >Angebote</item>
+        <item >Unser Team</item>
         <item >Kontakt</item>
         <item >Öffnungszeiten</item>
+        <item >Produkte</item>
+        <item >Galerie</item>
+        <item >Dienstleistungen</item>
+        
+        
         </string-array>
    	<string-array name="teamlist">
-        <item >Pascal Petritsch</item>
-        <item >Max Mustermann</item>
-        <item >Susi Mustermann</item>
+        <item >Pascal </item>
+        <item >Mathias</item>
+        <item >Boris</item>
 </string-array>
+<string name="ein_bild">ein bild</string>
 </resources>
