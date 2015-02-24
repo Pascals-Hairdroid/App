@@ -5,6 +5,7 @@
 .metadata
 .gradle
 bin/
+gen/
 tmp/
 *.tmp
 *.bak
