@@ -18,8 +18,12 @@
     <string name="action_example">Example action</string>
     <string name="pascal_petritsch">Pascal Petritsch</string>
     <string name="adresse">Wagramer Straße 154a</string>
+    <string name="mobil">Mobil: 0676 92 38 217</string>
+    <string name="mofr">Montag - Freitag : 	11:00 -19:00 Uhr</string>
+    <string name="sa">Samstag : 	09:00 -15:00 Uhr</string>
 	<string name="ort">1220 Wien</string>
-    <string-array name="navigation_items">
+	<string name="homepage">http://www.pascals.at</string>
+	    <string-array name="navigation_items">
         <item >Home</item>
         <item >Termin eintragen</item>
         <item >Angebote</item>
