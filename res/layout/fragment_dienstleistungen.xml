@@ -12,16 +12,8 @@
         android:id="@+id/section_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
-        android:text="Termin eintragen"/>
-
-    <Button
-        android:id="@+id/Termin_reservieren"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="17dp"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/section_label"
-        android:text="@string/termin_resevieren" />
+        
+        android:text="Dienstleistungen"/>
+        
 
 </RelativeLayout>

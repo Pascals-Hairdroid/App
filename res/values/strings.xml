@@ -23,9 +23,11 @@
     <string name="sa">Samstag : 	09:00 -15:00 Uhr</string>
 	<string name="ort">1220 Wien</string>
 	<string name="homepage">http://www.pascals.at</string>
+	<string name="termin_resevieren">Termin eintragen</string>
+	
 	    <string-array name="navigation_items">
         <item >Home</item>
-        <item >Termin eintragen</item>
+        <item >Termine</item>
         <item >Angebote</item>
         <item >Unser Team</item>
         <item >Kontakt</item>
