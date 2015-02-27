@@ -61,6 +61,21 @@ public class Home extends Activity implements
 		
 		FragmentManager fragmentManager = getFragmentManager();
 		switch(position){
+		case 8:
+			fragmentManager
+			.beginTransaction()
+			.replace(R.id.container,new DienstleistungenFragment()).commit();
+			break;
+		case 7:
+			fragmentManager
+			.beginTransaction()
+			.replace(R.id.container,new GalerieFragment()).commit();
+			break;
+		case 6:
+			fragmentManager
+			.beginTransaction()
+			.replace(R.id.container,new ProductFragment()).commit();
+			break;
 		case 5:
 			fragmentManager
 			.beginTransaction()
