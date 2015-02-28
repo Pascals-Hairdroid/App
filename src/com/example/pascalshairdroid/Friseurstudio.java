@@ -19,7 +19,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class Home extends Activity implements
+public class Friseurstudio extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 	/**
@@ -61,36 +61,36 @@ public class Home extends Activity implements
 		
 		FragmentManager fragmentManager = getFragmentManager();
 		switch(position){
-		case 8:
-			fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new DienstleistungenFragment()).commit();
-			break;
-		case 7:
+//		case 8:
+//			fragmentManager
+//			.beginTransaction()
+//			.replace(R.id.container,new DienstleistungenFragment()).commit();
+//			break;
+		case 4:
 			fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,new GalerieFragment()).commit();
 			break;
-		case 6:
+		case 3:
 			fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,new ProductFragment()).commit();
 			break;
-		case 5:
-			fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new OpentimeFragment()).commit();
-			break;
-		case 4:
-			fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new KontaktFragment()).commit();
-			break;
-		case 3:
-			fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new TeamListFragment()).commit();
-			break;
+//		case 5:
+//			fragmentManager
+//			.beginTransaction()
+//			.replace(R.id.container,new OpentimeFragment()).commit();
+//			break;
+//		case 4:
+//			fragmentManager
+//			.beginTransaction()
+//			.replace(R.id.container,new KontaktFragment()).commit();
+//			break;
+//		case 3:
+//			fragmentManager
+//			.beginTransaction()
+//			.replace(R.id.container,new TeamListFragment()).commit();
+//			break;
 		case 2:
 			fragmentManager
 			.beginTransaction()
@@ -106,7 +106,7 @@ public class Home extends Activity implements
 		default:
 			fragmentManager
 			.beginTransaction()
-			.replace(R.id.container,new HomeFragment()).commit();
+			.replace(R.id.container,new FriseurstudioFragment()).commit();
 			break;
 			
 			

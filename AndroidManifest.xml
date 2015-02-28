@@ -20,7 +20,7 @@
             android:label="@string/title_activity_register" >
         </activity>
         <activity
-            android:name=".Home"
+            android:name=".Friseurstudio"
             android:label="@string/pascals_hairdroid" >
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

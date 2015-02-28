@@ -1,47 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+<!-- Grunddaten der App für Manifest -->
     <string name="app_name">Pascals Hairdroid</string>
     <string name="pascals_hairdroid">Pascals Hairdroid</string>
+    <string name="action_example"></string>
     <string name="action_settings">Settings</string>
+<!--     Registrierung Fragment -->
     <string name="vorname">Vorname</string>
     <string name="nachname">Nachname</string>
     <string name="passwort">Passwort</string>
     <string name="passwort_bestät">Passwort bestätigen</string>
-    <string name="registrierung">Registrierung</string>
-    <string name="weiter">Weiter</string>
-    <string name="title_activity_register">Registerung</string>
     <string name="telenr">Telefonnummer</string>
-    <string name="title_activity_home">Home</string>
+    <string name="registrierung">Registrierung</string>
+    <string name="title_activity_register">Registerung</string>
+<!-- Friseurstudio Fragment -->
+    <string name="title_activity_home">Friseurstudio</string>
+<!-- NavigationDrawer Fragment -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example"></string>
-    <string name="pascal_petritsch">Pascal Petritsch</string>
+    <string-array name="navigation_items">
+        	<item >Friseurstudio</item>
+        	<item >Termine</item>
+       		<item >Angebote</item>
+        	<item >Produkte</item>
+        	<item >Galerie</item>
+       </string-array>
+       
+      <string-array name="child_navigation_items">
+           	<item >Das Studio</item>
+        	<item >Unser Team</item>
+        	<item >Dienstleistungen</item>
+        	<item >Öffnungszeiten</item>
+        	<item >Kontakt</item>    
+     </string-array>
+    
+    
+    
+<!-- Nur für Vorführung der App Hardcoded geschrieben -> nicht in App gebraucht -->
+	<string name="pascal_petritsch">Pascal Petritsch</string>
     <string name="adresse">Wagramer Straße 154a</string>
     <string name="mobil">Mobil: 0676 92 38 217</string>
     <string name="mofr">Montag - Freitag : 	11:00 -19:00 Uhr</string>
     <string name="sa">Samstag : 	09:00 -15:00 Uhr</string>
 	<string name="ort">1220 Wien</string>
-	<string name="homepage">http://www.pascals.at</string>
+	<string name="homepage">http://www.pascals.at</string> 
+	
+	<!-- Button Termin reservieren in fragment_termin_eintragen -->
 	<string name="termin_resevieren">Termin eintragen</string>
 	
-	    <string-array name="navigation_items">
-        <item >Home</item>
-        <item >Termine</item>
-        <item >Angebote</item>
-        <item >Unser Team</item>
-        <item >Kontakt</item>
-        <item >Öffnungszeiten</item>
-        <item >Produkte</item>
-        <item >Galerie</item>
-        <item >Dienstleistungen</item>
-        
-        
-        </string-array>
+	 <!--  Auswahl der Teammitglieder -->  
+        	
+       
    	<string-array name="teamlist">
         <item >Pascal </item>
         <item >Mathias</item>
         <item >Boris</item>
 </string-array>
-<string name="ein_bild">ein bild</string>
+
 </resources>

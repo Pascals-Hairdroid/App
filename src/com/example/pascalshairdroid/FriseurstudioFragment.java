@@ -10,22 +10,22 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class DienstleistungenFragment extends Fragment {
+public class FriseurstudioFragment extends Fragment {
 	
 	
 		private static final String ARG_SECTION_NUMBER = "section_number";
 
 		
 
-		public DienstleistungenFragment() {
+		public FriseurstudioFragment() {
 			// TODO Auto-generated constructor stub
 		}
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_dienstleistungen, container,
+			View rootView = inflater.inflate(R.layout.fragment_friseurstudio, container,
 					false);
-			WebView view = (WebView)rootView.findViewById(R.id.dienstleistungen_webview);
+			WebView view = (WebView)rootView.findViewById(R.id.frieseurstudio_webview);
 			view.setWebViewClient(new WebViewClient(){
 				@Override
 				public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -38,7 +38,6 @@ public class DienstleistungenFragment extends Fragment {
 			
 			return rootView;
 		}
-
 
 		
 
