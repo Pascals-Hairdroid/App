@@ -41,7 +41,7 @@ public class TeamFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl("http://google.com?id="+this.id);
+			view.loadUrl("http://myfirsttrysodontblameme.ddns.net/v0.3/Seiten/team.php"+this.id);
 			
 			
 			return rootView;
