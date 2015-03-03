@@ -1,5 +1,9 @@
 package com.example.pascalshairdroid;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -10,6 +14,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -52,7 +58,7 @@ public class NavigationDrawerFragment extends Fragment {
 	private ActionBarDrawerToggle mDrawerToggle;
 
 	private DrawerLayout mDrawerLayout;
-	private ListView mDrawerListView;
+	private ExpandableListView mDrawerListView;
 	private View mFragmentContainerView;
 
 	private int mCurrentSelectedPosition = 0;
@@ -80,7 +86,7 @@ public class NavigationDrawerFragment extends Fragment {
 		}
 
 		// Select either the default item (0) or the last selected item.
-		selectItem(mCurrentSelectedPosition);
+		selectItem(mCurrentSelectedPosition, -1);
 	}
 
 	@Override
@@ -94,24 +100,72 @@ public class NavigationDrawerFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		mDrawerListView = (ListView) inflater.inflate(
+		mDrawerListView = (ExpandableListView) inflater.inflate(
 				R.layout.fragment_navigation_drawer, container, false);
-		mDrawerListView
-				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		/*
+		 * mDrawerListView .setOnItemClickListener(new
+		 * AdapterView.OnItemClickListener() {
+		 * 
+		 * @Override public void onItemClick(AdapterView<?> parent, View view,
+		 * int position, long id) { selectItem(position); } });
+		 */
+
+		final ArrayList<String> level1 = new ArrayList<String>(
+				Arrays.asList(getActivity().getResources().getStringArray(
+						R.array.navigation_items)));
+		// HashMap in der die einzelnen Submenus hängen
+		final HashMap<Integer, ArrayList<String>> level2 = new HashMap<Integer, ArrayList<String>>();
+		// zur hashmap and er 0 stelle = Friseurstudio eine neues Array anhängen und die submenus reinhängen
+		level2.put(
+				0,
+				new ArrayList<String>(Arrays.asList(getActivity().getResources().getStringArray(R.array.child_navigation_items))));
+
+		mDrawerListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+
 					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						selectItem(position);
+					public boolean onGroupClick(ExpandableListView parent,
+							View v, int groupPosition, long id) {
+						// Abfrage damit er bei klick auf Friseurstudio nur das Submenu auf macht 
+						if (level2.get(groupPosition) == null) {
+							selectItem(groupPosition, 0);
+							return false;
+						} else { // und bei jeden anderen klick nichts macht
+							selectItem(groupPosition, -1);
+							return false;
+						}
 					}
 				});
-		mDrawerListView.setAdapter(new ArrayAdapter<String>(getActionBar()
-				.getThemedContext(),
-				android.R.layout.simple_list_item_activated_1,
-				android.R.id.text1, getActivity().getResources().getStringArray(R.array.navigation_items)));
+
+		mDrawerListView
+				.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+					@Override
+					public boolean onChildClick(ExpandableListView parent,
+							View v, int groupPosition, int childPosition,
+							long id) {
+						selectItem(groupPosition, childPosition);
+
+						return false;
+					}
+				});
+
+		/*
+		 * mDrawerListView.setAdapter(new ArrayAdapter<String>(getActionBar()
+		 * .getThemedContext(), android.R.layout.simple_list_item_activated_1,
+		 * android.R.id.text1,
+		 * getActivity().getResources().getStringArray(R.array
+		 * .navigation_items)));
+		 */
+
+		NavigationDrawerAdapter adapter = new NavigationDrawerAdapter(
+				getActivity(), level1, level2);
+		adapter.setInflater(getActivity().getLayoutInflater());
+		adapter.setExpandableListView(mDrawerListView);
+		mDrawerListView.setAdapter(adapter);
+
 		mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 		return mDrawerListView;
 	}
-	
 
 	public boolean isDrawerOpen() {
 		return mDrawerLayout != null
@@ -207,16 +261,19 @@ public class NavigationDrawerFragment extends Fragment {
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 	}
 
-	private void selectItem(int position) {
-		mCurrentSelectedPosition = position;
+	private void selectItem(int goupeposition, int childPosition) {
+		Log.d("fuck", "g:"+goupeposition);
+		Log.d("fuck", "c:"+childPosition);
+		mCurrentSelectedPosition = goupeposition;
 		if (mDrawerListView != null) {
-			mDrawerListView.setItemChecked(position, true);
+			mDrawerListView.setItemChecked(goupeposition, true);
 		}
-		if (mDrawerLayout != null) {
+		if (mDrawerLayout != null && childPosition != -1) {
 			mDrawerLayout.closeDrawer(mFragmentContainerView);
 		}
 		if (mCallbacks != null) {
-			mCallbacks.onNavigationDrawerItemSelected(position);
+			mCallbacks.onNavigationDrawerItemSelected(goupeposition,
+					childPosition);
 		}
 	}
 
@@ -266,8 +323,7 @@ public class NavigationDrawerFragment extends Fragment {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
-			return 
-					false;
+			return false;
 		}
 
 		if (item.getItemId() == R.id.action_example) {
@@ -303,6 +359,7 @@ public class NavigationDrawerFragment extends Fragment {
 		/**
 		 * Called when an item in the navigation drawer is selected.
 		 */
-		void onNavigationDrawerItemSelected(int position);
+		void onNavigationDrawerItemSelected(int groupePosition,
+				int childPosition);
 	}
 }

@@ -54,6 +54,8 @@
         <item>Mathias</item>
         <item>Boris</item>
     </string-array>
+    
+    
 
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="hello_world">Hello world!</string>

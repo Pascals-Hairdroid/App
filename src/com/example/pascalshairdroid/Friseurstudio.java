@@ -45,8 +45,9 @@ public class Friseurstudio extends Activity implements
 		
 		setContentView(R.layout.activity_home);
 
-		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
-				.findFragmentById(R.id.navigation_drawer);
+		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
+		
+		
 		mTitle = getTitle();
 
 		// Set up the drawer.
@@ -55,17 +56,12 @@ public class Friseurstudio extends Activity implements
 	}
 
 	@Override
-	public void onNavigationDrawerItemSelected(int position) {
+	public void onNavigationDrawerItemSelected(int position, int childPosition) {
 		// update the main content by replacing fragments
 		
 		
 		FragmentManager fragmentManager = getFragmentManager();
 		switch(position){
-//		case 8:
-//			fragmentManager
-//			.beginTransaction()
-//			.replace(R.id.container,new DienstleistungenFragment()).commit();
-//			break;
 		case 4:
 			fragmentManager
 			.beginTransaction()
@@ -76,21 +72,6 @@ public class Friseurstudio extends Activity implements
 			.beginTransaction()
 			.replace(R.id.container,new ProductFragment()).commit();
 			break;
-//		case 5:
-//			fragmentManager
-//			.beginTransaction()
-//			.replace(R.id.container,new OpentimeFragment()).commit();
-//			break;
-//		case 4:
-//			fragmentManager
-//			.beginTransaction()
-//			.replace(R.id.container,new KontaktFragment()).commit();
-//			break;
-//		case 3:
-//			fragmentManager
-//			.beginTransaction()
-//			.replace(R.id.container,new TeamListFragment()).commit();
-//			break;
 		case 2:
 			fragmentManager
 			.beginTransaction()
@@ -104,9 +85,29 @@ public class Friseurstudio extends Activity implements
 			break;
 		case 0:
 		default:
-			fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new FriseurstudioFragment()).commit();
+			
+			switch (childPosition) {
+			case 3:
+				fragmentManager
+				.beginTransaction()
+				.replace(R.id.container,new OpentimeFragment()).commit();
+				break;
+			case 1:
+				fragmentManager
+				.beginTransaction()
+				.replace(R.id.container,new KontaktFragment()).commit();
+				break;
+			case 0:
+				fragmentManager
+				.beginTransaction()
+				.replace(R.id.container,new TeamListFragment()).commit();
+				break;
+			case -1:
+				fragmentManager
+				.beginTransaction()
+				.replace(R.id.container,new FriseurstudioFragment()).commit();
+			}
+			
 			break;
 			
 			
