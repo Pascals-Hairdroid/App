@@ -33,7 +33,7 @@ public class DienstleistungenFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl("http://google.com?id=");
+			view.loadUrl("http://www.spengergasse.at");
 			
 			
 			return rootView;

@@ -87,20 +87,30 @@ public class Friseurstudio extends Activity implements
 		default:
 			
 			switch (childPosition) {
+			case 4:
+				fragmentManager
+				.beginTransaction()
+				.replace(R.id.container,new KontaktFragment()).commit();
+				break;
 			case 3:
 				fragmentManager
 				.beginTransaction()
 				.replace(R.id.container,new OpentimeFragment()).commit();
 				break;
+			case 2:
+				fragmentManager
+				.beginTransaction()
+				.replace(R.id.container,new DienstleistungenFragment()).commit();
+				break;
 			case 1:
 				fragmentManager
 				.beginTransaction()
-				.replace(R.id.container,new KontaktFragment()).commit();
+				.replace(R.id.container,new TeamListFragment()).commit();
 				break;
 			case 0:
 				fragmentManager
 				.beginTransaction()
-				.replace(R.id.container,new TeamListFragment()).commit();
+				.replace(R.id.container,new FriseurstudioFragment()).commit();
 				break;
 			case -1:
 				fragmentManager
