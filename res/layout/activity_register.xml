@@ -2,38 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.pascalshairdroid.Register" >
     
-   	<TextView
-        android:id="@+id/textregistrierung"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/registrierung"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    tools:context="com.example.pascalshairdroid.Register" >
    
         <requestFocus />
 
-        <Button
-            android:id="@+id/b_registierung"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="43dp"
-            android:layout_marginRight="32dp"
-            android:text="@string/registrierung" />
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/homepage73" />
 
         <EditText
             android:id="@+id/t_vorname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/t_passwort"
-            android:layout_below="@+id/textregistrierung"
             android:ems="10"
             android:hint="@string/vorname" />
 
@@ -58,23 +44,32 @@
             android:hint="@string/passwort" />
 
         <EditText
-            android:id="@+id/t_passwort_Bestät"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/t_passwort"
-            android:layout_centerVertical="true"
-            android:ems="10"
-            android:hint="@string/passwort_bestät" />
-
-        <EditText
             android:id="@+id/editText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/t_passwort_Bestät"
-            android:layout_below="@+id/t_passwort_Bestät"
-            android:layout_marginTop="16dp"
+            android:layout_alignLeft="@+id/email"
+            android:layout_centerVertical="true"
             android:ems="10"
-            android:inputType="phone" 
-        	android:hint="@string/telenr" />
+            android:hint="@string/telenr"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/t_passwort"
+            android:layout_below="@+id/t_passwort"
+            android:ems="10"
+            android:hint="@string/email" />
+
+        <Button
+            android:id="@+id/b_registierung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="38dp"
+            android:background="@android:drawable/btn_default"
+            android:text="@string/registrierung" />
 
 </RelativeLayout>

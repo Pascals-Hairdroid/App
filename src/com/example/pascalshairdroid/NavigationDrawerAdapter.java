@@ -18,7 +18,11 @@ import android.widget.TextView;
 public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 
 	public ArrayList<String> groupItem, tempChild;
-	public HashMap<Integer, ArrayList<String>> childtem = new HashMap<Integer, ArrayList<String>>(); // in hashmap ist eine Arraylist
+	public HashMap<Integer, ArrayList<String>> childtem = new HashMap<Integer, ArrayList<String>>(); // in
+																										// hashmap
+																										// ist
+																										// eine
+																										// Arraylist
 	public LayoutInflater minflater;
 	public ExpandableListView expandableListView;
 	private final Context context;
@@ -48,7 +52,8 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		return 0;
 	}
 
-	// diese Methode wird von den ExpandableListView (fragmen_navigation_drawer.xml) für jedes Submenu (Childmenu) aufgerufen
+	// diese Methode wird von den ExpandableListView
+	// (fragmen_navigation_drawer.xml) für jedes Submenu (Childmenu) aufgerufen
 	// und sagt ihm die Position und die Anordnung
 	@Override
 	public View getChildView(int groupPosition, final int childPosition,
@@ -66,9 +71,9 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		if(childtem.get(groupPosition) != null){
+		if (childtem.get(groupPosition) != null) {
 			return ((ArrayList<String>) childtem.get(groupPosition)).size();
-		}else{
+		} else {
 			return 0;
 		}
 	}
@@ -98,30 +103,36 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		return groupPosition;
 	}
 
-	// diese Methode wird von den ExpandableListView (fragmen_navigation_drawer.xml) für jedes Hauptmenu aufgerufen
+	// diese Methode wird von den ExpandableListView
+	// (fragmen_navigation_drawer.xml) für jedes Hauptmenu aufgerufen
 	// und sagt ihm die Position und die Anordnung
 	@Override
-	public View getGroupView(int groupPosition, boolean isExpanded,	View convertView, ViewGroup parent) {
+	public View getGroupView(int groupPosition, boolean isExpanded,
+			View convertView, ViewGroup parent) {
 		String s = groupItem.get(groupPosition);
-		
-		if(s.equals("Zeichen")){
-			
+
+		if (s.equals("Zeichen")) {
+
 			ImageView i = new ImageView(context);
 			i.setImageResource(R.drawable.ic_launcher);
 			convertView = i;
-			
-		}else{
-			if (convertView == null) { // convertView ist ein bestehender View der der nur abgeändert wird
-			convertView = minflater.inflate(android.R.layout.simple_expandable_list_item_1, parent, false);		
+
+		} else {
+			if (convertView == null || !(convertView instanceof TextView)) { // convertView ist ein bestehender View
+										// der der nur abgeändert wird
+				convertView = minflater.inflate(
+						android.R.layout.simple_expandable_list_item_1, parent,
+						false);
+			}
+
+			TextView text = (TextView) convertView
+					.findViewById(android.R.id.text1);
+			// text.setPadding(200, text.getPaddingTop(),
+			// text.getPaddingRight(), text.getPaddingBottom());
+			text.setText(s);
+			convertView.setTag(s);
 		}
 
-		TextView text = (TextView) convertView.findViewById(android.R.id.text1);
-		//text.setPadding(200, text.getPaddingTop(), text.getPaddingRight(), text.getPaddingBottom());
-		text.setText(s);
-		convertView.setTag(s);
-		}
-
-		
 		return convertView;
 	}
 
@@ -142,6 +153,5 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 	public HashMap<Integer, ArrayList<String>> getChildtem() {
 		return childtem;
 	}
-	
 
 }

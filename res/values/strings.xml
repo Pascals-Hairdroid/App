@@ -10,7 +10,7 @@
     <string name="vorname">Vorname</string>
     <string name="nachname">Nachname</string>
     <string name="passwort">Passwort</string>
-    <string name="passwort_bestät">Passwort bestätigen</string>
+    <string name="email">Email</string>
     <string name="telenr">Telefonnummer</string>
     <string name="registrierung">Registrierung</string>
     <string name="title_activity_register">Registerung</string>
@@ -55,10 +55,11 @@
         <item>Mathias</item>
         <item>Boris</item>
     </string-array>
-    
-    
 
+    <string name="login_bt">Login</string>
+    <string name="SignUp_bt">Sign up</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_login">Login</string>
 
 </resources>

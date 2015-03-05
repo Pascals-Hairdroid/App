@@ -62,30 +62,30 @@ public class Friseurstudio extends Activity implements
 		
 		FragmentManager fragmentManager = getFragmentManager();
 		switch(position){
-		case 4:
+		case 5:
 			fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,new GalerieFragment()).commit();
 			break;
-		case 3:
+		case 4:
 			fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,new ProductFragment()).commit();
 			break;
-		case 2:
+		case 3:
 			fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,new AngebotFragment()).commit();
 			break;
 		
-		case 1:
+		case 2:
 			fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,new TerminEintragenFragment()).commit();
 			break;
-		case 0:
-		default:
 			
+		case 1:
+		default:
 			switch (childPosition) {
 			case 4:
 				fragmentManager
@@ -112,16 +112,8 @@ public class Friseurstudio extends Activity implements
 				.beginTransaction()
 				.replace(R.id.container,new FriseurstudioFragment()).commit();
 				break;
-			case -1:
-				fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,new FriseurstudioFragment()).commit();
+			
 			}
-			
-			break;
-			
-			
-		
 		
 		
 		}

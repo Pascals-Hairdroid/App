@@ -22,7 +22,6 @@
         <activity
             android:name=".Friseurstudio"
             android:label="@string/pascals_hairdroid" >
-          
         </activity>
         <activity
             android:name=".SplashScreen"
@@ -30,11 +29,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
             <intent-filter>
+                
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Login"
+            android:label="@string/pascals_hairdroid" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>  
+        </activity>
     </application>
 
 </manifest>

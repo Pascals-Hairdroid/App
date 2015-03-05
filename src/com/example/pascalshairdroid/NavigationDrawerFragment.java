@@ -117,7 +117,7 @@ public class NavigationDrawerFragment extends Fragment {
 		final HashMap<Integer, ArrayList<String>> level2 = new HashMap<Integer, ArrayList<String>>();
 		// zur hashmap and er 0 stelle = Friseurstudio eine neues Array anhängen und die submenus reinhängen
 		level2.put(
-				0,
+				1,
 				new ArrayList<String>(Arrays.asList(getActivity().getResources().getStringArray(R.array.child_navigation_items))));
 
 		mDrawerListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
