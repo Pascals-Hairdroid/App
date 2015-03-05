@@ -21,6 +21,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string-array name="navigation_items">
+        <item>Zeichen</item>
         <item>Friseurstudio</item>
         <item>Termine</item>
         <item>Angebote</item>

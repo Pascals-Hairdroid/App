@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
@@ -102,8 +103,15 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded,	View convertView, ViewGroup parent) {
 		String s = groupItem.get(groupPosition);
-
-		if (convertView == null) { // convertView ist ein bestehender View der der nur abgeändert wird
+		
+		if(s.equals("Zeichen")){
+			
+			ImageView i = new ImageView(context);
+			i.setImageResource(R.drawable.ic_launcher);
+			convertView = i;
+			
+		}else{
+			if (convertView == null) { // convertView ist ein bestehender View der der nur abgeändert wird
 			convertView = minflater.inflate(android.R.layout.simple_expandable_list_item_1, parent, false);		
 		}
 
@@ -111,6 +119,9 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		//text.setPadding(200, text.getPaddingTop(), text.getPaddingRight(), text.getPaddingBottom());
 		text.setText(s);
 		convertView.setTag(s);
+		}
+
+		
 		return convertView;
 	}
 
