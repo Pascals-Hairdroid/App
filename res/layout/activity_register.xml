@@ -19,19 +19,10 @@
             android:id="@+id/t_vorname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/t_passwort"
+            android:layout_alignLeft="@+id/t_nachname"
+            android:layout_alignParentTop="true"
             android:ems="10"
             android:hint="@string/vorname" />
-
-        <EditText
-            android:id="@+id/t_nachname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/t_vorname"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="@string/nachname" />
 
         <EditText
             android:id="@+id/t_passwort"
@@ -39,19 +30,17 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/t_nachname"
             android:layout_below="@+id/t_nachname"
-            android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="@string/passwort" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/t_nachname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/email"
-            android:layout_centerVertical="true"
+            android:layout_below="@+id/t_vorname"
+            android:layout_centerHorizontal="true"
             android:ems="10"
-            android:hint="@string/telenr"
-            android:inputType="phone" />
+            android:hint="@string/nachname" />
 
         <EditText
             android:id="@+id/email"
@@ -62,13 +51,24 @@
             android:ems="10"
             android:hint="@string/email" />
 
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/email"
+            android:layout_below="@+id/email"
+            android:ems="10"
+            android:hint="@string/telenr"
+            android:inputType="phone" />
+
         <Button
             android:id="@+id/b_registierung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="38dp"
+            android:layout_below="@+id/editText1"
+            android:layout_marginRight="14dp"
+            android:layout_marginTop="44dp"
             android:background="@android:drawable/btn_default"
             android:text="@string/registrierung" />
 

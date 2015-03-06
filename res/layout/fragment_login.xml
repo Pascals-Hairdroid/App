@@ -16,19 +16,6 @@
         android:src="@drawable/homepage73" />
 
     <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="132dp"
-        android:hint="Email"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,13 +26,26 @@
         android:hint="Passwort"
         android:inputType="textPassword" />
 
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="Email" >
+
+        <requestFocus />
+    </EditText>
+
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText2"
-        android:layout_marginRight="18dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="22dp"
         android:background="@android:drawable/btn_default"
         android:text="@string/login_bt" />
     	

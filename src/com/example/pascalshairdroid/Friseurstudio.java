@@ -83,8 +83,16 @@ public class Friseurstudio extends Activity implements
 			.beginTransaction()
 			.replace(R.id.container,new TerminEintragenFragment()).commit();
 			break;
+		case 0:
+			fragmentManager
+			.beginTransaction()
+			.replace(R.id.container,new FriseurstudioFragment()).commit();
+			break;
 			
 		case 1:
+			fragmentManager
+			.beginTransaction()
+			.replace(R.id.container,new FriseurstudioFragment()).commit();
 		default:
 			switch (childPosition) {
 			case 4:
