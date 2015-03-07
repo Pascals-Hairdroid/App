@@ -14,6 +14,7 @@
     <string name="telenr">Telefonnummer</string>
     <string name="registrierung">Registrierung</string>
     <string name="title_activity_register">Registerung</string>
+    <string name="galerie">Galerie</string>
     <!-- Friseurstudio Fragment -->
     <string name="title_activity_home">Friseurstudio</string>
     <!-- NavigationDrawer Fragment -->

@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class Login extends Activity {
@@ -19,8 +22,9 @@ public class Login extends Activity {
 	    public boolean onCreateOptionsMenu(Menu menu) {
 	        // Inflate the menu; this adds items to the action bar if it is present.
 	        getMenuInflater().inflate(R.menu.splash_screen, menu);
-	 
+	        Action();
 	        return true;
+	        
 	    }
 	    @Override
 	    public boolean onOptionsItemSelected(MenuItem item) {
@@ -35,5 +39,18 @@ public class Login extends Activity {
 	        }
 	        return super.onOptionsItemSelected(item);
 	    }
+	    
+	    private void Action()
+		{
+			Button b= (Button) findViewById(R.id.login);
+	        b.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					startActivity(new Intent(Login.this, Friseurstudio.class));
+					
+				}
+			}); 
+		}
 
 }
