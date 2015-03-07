@@ -56,6 +56,13 @@
         <item>Mathias</item>
         <item>Boris</item>
     </string-array>
+    
+    <string-array name="produkte">
+        <item>Haarspray </item>
+        <item>Haargel</item>
+        <item>Shampoo</item>
+    </string-array>
+    
 
     <string name="login_bt">Login</string>
     <string name="SignUp_bt">Sign up</string>

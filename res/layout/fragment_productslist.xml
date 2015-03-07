@@ -5,13 +5,15 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.pascalshairdroid.Home$PlaceholderFragment" >
+    android:paddingTop="@dimen/activity_vertical_margin" >
 
-   <WebView
-        android:id="@+id/angebot_webview"
+    <ListView
+        android:id="@+id/listView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-        
+        android:layout_height="match_parent"
+        android:entries="@array/produkte"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" >
+    </ListView>
 
 </RelativeLayout>

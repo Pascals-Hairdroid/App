@@ -3,6 +3,8 @@ package galerie;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
+
+import com.example.pascalshairdroid.R;
  
 import android.R.string;
 import android.app.AlertDialog;
@@ -29,12 +31,12 @@ public class Utils {
 	        File directory = new File(
 	                android.os.Environment.getExternalStorageDirectory()
 	                        + File.separator + AppConstant.PHOTO_ALBUM);
-	 
+	      
 	        // check for directory
 	        if (directory.isDirectory()) {
 	            // getting list of file paths
 	            File[] listFiles = directory.listFiles();
-	 
+	            
 	            // Check for count
 	            if (listFiles.length > 0) {
 	 
@@ -44,9 +46,9 @@ public class Utils {
 	                    // get file path
 	                    String filePath = listFiles[i].getAbsolutePath();
 	 
-	                    // check for supported file extension
+//	                    // check for supported file extension
 	                    if (IsSupportedFile(filePath)) {
-	                        // Add image path to array list
+//	                        // Add image path to array list
 	                        filePaths.add(filePath);
 	                    }
 	                }

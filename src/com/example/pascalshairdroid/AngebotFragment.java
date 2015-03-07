@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class AngebotFragment extends Fragment {
 	
@@ -23,6 +25,17 @@ public class AngebotFragment extends Fragment {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_angebot, container,
 					false);
+			WebView view = (WebView)rootView.findViewById(R.id.angebot_webview);
+			view.setWebViewClient(new WebViewClient(){
+				@Override
+				public boolean shouldOverrideUrlLoading(WebView view, String url) {
+					view.loadUrl(url);
+					return false;
+				}
+			});
+			view.loadUrl("http://www.youtube.com");
+			
+			
 			return rootView;
 		}
 

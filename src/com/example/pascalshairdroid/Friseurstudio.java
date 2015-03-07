@@ -72,7 +72,7 @@ public class Friseurstudio extends Activity implements
 		case 4:
 			fragmentManager
 			.beginTransaction()
-			.replace(R.id.container,new ProductFragment()).commit();
+			.replace(R.id.container,new ProduktListFragment()).commit();
 			break;
 		case 3:
 			fragmentManager
