@@ -1,13 +1,19 @@
 package com.example.pascalshairdroid;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class Register extends Activity {
 
@@ -42,11 +48,50 @@ public class Register extends Activity {
 		Button b= (Button) findViewById(R.id.b_registierung);
         b.setOnClickListener(new OnClickListener() {
 			
-			@Override
+    		@Override
 			public void onClick(View v) {
-				startActivity(new Intent(Register.this, Friseurstudio.class));
+				//Loginchecker init
+				RegisterChecker checker = new RegisterChecker(Register.this);
 				
+				// auslesen felder
+				String vorname = ((EditText)findViewById(R.id.t_vorname)).getText().toString();
+				String nachname = ((EditText)findViewById(R.id.t_nachname)).getText().toString();
+				String passw = ((EditText)findViewById(R.id.t_passwort)).getText().toString();
+				String email = ((EditText)findViewById(R.id.email)).getText().toString();
+				String phoneNr = ((EditText)findViewById(R.id.t_phoneNr)).getText().toString();
+				
+				// hintergrund prozess starten, url ersetzten durch (König)
+				checker.execute("http://pastebin.com/raw.php?i=HSV5jBWG",vorname,nachname,passw, email, phoneNr);
 			}
-		}); 
+		});
+	}
+	
+	public void doReg(JSONObject j) {
+		try {
+			if (j == null) {
+				Toast.makeText(this, "Regist faild", Toast.LENGTH_LONG).show();
+			} else {
+				
+				// wenn error gesetzt ist dann hol error aus json und zeig ihn an
+				if (j.has("error")) {
+					Toast.makeText(this, j.getString("error"),
+							Toast.LENGTH_LONG).show();
+				}else{
+					// wenn alles ok dann
+					String sessionId = j.getString("sessionId"); // session id aus Json holen
+					String user = j.getString("username"); // lade username aus json
+					SharedPreferences preferences = this.getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE); // lade shared pref db
+					// öffne db zum bearbeiten (edit()), speicher session id , speichere username, sichere db
+					preferences.edit().putString(Login.LOGIN_SESSION_ID, sessionId).putString(Login.LOGIN_USERNAME, user).commit();
+					
+					startActivity(new Intent(Register.this, Friseurstudio.class));
+					// sofortiges finishen von dieser activity (beenden)
+					finish();
+				}
+
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 }

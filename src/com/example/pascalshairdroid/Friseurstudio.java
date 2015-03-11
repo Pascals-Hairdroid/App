@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Friseurstudio extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -55,6 +56,7 @@ public class Friseurstudio extends Activity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
+		Toast.makeText(this, "Hallo "+getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE).getString(Login.LOGIN_USERNAME,""), Toast.LENGTH_LONG).show();
 	}
 
 	@Override

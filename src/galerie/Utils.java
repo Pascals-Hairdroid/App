@@ -10,6 +10,7 @@ import android.R.string;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Point;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -33,6 +34,9 @@ public class Utils {
 	                        + File.separator + AppConstant.PHOTO_ALBUM);
 	      
 	        // check for directory
+//	        Log.d("PHD", directory.getAbsoluteFile().toString());
+//	        Log.d("PHD", directory.listFiles().toString());
+//	        Log.d("PHD", Boolean.toString(directory.exists()));
 	        if (directory.isDirectory()) {
 	            // getting list of file paths
 	            File[] listFiles = directory.listFiles();
