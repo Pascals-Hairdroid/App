@@ -16,17 +16,6 @@
         android:src="@drawable/homepage73" />
 
     <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignTop="@+id/editText1"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:hint="Passwort"
-        android:inputType="textPassword" />
-
-    <EditText
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,5 +37,15 @@
         android:layout_marginRight="22dp"
         android:background="@android:drawable/btn_default"
         android:text="@string/login_bt" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/email"
+        android:layout_below="@+id/email"
+        android:ems="10"
+        android:hint="Passwort"
+        android:inputType="textPassword" />
     	
 </RelativeLayout>

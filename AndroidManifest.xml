@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="info.androidhive.imageslider.FullScreenViewActivity"
+            android:name="galerie.FullScreenViewActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar">
         </activity>
     </application>

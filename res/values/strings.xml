@@ -36,6 +36,11 @@
         <item>Öffnungszeiten</item>
         <item>Kontakt</item>
     </string-array>
+    
+     <string-array name="child_navigation_items2">
+        <item>Färben</item>
+        <item>Pflege</item>
+    </string-array>
 
     <!-- Nur für Vorführung der App Hardcoded geschrieben -> nicht in App gebraucht -->
     <string name="pascal_petritsch">Pascal Petritsch</string>

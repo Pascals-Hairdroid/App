@@ -1,7 +1,6 @@
 package com.example.pascalshairdroid;
 
 import galerie.GalerieFragment;
-import galerie.GalerieFragment1;
 import android.app.Activity;
 
 import android.app.ActionBar;
@@ -68,9 +67,12 @@ public class Friseurstudio extends Activity implements
 		Intent intent;
 		switch(position){
 		case 5:
-			intent = new Intent(this, GalerieFragment.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            this.startActivity(intent);
+		
+            
+            fragmentManager
+			.beginTransaction()
+			.replace(R.id.container,new GalerieFragment()).commit();
+            break;
 		case 4:
 			fragmentManager
 			.beginTransaction()

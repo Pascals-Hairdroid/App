@@ -14,9 +14,6 @@ import android.support.v4.view.ViewPager;
 public class FullScreenViewActivity extends Activity {
 
 	
-	private ArrayList<String> imagePaths = new ArrayList<String>();
-
-	private Utils utils;
 
 	private PagerAdapter mPagerAdapter;
 
@@ -34,17 +31,14 @@ public class FullScreenViewActivity extends Activity {
 
 	Intent i = getIntent();
 
-	utils = new Utils(this);
-
 	// loading all image paths from SD card
 
-	imagePaths = utils.getFilePaths();
 
 	// Selected image id
 
 	int position = i.getExtras().getInt("id");
 
-	mPagerAdapter = new FullScreenImageAdapter(this, imagePaths);
+	mPagerAdapter = new FullScreenImageAdapter(this, AppConstant.images);
 
 	mPager = (ViewPager) findViewById(R.id.pager);
 

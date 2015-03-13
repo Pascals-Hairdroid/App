@@ -33,7 +33,7 @@ public class FriseurstudioFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl("http://myfirsttrysodontblameme.ddns.net/Homepage/Homepage");
+			view.loadUrl("http://pascalshairdroid.bplaced.net/");
 			
 			
 			return rootView;

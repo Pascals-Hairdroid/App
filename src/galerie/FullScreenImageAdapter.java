@@ -20,20 +20,20 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 public class FullScreenImageAdapter extends PagerAdapter {
 
-	private Activity _activity;
-    private ArrayList<String> _imagePaths;
+	private Activity activity;
+    private ArrayList<Integer> images;
     private LayoutInflater inflater;
  
     // constructor
     public FullScreenImageAdapter(Activity activity,
-            ArrayList<String> imagePaths) {
-        this._activity = activity;
-        this._imagePaths = imagePaths;
+            ArrayList<Integer> images) {
+        this.activity = activity;
+        this.images = images;
     }
  
     @Override
     public int getCount() {
-        return this._imagePaths.size();
+        return this.images.size();
     }
  
     @Override
@@ -46,24 +46,24 @@ public class FullScreenImageAdapter extends PagerAdapter {
         ImageView imgDisplay;
         Button btnClose;
   
-        inflater = (LayoutInflater) _activity
+        inflater = (LayoutInflater) activity
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View viewLayout = inflater.inflate(R.layout.layout_fullscreen_image, container,
                 false);
   
         imgDisplay = (ImageView) viewLayout.findViewById(R.id.imgDisplay);
         btnClose = (Button) viewLayout.findViewById(R.id.btnClose);
+       imgDisplay.setImageResource(images.get(position));
          
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-        Bitmap bitmap = BitmapFactory.decodeFile(_imagePaths.get(position), options);
-        imgDisplay.setImageBitmap(bitmap);
-         
+       
+        
+        
+        
         // close button click event
         btnClose.setOnClickListener(new View.OnClickListener() {            
             @Override
             public void onClick(View v) {
-                _activity.finish();
+                activity.finish();
             }
         });
   

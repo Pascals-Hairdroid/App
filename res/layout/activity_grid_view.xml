@@ -7,20 +7,12 @@
     android:background="#f0f0f0"
     tools:context="com.example.pascalshairdroid.Home$PlaceholderFragment" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="142dp"
-        android:text="JFkdssfsdsdfdfsdfdsfdsfs" />
-    
-    
+   
     <GridView 
     android:id="@+id/grid_view"
     android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
         android:columnWidth="100dp"
