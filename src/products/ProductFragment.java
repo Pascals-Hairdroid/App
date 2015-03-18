@@ -1,5 +1,9 @@
-package com.example.pascalshairdroid;
+package products;
 
+
+import com.example.pascalshairdroid.R;
+import com.example.pascalshairdroid.R.id;
+import com.example.pascalshairdroid.R.layout;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -47,9 +51,8 @@ public class ProductFragment extends Fragment {
 			if (id==0)
 			view.loadUrl("http://www.google.com"+this.id);
 			if (id==1)
-				view.loadUrl("http://www.youtube.com"+this.id);
-			if(id==2)
-				view.loadUrl("http://www.spengergasse.com"+this.id);
+			view.loadUrl("http://www.youtube.com"+this.id);
+			
 				
 			
 			

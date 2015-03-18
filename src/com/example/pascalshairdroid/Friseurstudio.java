@@ -1,5 +1,7 @@
 package com.example.pascalshairdroid;
 
+import products.ProductFragment;
+import login_register.Login;
 import galerie.GalerieFragment;
 import android.app.Activity;
 
@@ -77,13 +79,24 @@ public class Friseurstudio extends Activity implements
 			fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,new ProduktListFragment()).commit();
-			break;
+			
+			switch (childPosition) {
+			case 0:
+				fragmentManager
+				.beginTransaction()
+				.replace(R.id.container,new ProductFragment()).commit();
+				break;
+			case 1:
+				fragmentManager
+				.beginTransaction()
+				.replace(R.id.container,new ProductFragment()).commit();
+				break;
+			}
 		case 3:
 			fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,new AngebotFragment()).commit();
 			break;
-		
 		case 2:
 			fragmentManager
 			.beginTransaction()
@@ -94,7 +107,6 @@ public class Friseurstudio extends Activity implements
 			.beginTransaction()
 			.replace(R.id.container,new FriseurstudioFragment()).commit();
 			break;
-			
 		case 1:
 			fragmentManager
 			.beginTransaction()

@@ -49,7 +49,7 @@ public class GalerieFragment extends Fragment {
 		// loading all image paths from SD card
 
 		// Gridview adapter
-		adapter = new GridViewImageAdapter(getActivity(), AppConstant.images,
+		adapter = new GridViewImageAdapter(getActivity(), AppConstantGalerie.images,
 				columnWidth);
 
 		// setting grid view adapter
@@ -61,11 +61,11 @@ public class GalerieFragment extends Fragment {
 	private void InitilizeGridLayout() {
 		Resources r = getResources();
 		float padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-				AppConstant.GRID_PADDING, r.getDisplayMetrics());
+				AppConstantGalerie.GRID_PADDING, r.getDisplayMetrics());
 
-		columnWidth = (int) ((utils.getScreenWidth() - ((AppConstant.NUM_OF_COLUMNS + 1) * padding)) / AppConstant.NUM_OF_COLUMNS);
+		columnWidth = (int) ((utils.getScreenWidth() - ((AppConstantGalerie.NUM_OF_COLUMNS + 1) * padding)) / AppConstantGalerie.NUM_OF_COLUMNS);
 
-		gridView.setNumColumns(AppConstant.NUM_OF_COLUMNS);
+		gridView.setNumColumns(AppConstantGalerie.NUM_OF_COLUMNS);
 		gridView.setColumnWidth(columnWidth);
 		gridView.setStretchMode(GridView.NO_STRETCH);
 		gridView.setPadding((int) padding, (int) padding, (int) padding,

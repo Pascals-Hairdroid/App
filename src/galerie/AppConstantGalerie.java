@@ -6,10 +6,10 @@ import java.util.List;
 
 import com.example.pascalshairdroid.R;
 
-public class AppConstant {
+public class AppConstantGalerie {
 
 	// Number of columns of Grid View
-	public static final int NUM_OF_COLUMNS = 3;
+	public static final int NUM_OF_COLUMNS = 2;
 
 	// Gridview image padding
 	public static final int GRID_PADDING = 8; // in dp

@@ -1,4 +1,4 @@
-package com.example.pascalshairdroid;
+package login_register;
 
 import java.io.IOException;
 import org.apache.http.HttpResponse;
@@ -10,6 +10,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import android.os.AsyncTask;
 

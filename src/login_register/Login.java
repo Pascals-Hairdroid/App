@@ -1,7 +1,13 @@
-package com.example.pascalshairdroid;
+package login_register;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.example.pascalshairdroid.Friseurstudio;
+import com.example.pascalshairdroid.R;
+import com.example.pascalshairdroid.R.id;
+import com.example.pascalshairdroid.R.layout;
+import com.example.pascalshairdroid.R.menu;
 
 import android.app.Activity;
 import android.content.Intent;

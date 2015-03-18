@@ -38,7 +38,7 @@ public class FullScreenViewActivity extends Activity {
 
 	int position = i.getExtras().getInt("id");
 
-	mPagerAdapter = new FullScreenImageAdapter(this, AppConstant.images);
+	mPagerAdapter = new FullScreenImageAdapter(this, AppConstantGalerie.images);
 
 	mPager = (ViewPager) findViewById(R.id.pager);
 

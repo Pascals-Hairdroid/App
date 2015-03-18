@@ -1,6 +1,8 @@
-package com.example.pascalshairdroid;
+package login_register;
 
 import java.io.IOException;
+
+
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
