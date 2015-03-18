@@ -15,7 +15,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ph1"
         android:label="@string/pascals_hairdroid"
-        android:theme="@style/AppTheme">
+        android:theme="@style/CustomActionBarTheme">
         <activity
             android:name="login_register.Register"
             android:label="@string/title_activity_register" >
@@ -23,6 +23,7 @@
         <activity
             android:name=".Friseurstudio"
             android:label="@string/pascals_hairdroid" >
+            
         </activity>
          <activity
             android:name="galerie.GalerieFragment"
@@ -31,8 +32,8 @@
         <activity
             android:name=".SplashScreen"
             android:label="@string/pascals_hairdroid"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" >
+            android:screenOrientation="portrait">
+            
         </activity>
         <activity
             android:name="login_register.Login"
