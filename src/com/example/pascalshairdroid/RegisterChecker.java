@@ -37,7 +37,7 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 			httpPost.getParams().setParameter("nachname", params[2]); // nachname
 			httpPost.getParams().setParameter("password", params[3]); // pass
 			httpPost.getParams().setParameter("email", params[4]); // email
-			httpPost.getParams().setParameter("telenr", params[5]);// telenr
+			httpPost.getParams().setParameter("telNr", params[5]);// telenr
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			
 			//datei aus antwort von Server laden und in ein Json object umwandeln 

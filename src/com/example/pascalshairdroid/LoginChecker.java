@@ -33,8 +33,8 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 		try {
 			
 			HttpPost httpPost = new HttpPost(params[0]); // Url
-			httpPost.getParams().setParameter("email", params[1]); // email
-			httpPost.getParams().setParameter("password", params[2]); // password
+			httpPost.getParams().setParameter("username", params[1]); // email
+			httpPost.getParams().setParameter("passwort", params[2]); // password
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
