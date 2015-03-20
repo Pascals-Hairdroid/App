@@ -19,7 +19,9 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ProductFragment extends Fragment {
-	private String name; private int id;
+	private String name;
+	private int id;
+	
 	
 		private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -31,9 +33,7 @@ public class ProductFragment extends Fragment {
 				this.name = name;
 				this.id = id;
 		}
-		public ProductFragment() {
-			// TODO Auto-generated constructor stub
-		}
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class ProductFragment extends Fragment {
 			});
 			
 			if (id==0)
-			view.loadUrl("http://www.google.com"+this.id);
+			view.loadUrl("http://google.com?id="+this.id);
 			if (id==1)
 			view.loadUrl("http://www.youtube.com"+this.id);
 			

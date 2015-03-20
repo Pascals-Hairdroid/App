@@ -62,6 +62,13 @@
         <item>Boris</item>
     </string-array>
     
+     <string-array name="teamsubinfo">
+        <item>Chef </item>
+        <item>Mitarbeiter</item>
+        <item>Mitarbeiter</item>
+    </string-array>
+    
+    
     <string-array name="produkte">
         <item>Haarspray </item>
         <item>Haargel</item>

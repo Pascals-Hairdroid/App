@@ -1,5 +1,9 @@
-package com.example.pascalshairdroid;
+package teamlist;
 
+
+import com.example.pascalshairdroid.R;
+import com.example.pascalshairdroid.R.id;
+import com.example.pascalshairdroid.R.layout;
 
 import android.app.Activity;
 import android.app.Fragment;

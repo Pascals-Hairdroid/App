@@ -32,6 +32,12 @@ public class Login extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		SharedPreferences preferences = this.getSharedPreferences(PREF_TAG, MODE_PRIVATE); // lade shared pref db
+		if(preferences.contains(LOGIN_SESSION_ID)){
+			startActivity(new Intent(Login.this, Friseurstudio.class));
+			finish();
+		}
 		setContentView(R.layout.fragment_login);
 		Action();
 	}
