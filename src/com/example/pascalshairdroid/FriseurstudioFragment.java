@@ -33,7 +33,7 @@ public class FriseurstudioFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl("http://pascalshairdroid.bplaced.net/index.php?webview=1");
+			view.loadUrl("http://pascalshairdroid.bplaced.net/index.php?web=1");
 			
 			
 			return rootView;

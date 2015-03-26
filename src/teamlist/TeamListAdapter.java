@@ -31,15 +31,22 @@ public class TeamListAdapter extends ArrayAdapter<String>{
 			convertView = parent.inflate(getContext(), R.layout.listview_teamlist_layout, null);
 		}
 		
-		
+		// text aus array holen und in text speichern
 		TextView text = (TextView) convertView.findViewById(R.id.team_name);
+		// der position übergeben
 		text.setText(getItem(position));
+		// text holen und speichern 
 		TextView subtext = (TextView) convertView.findViewById(R.id.team_subtext);
+		// unter in textfeld schreiben --> wichtig position von ersten textview
 		subtext.setText(getContext().getResources().getStringArray(R.array.teamsubinfo)[position]);
 		
+		//Postion des fotos holen 
 		ImageView foto = (ImageView) convertView.findViewById(R.id.team_foto);
+		// foto holen
 		TypedArray images = getContext().getResources().obtainTypedArray(R.array.team_images);
 		System.out.println(images.getText(position));
+		
+		// foto an der Postion setzen 
 		foto.setImageResource(images.getResourceId(position, R.drawable.ph1));
 		images.recycle();
 		

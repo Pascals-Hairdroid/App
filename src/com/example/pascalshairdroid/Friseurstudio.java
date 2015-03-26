@@ -1,6 +1,7 @@
 package com.example.pascalshairdroid;
 
 import products.ProductFragment;
+import products.ProduktListFragment;
 import teamlist.TeamListFragment;
 import login_register.Login;
 import galerie.GalerieFragment;
@@ -90,7 +91,7 @@ public class Friseurstudio extends Activity implements
 			case 1:
 				fragmentManager
 				.beginTransaction()
-				.replace(R.id.container,new ProductFragment("Ficken",1)).commit();
+				.replace(R.id.container,new ProductFragment("Pflegen",1)).commit();
 				break;
 			}
 		case 3:

@@ -10,6 +10,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.util.Log;
+import android.widget.Toast;
 
 
 import android.os.AsyncTask;
@@ -41,8 +43,10 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 			httpPost.getParams().setParameter("telNr", params[5]);// telenr
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			
+			String asdf = EntityUtils.toString(httpResponse.getEntity());
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
-			return new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
+			Log.e(asdf,"isdfriuash2");
+			return new JSONObject(asdf);
 			
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();

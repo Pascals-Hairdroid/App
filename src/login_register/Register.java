@@ -68,7 +68,7 @@ public class Register extends Activity {
 				String phoneNr = ((EditText)findViewById(R.id.t_phoneNr)).getText().toString();
 				
 				// hintergrund prozess starten, url ersetzten durch (König)
-				checker.execute("http://pastebin.com/raw.php?i=HSV5jBWG",vorname,nachname,passw, email, phoneNr);
+				checker.execute("http://www.pascals.at/v2/PHD_DBA/DBA.php?f=kundeEintragen",vorname,nachname,passw,email, phoneNr);
 			}
 		});
 	}

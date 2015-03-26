@@ -20,6 +20,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.util.Log;
 
 public class Login extends Activity {
 
@@ -34,10 +35,14 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		SharedPreferences preferences = this.getSharedPreferences(PREF_TAG, MODE_PRIVATE); // lade shared pref db
+		// wenn die Session in der DB gespeichert dann überspringe login vorgang unnd wechsle sofort in friseurstudio class
+		Log.d("1","2");
 		if(preferences.contains(LOGIN_SESSION_ID)){
+			Log.d("MyTagGoesHere","sdkf");
 			startActivity(new Intent(Login.this, Friseurstudio.class));
 			finish();
 		}
+		Log.d("sfesd","sdkf");
 		setContentView(R.layout.fragment_login);
 		Action();
 	}
@@ -81,7 +86,8 @@ public class Login extends Activity {
 				String password = ((EditText)findViewById(R.id.password)).getText().toString();
 				
 				// hintergrund prozess starten, url ersetzten durch (König)
-				checker.execute("http://pastebin.com/raw.php?i=HSV5jBWG",email,password);
+				
+				checker.execute("pascals.at/v2/PHD_DBA/login.php",email,password);
 			}
 		});
 	}

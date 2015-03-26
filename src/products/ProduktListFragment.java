@@ -1,6 +1,10 @@
-package com.example.pascalshairdroid;
+package products;
 
-import products.ProductFragment;
+import com.example.pascalshairdroid.R;
+import com.example.pascalshairdroid.R.array;
+import com.example.pascalshairdroid.R.id;
+import com.example.pascalshairdroid.R.layout;
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
