@@ -71,10 +71,9 @@ public class Friseurstudio extends Activity implements
 		FragmentManager fragmentManager = getFragmentManager();
 		Intent intent;
 		switch(position){
-		case 5:
 		
-            
-            fragmentManager
+		case 5:
+		    fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,new GalerieFragment()).commit();
             break;

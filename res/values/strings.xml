@@ -6,7 +6,7 @@
     <string name="pascals_hairdroid">Pascals Hairdroid</string>
     <string name="action_example"></string>
     <string name="action_settings"></string>
-   
+
     <!-- Registrierung Fragment -->
     <string name="vorname">Vorname</string>
     <string name="nachname">Nachname</string>
@@ -29,6 +29,7 @@
         <item>Angebote</item>
         <item>Produkte</item>
         <item>Galerie</item>
+        
     </string-array>
     <string-array name="child_navigation_items">
         <item>Das Studio</item>
@@ -37,8 +38,7 @@
         <item>Öffnungszeiten</item>
         <item>Kontakt</item>
     </string-array>
-    
-     <string-array name="child_navigation_items2">
+    <string-array name="child_navigation_items2">
         <item>Färben</item>
         <item>Pflege</item>
     </string-array>
@@ -62,28 +62,38 @@
         <item>Mathias</item>
         <item>Boris</item>
     </string-array>
-    
-     <string-array name="teamsubinfo">
+    <string-array name="teamsubinfo">
         <item>Chef </item>
         <item>Mitarbeiter</item>
         <item>Mitarbeiter</item>
     </string-array>
-    
-    
     <string-array name="produkte">
         <item>Haarspray </item>
         <item>Haargel</item>
         <item>Shampoo</item>
     </string-array>
     
+     <string-array name="interessen">
+        <item>Färben</item>
+        <item>Tönen</item>
+        <item>Strähnen</item>
+        <item>Kurz Männer</item>
+        <item>Kurz Frauen</item>
+        <item>Lang Frauen</item>
+        <item>Glättung</item>
+        <item>Augenbraun/Wimpern färben</item>
+        
+    </string-array>
 
     <string name="login_bt">Login</string>
     <string name="SignUp_bt">Sign up</string>
     <string name="back">zurück</string>
     <string name="logout">Log Out</string>
-    
+    <string name="Ok">OK</string>
+    <string name="Abbrechen">Abbrechen</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
-    <string name="hello_world">Hello world!</string>
+    
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_kunden_profil">KundenProfil</string>
 
 </resources>
