@@ -4,6 +4,7 @@ import products.ProductFragment;
 import products.ProduktListFragment;
 import teamlist.TeamListFragment;
 import login_register.Login;
+import login_register.Register;
 import galerie.GalerieFragment;
 import android.app.Activity;
 
@@ -145,11 +146,7 @@ public class Friseurstudio extends Activity implements
 		
 		
 		}
-		
-		
-		
-		
-		
+			
 	}
 
 	/*public void onSectionAttached(int number) {
@@ -202,11 +199,16 @@ public class Friseurstudio extends Activity implements
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		switch (id) {
+		case R.id.logout:
+			startActivity(new Intent(Friseurstudio.this, Login.class));
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
+	
 
 	
 

@@ -34,7 +34,7 @@ public class KontaktFragment extends Fragment {
 				}
 			});
 			
-			view.loadUrl("http://google.com?id=");
+			view.loadUrl("http://pascalshairdroid.bplaced.net/Seiten/kontakt.php?web=1");
 			return rootView;
 		}
 

@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.pascalshairdroid.Home$PlaceholderFragment" >
 
-    <TextView
+   <!--   <TextView
         android:id="@+id/section_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
@@ -22,6 +22,13 @@
         android:layout_marginBottom="17dp"
         android:layout_marginLeft="14dp"
         android:layout_toRightOf="@+id/section_label"
-        android:text="@string/termin_resevieren" />
+        android:text="@string/termin_resevieren" /> 
+        
+    -->
+    
+      <WebView
+        android:id="@+id/termin_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

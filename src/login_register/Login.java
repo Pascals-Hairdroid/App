@@ -25,11 +25,11 @@ import android.util.Log;
 public class Login extends Activity {
 
 	//Shared Preferences DB = Name von DB
-	public static final String PREF_TAG = "iudsahlifahdsliuf";
+	public static final String PREF_TAG = "abc";
 	//Feldname von der PHP Session ID
-	public static final String LOGIN_SESSION_ID = "dskhkhfdskfdsfdskkds";
+	public static final String LOGIN_SESSION_ID = "def";
 	
-	public static final String LOGIN_USERNAME = "sdfsdfdsfgkljöii5ertz";
+	public static final String LOGIN_USERNAME = "ghi";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,7 +50,7 @@ public class Login extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.splash_screen, menu);
+		getMenuInflater().inflate(R.menu.login, menu);
 
 		return true;
 

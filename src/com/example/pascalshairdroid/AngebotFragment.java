@@ -33,7 +33,7 @@ public class AngebotFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl("http://www.youtube.com");
+			view.loadUrl("http://pascalshairdroid.bplaced.net/Seiten/Angebote.php?web=1");
 			
 			
 			return rootView;

@@ -317,7 +317,7 @@ public class NavigationDrawerFragment extends Fragment {
 		// showGlobalContextActionBar, which controls the top-left area of the
 		// action bar.
 		if (mDrawerLayout != null && isDrawerOpen()) {
-			inflater.inflate(R.menu.global, menu);
+			inflater.inflate(R.menu.home, menu);
 			showGlobalContextActionBar();
 		}
 		super.onCreateOptionsMenu(menu, inflater);
@@ -329,9 +329,7 @@ public class NavigationDrawerFragment extends Fragment {
 			return false;
 		}
 
-		if (item.getItemId() == R.id.action_example) {
-			Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT)
-					.show();
+		if (item.getItemId() == R.id.logout) {
 			return false;
 		}
 
