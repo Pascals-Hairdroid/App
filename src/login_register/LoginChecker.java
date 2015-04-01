@@ -41,6 +41,7 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 			
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
 			return new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
+			//return EntityUtils.toString(httpResponse.getEntity()); 
 			
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();

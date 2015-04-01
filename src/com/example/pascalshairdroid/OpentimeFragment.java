@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 
 public class OpentimeFragment extends Fragment {
 	
@@ -26,16 +27,10 @@ public class OpentimeFragment extends Fragment {
 			View rootView = inflater.inflate(R.layout.fragment_opentime, container,
 					false);
 			
-			WebView view = (WebView)rootView.findViewById(R.id.opentime_webview);
-			view.setWebViewClient(new WebViewClient(){
-				@Override
-				public boolean shouldOverrideUrlLoading(WebView view, String url) {
-					view.loadUrl(url);
-					return false;
-				}
-			});
+			ImageView view = (ImageView)rootView.findViewById(R.id.imageView1);
 			
-			view.loadUrl("http://google.com?id=");
+			
+			
 			return rootView;
 		}
 		

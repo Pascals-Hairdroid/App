@@ -36,13 +36,13 @@ public class Login extends Activity {
 		
 		SharedPreferences preferences = this.getSharedPreferences(PREF_TAG, MODE_PRIVATE); // lade shared pref db
 		// wenn die Session in der DB gespeichert dann überspringe login vorgang unnd wechsle sofort in friseurstudio class
-		Log.d("1","2");
+		
 		if(preferences.contains(LOGIN_SESSION_ID)){
-			Log.d("MyTagGoesHere","sdkf");
+			
 			startActivity(new Intent(Login.this, Friseurstudio.class));
 			finish();
 		}
-		Log.d("sfesd","sdkf");
+		
 		setContentView(R.layout.fragment_login);
 		Action();
 	}
@@ -87,23 +87,31 @@ public class Login extends Activity {
 				
 				// hintergrund prozess starten, url ersetzten durch (König)
 				
-				checker.execute("pascals.at/v2/PHD_DBA/login.php",email,password);
+				checker.execute("http://www.pascals.at/v2/PHD_DBA/login.php",email,password);
 			}
 		});
 	}
 
 	// Login vorgang
 	public void doLogin(JSONObject j) {
+		
+		// nur für Testzwecke
 		try {
-			if (j == null) {
-				Toast.makeText(this, "Login faild", Toast.LENGTH_LONG).show();
-			} else {
-				
-				// wenn error gesetzt ist dann hol error aus json und zeig ihn an
-				if (j.has("error")) {
-					Toast.makeText(this, j.getString("error"),
-							Toast.LENGTH_LONG).show();
-				}else{
+			j = new JSONObject("{\"sessionId\":4568765467886546788654678, \"username\": \"Gast\"}");
+		
+		// Ende
+//		Toast.makeText(this, "Login faild", Toast.LENGTH_LONG).show();
+//		try {
+//			if (j == null) {
+//				Toast.makeText(this, "Login faild", Toast.LENGTH_LONG).show();
+//				
+//			} else {
+//				
+//				// wenn error gesetzt ist dann hol error aus json und zeig ihn an
+//				if (j.has("error")) {
+//					Toast.makeText(this, j.getString("error"),
+//							Toast.LENGTH_LONG).show();
+//				}else{
 					// wenn alles ok dann
 					String sessionId = j.getString("sessionId"); // session id aus Json holen
 					String user = j.getString("username"); // lade username aus json
@@ -114,12 +122,12 @@ public class Login extends Activity {
 					startActivity(new Intent(Login.this, Friseurstudio.class));
 					// sofortiges finishen von dieser activity (beenden)
 					finish();
-				}
-
-			}
+//				}
+//			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }
