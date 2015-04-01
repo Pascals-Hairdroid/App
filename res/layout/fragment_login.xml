@@ -23,6 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         android:ems="10"
+        android:textColor="@color/orange"
         android:hint="Email" >
 
         <requestFocus />
@@ -46,6 +47,7 @@
         android:layout_below="@+id/email"
         android:ems="10"
         android:hint="Passwort"
+        android:textColor="@color/orange"
         android:inputType="textPassword" />
     	
 </RelativeLayout>

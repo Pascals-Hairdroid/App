@@ -22,6 +22,7 @@
             android:layout_alignLeft="@+id/t_nachname"
             android:layout_alignParentTop="true"
             android:ems="10"
+            android:textColor="@color/orange"
             android:hint="@string/vorname" />
 
         <EditText
@@ -31,8 +32,10 @@
             android:layout_alignLeft="@+id/t_nachname"
             android:layout_below="@+id/t_nachname"
             android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="@color/orange"
             android:hint="@string/passwort" />
-
+        
         <EditText
             android:id="@+id/t_nachname"
             android:layout_width="wrap_content"
@@ -40,6 +43,7 @@
             android:layout_below="@+id/t_vorname"
             android:layout_centerHorizontal="true"
             android:ems="10"
+            android:textColor="@color/orange"
             android:hint="@string/nachname" />
 
         <EditText
@@ -49,6 +53,7 @@
             android:layout_alignLeft="@+id/t_passwort"
             android:layout_below="@+id/t_passwort"
             android:ems="10"
+            android:textColor="@color/orange"
             android:hint="@string/email" />
 
         <EditText
@@ -59,6 +64,7 @@
             android:layout_below="@+id/email"
             android:ems="10"
             android:hint="@string/telenr"
+            android:textColor="@color/orange"
             android:inputType="phone" />
 
         <Button
@@ -71,5 +77,7 @@
             android:layout_marginTop="43dp"
             android:background="@android:drawable/btn_default"
             android:text="@string/registrierung" />
+
+        
 
 </RelativeLayout>

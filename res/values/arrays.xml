@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="team_images">
-        <item>@drawable/team_foto9</item>
-        <item>@drawable/ph</item>
-        <item>@drawable/ph1</item>
+        <item>@drawable/pascal_no</item>
+        <item>@drawable/mathias_no</item>
+        <item>@drawable/nobody_no</item>
     </string-array>
 </resources>
