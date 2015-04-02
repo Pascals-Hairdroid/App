@@ -1,41 +1,103 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="kundenprofil.KundenProfil" >
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="wrap_content"
+android:layout_height="match_parent"
+android:background="@color/white" >
+  
+  <ImageView
+    	style="@style/BackGroundImageView"
+    	android:layout_width="match_parent"
+   		 android:layout_height="match_parent"
+    	android:layout_alignParentTop="true"
+    	android:layout_centerHorizontal="true"
+    	android:layout_marginTop="42dp"
+    	 />
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:gravity="center"
+    android:orientation="vertical" >
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="22dp"
         android:onClick="showImage"
-        android:src="@drawable/ph" />
+        android:src="@drawable/galerie8" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <EditText
+        android:id="@+id/vorname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="30dp"
-        android:onClick="showDaten"
-        android:text="Large Text1" />
+        android:layout_alignLeft="@+id/tnachname"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="@string/vorname"
+        android:inputType="text"
+        android:onClick="vorn"
+        android:textColor="@color/orange" >
 
-    <TextView
-        android:id="@+id/textView1"
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/nachname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/vorname"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/nachname"
+        android:inputType="text"
+        android:onClick="nachn"
+        android:textColor="@color/orange" />
+
+    <EditText
+        android:id="@+id/passwort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/nachname"
+        android:layout_below="@+id/nachname"
+        android:ems="10"
+        android:hint="@string/passwort"
+        android:inputType="textPassword"
+        android:onClick="passw"
+        android:textColor="@color/orange" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passwort"
+        android:layout_below="@+id/passwort"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="text"
+        android:onClick="emai"
+        android:textColor="@color/orange" />
+
+    <EditText
+        android:id="@+id/phoneNr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/email"
+        android:layout_below="@+id/email"
+        android:ems="10"
+        android:hint="@string/telenr"
+        android:inputType="phone"
+        android:onClick="phone"
+        android:textColor="@color/orange" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="showInteressen"
-        android:text="Large Text" />
+        android:text="@string/interessenBt" />
+</LinearLayout>
 
 </RelativeLayout>

@@ -30,6 +30,15 @@ public class InteressenDialog extends DialogFragment {
 			}
 		}); {
 			
+			
+		builder.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+			}
+		}); 
 		 
 		builder.setNegativeButton(R.string.Abbrechen, new DialogInterface.OnClickListener() {
 			
@@ -39,6 +48,8 @@ public class InteressenDialog extends DialogFragment {
 				
 			}
 		}); 
+		
+		
 			
 	
 		Dialog dialog = builder.create();

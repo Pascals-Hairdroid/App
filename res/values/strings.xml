@@ -29,6 +29,7 @@
         <item>Angebote</item>
         <item>Produkte</item>
         <item>Galerie</item>
+       <item>Kundenprofil</item>
         
     </string-array>
     <string-array name="child_navigation_items">
@@ -95,5 +96,11 @@
     
     <string name="title_activity_login">Login</string>
     <string name="title_activity_kunden_profil">KundenProfil</string>
+    
+    
+    <string name="tv_label">Type your Text: </string>
+    <string name="interessenBt">Interessen wählen</string>
+    
+    
 
 </resources>

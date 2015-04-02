@@ -1,5 +1,6 @@
 package com.example.pascalshairdroid;
 
+import kundenprofil.KundenProfil;
 import products.ProductFragment;
 import products.ProduktListFragment;
 import teamlist.TeamListFragment;
@@ -42,7 +43,7 @@ public class Friseurstudio extends Activity implements
 	private CharSequence mTitle;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 //		if(true){
@@ -71,7 +72,11 @@ public class Friseurstudio extends Activity implements
 		FragmentManager fragmentManager = getFragmentManager();
 		Intent intent;
 		switch(position){
-		
+		case 6:
+			intent = new Intent(Friseurstudio.this, KundenProfil.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            this.startActivity(intent);
+        break;
 		case 5:
 		    fragmentManager
 			.beginTransaction()

@@ -1,6 +1,8 @@
 package login_register;
 
 
+import kundenprofil.KundenProfil;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,13 +50,18 @@ public class Register extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
+		Intent intent;
 		switch (id) {
 		case R.id.back:
-			startActivity(new Intent(Register.this, Login.class));
+			intent = new Intent(Register.this, Login.class);
+	        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	        this.startActivity(intent);
 			break;
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
+	
 	
 	
 

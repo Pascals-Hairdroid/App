@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class FriseurstudioFragment extends Fragment {
+public  class FriseurstudioFragment extends Fragment {
 	
 	
 		private static final String ARG_SECTION_NUMBER = "section_number";

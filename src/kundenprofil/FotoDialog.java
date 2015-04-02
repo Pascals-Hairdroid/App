@@ -21,6 +21,18 @@ public class FotoDialog extends DialogFragment {
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle("Kundenfoto");
+		
+		
+		
+		
+		builder.setPositiveButton(R.string.Ok, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	
 		builder.setNegativeButton(R.string.Abbrechen, new DialogInterface.OnClickListener() {
 			

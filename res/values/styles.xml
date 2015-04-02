@@ -11,4 +11,10 @@
            parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">#2E2E2E</item>
     </style>
+    
+    <style name="BackGroundImageView">
+    <item name="android:alpha">0.5</item>
+    <item name="android:scaleType">fitXY</item>
+    <item name="android:src">@drawable/ph1</item>
+	</style>
 </resources>
