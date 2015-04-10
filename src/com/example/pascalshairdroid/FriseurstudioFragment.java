@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -33,7 +34,9 @@ public  class FriseurstudioFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl("http://pascalshairdroid.bplaced.net/index.php?web=1");
+			WebSettings webSettings = view.getSettings();
+			webSettings.setJavaScriptEnabled(true);
+			view.loadUrl("http://pascals.at/v2/index.php?web=1");
 			
 			
 			return rootView;

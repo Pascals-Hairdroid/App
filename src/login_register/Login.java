@@ -95,23 +95,19 @@ public class Login extends Activity {
 	// Login vorgang
 	public void doLogin(JSONObject j) {
 		
-		// nur für Testzwecke
 		try {
 			j = new JSONObject("{\"sessionId\":4568765467886546788654678, \"username\": \"Gast\"}");
-		
-		// Ende
-//		Toast.makeText(this, "Login faild", Toast.LENGTH_LONG).show();
-//		try {
-//			if (j == null) {
-//				Toast.makeText(this, "Login faild", Toast.LENGTH_LONG).show();
-//				
-//			} else {
-//				
-//				// wenn error gesetzt ist dann hol error aus json und zeig ihn an
-//				if (j.has("error")) {
-//					Toast.makeText(this, j.getString("error"),
-//							Toast.LENGTH_LONG).show();
-//				}else{
+
+			if (j == null) {
+				Toast.makeText(this, "Login faild", Toast.LENGTH_LONG).show();
+				
+			} else {
+				
+				// wenn error gesetzt ist dann hol error aus json und zeig ihn an
+				if (j.has("error")) {
+					Toast.makeText(this, j.getString("error"),
+							Toast.LENGTH_LONG).show();
+				}else{
 					// wenn alles ok dann
 					String sessionId = j.getString("sessionId"); // session id aus Json holen
 					String user = j.getString("username"); // lade username aus json
@@ -122,8 +118,8 @@ public class Login extends Activity {
 					startActivity(new Intent(Login.this, Friseurstudio.class));
 					// sofortiges finishen von dieser activity (beenden)
 					finish();
-//				}
-//			}
+				}
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

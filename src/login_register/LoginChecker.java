@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 											// <generic typ arguments> 
 public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
@@ -38,9 +39,10 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 			httpPost.getParams().setParameter("username", params[1]); // email
 			httpPost.getParams().setParameter("passwort", params[2]); // password
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
-			
+			String s = EntityUtils.toString(httpResponse.getEntity());
+			Log.d("FUCKING_APP",s );
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
-			return new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
+			return new JSONObject(s);
 			//return EntityUtils.toString(httpResponse.getEntity()); 
 			
 		} catch (ClientProtocolException e) {
