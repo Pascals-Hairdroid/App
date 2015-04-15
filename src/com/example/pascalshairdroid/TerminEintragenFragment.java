@@ -34,7 +34,7 @@ public class TerminEintragenFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl(":http://pascalshairdroid.bplaced.net/Seiten/terminvergabe.php?web=1");
+			view.loadUrl("http:/http://www.pascals.at/v2/Seiten/terminvergabe.php");
 			
 			
 		
