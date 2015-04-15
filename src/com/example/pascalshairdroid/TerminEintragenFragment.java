@@ -34,7 +34,7 @@ public class TerminEintragenFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl("http:/http://www.pascals.at/v2/Seiten/terminvergabe.php");
+			view.loadUrl("http://www.pascals.at/v2/Seiten/terminvergabe.php");
 			
 			
 		
