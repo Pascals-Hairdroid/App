@@ -93,10 +93,10 @@ public class Login extends Activity {
 	}
 
 	// Login vorgang
-	public void doLogin(JSONObject j) {
+	public void doLogin(JSONObject j,String username) {
 		
 		try {
-			j = new JSONObject("{\"sessionId\":4568765467886546788654678, \"username\": \"Gast\"}");
+//			j = new JSONObject("{\"sessionId\":4568765467886546788654678, \"username\": \"Gast\"}");
 
 			if (j == null) {
 				Toast.makeText(this, "Login faild", Toast.LENGTH_LONG).show();
@@ -110,10 +110,10 @@ public class Login extends Activity {
 				}else{
 					// wenn alles ok dann
 					String sessionId = j.getString("sessionId"); // session id aus Json holen
-					String user = j.getString("username"); // lade username aus json
+					
 					SharedPreferences preferences = this.getSharedPreferences(PREF_TAG, MODE_PRIVATE); // lade shared pref db
 					// öffne db zum bearbeiten (edit()), speicher session id , speichere username, sichere db
-					preferences.edit().putString(LOGIN_SESSION_ID, sessionId).putString(LOGIN_USERNAME, user).commit();
+					preferences.edit().putString(LOGIN_SESSION_ID, sessionId).putString(LOGIN_USERNAME, username).commit();
 					
 					startActivity(new Intent(Login.this, Friseurstudio.class));
 					// sofortiges finishen von dieser activity (beenden)

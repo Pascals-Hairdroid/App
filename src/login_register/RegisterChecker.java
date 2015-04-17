@@ -1,12 +1,17 @@
 package login_register;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,6 +25,7 @@ import android.os.AsyncTask;
 public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 	
 	private Register regi;
+	private String username;
 	
 	
 	
@@ -36,14 +42,15 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 		try {
 			
 			HttpPost httpPost = new HttpPost(params[0]); // Url
-			httpPost.getParams().setParameter("vorname", params[1]); // vorname
-			httpPost.getParams().setParameter("nachname", params[2]); // nachname
-			httpPost.getParams().setParameter("password", params[3]); // pass
-			httpPost.getParams().setParameter("email", params[4]); // email
-			httpPost.getParams().setParameter("telNr", params[5]);// telenr
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
+			nameValuePairs.add(new BasicNameValuePair("username", params[1]));
+			nameValuePairs.add(new BasicNameValuePair("nachname", params[2]));
+			nameValuePairs.add(new BasicNameValuePair("passwort", params[3]));
+			nameValuePairs.add(new BasicNameValuePair("email", params[4]));
+			nameValuePairs.add(new BasicNameValuePair("telNr", params[5]));
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			
-			
+			username = params[1];
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
 			
 			return new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
@@ -63,6 +70,6 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 	// nach hintergrund arbeit im vordergrund do login von login
 	@Override
 	protected void onPostExecute(JSONObject result) {
-		regi.doReg(result);
+		regi.doReg(result,username);
 	}
 }

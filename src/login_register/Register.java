@@ -89,7 +89,7 @@ public class Register extends Activity {
 		});
 	}
 	
-	public void doReg(JSONObject j) {
+	public void doReg(JSONObject j, String username) {
 		try {
 			if (j == null) {
 				Toast.makeText(this, "Regist faild", Toast.LENGTH_LONG).show();
@@ -102,10 +102,10 @@ public class Register extends Activity {
 				}else{
 					// wenn alles ok dann
 					String sessionId = j.getString("sessionId"); // session id aus Json holen
-					String user = j.getString("username"); // lade username aus json
+					
 					SharedPreferences preferences = this.getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE); // lade shared pref db
 					// öffne db zum bearbeiten (edit()), speicher session id , speichere username, sichere db
-					preferences.edit().putString(Login.LOGIN_SESSION_ID, sessionId).putString(Login.LOGIN_USERNAME, user).commit();
+					preferences.edit().putString(Login.LOGIN_SESSION_ID, sessionId).putString(Login.LOGIN_USERNAME, username).commit();
 					
 					startActivity(new Intent(Register.this, Friseurstudio.class));
 					// sofortiges finishen von dieser activity (beenden)
