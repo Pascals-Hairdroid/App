@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -82,7 +83,7 @@ public class Register extends Activity {
 				String passw = ((EditText)findViewById(R.id.t_passwort)).getText().toString();
 				String email = ((EditText)findViewById(R.id.email)).getText().toString();
 				String phoneNr = ((EditText)findViewById(R.id.t_phoneNr)).getText().toString();
-				
+				Log.d("test2",email);
 				// hintergrund prozess starten, url ersetzten durch (König)
 				checker.execute("http://www.pascals.at/v2/PHD_DBA/DBA.php?f=kundeEintragen",vorname,nachname,passw,email, phoneNr);
 			}
@@ -91,25 +92,27 @@ public class Register extends Activity {
 	
 	public void doReg(JSONObject j, String username) {
 		try {
+//			Log.d("dsfd",j.toString());
 			if (j == null) {
 				Toast.makeText(this, "Regist faild", Toast.LENGTH_LONG).show();
 			} else {
 				
 				// wenn error gesetzt ist dann hol error aus json und zeig ihn an
-				if (j.has("error")) {
-					Toast.makeText(this, j.getString("error"),
+				if (j.has("errc")) {
+					Toast.makeText(this, j.getString("viewmsg"),
 							Toast.LENGTH_LONG).show();
 				}else{
 					// wenn alles ok dann
-					String sessionId = j.getString("sessionId"); // session id aus Json holen
-					
-					SharedPreferences preferences = this.getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE); // lade shared pref db
-					// öffne db zum bearbeiten (edit()), speicher session id , speichere username, sichere db
-					preferences.edit().putString(Login.LOGIN_SESSION_ID, sessionId).putString(Login.LOGIN_USERNAME, username).commit();
-					
-					startActivity(new Intent(Register.this, Friseurstudio.class));
-					// sofortiges finishen von dieser activity (beenden)
-					finish();
+					Boolean res = j.getBoolean("res"); // session id aus Json holen
+					if (!res)
+						Toast.makeText(this, "Regist faild", Toast.LENGTH_LONG).show();
+					else
+					{
+						Toast.makeText(this, "Regist", Toast.LENGTH_LONG).show();
+						startActivity(new Intent(Register.this, Login.class));
+						// sofortiges finishen von dieser activity (beenden)
+						finish();
+					}
 				}
 
 			}

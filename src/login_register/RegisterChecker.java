@@ -9,12 +9,15 @@ import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import utils.Utils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -43,17 +46,19 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 			
 			HttpPost httpPost = new HttpPost(params[0]); // Url
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
-			nameValuePairs.add(new BasicNameValuePair("username", params[1]));
+			nameValuePairs.add(new BasicNameValuePair("vorname", params[1]));
 			nameValuePairs.add(new BasicNameValuePair("nachname", params[2]));
-			nameValuePairs.add(new BasicNameValuePair("passwort", params[3]));
+			nameValuePairs.add(new BasicNameValuePair("passwort", Utils.MD5(params[3])));
 			nameValuePairs.add(new BasicNameValuePair("email", params[4]));
-			nameValuePairs.add(new BasicNameValuePair("telNr", params[5]));
+			nameValuePairs.add(new BasicNameValuePair("telnr", params[5]));
+			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			
 			username = params[1];
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
-			
-			return new JSONObject(EntityUtils.toString(httpResponse.getEntity()));
+			String s =EntityUtils.toString(httpResponse.getEntity());
+			Log.d("test3",s);
+			return new JSONObject(s);
 			
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
