@@ -36,7 +36,7 @@ public  class FriseurstudioFragment extends Fragment {
 			});
 			WebSettings webSettings = view.getSettings();
 			webSettings.setJavaScriptEnabled(true);
-			view.loadUrl("http://pascals.at/v2/index.php?web=1");
+			view.loadUrl("http://pascals.at/v2/?web=1");
 			
 			
 			return rootView;

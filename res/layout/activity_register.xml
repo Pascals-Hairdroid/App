@@ -54,7 +54,8 @@
             android:layout_below="@+id/t_passwort"
             android:ems="10"
             android:textColor="@color/orange"
-            android:hint="@string/email" />
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/t_phoneNr"

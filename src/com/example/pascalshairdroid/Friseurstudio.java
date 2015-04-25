@@ -14,8 +14,10 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -62,6 +64,7 @@ public class Friseurstudio extends Activity implements
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
 		Toast.makeText(this, "Hallo "+getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE).getString(Login.LOGIN_USERNAME,""), Toast.LENGTH_LONG).show();
+		
 	}
 
 	@Override
@@ -72,21 +75,16 @@ public class Friseurstudio extends Activity implements
 		FragmentManager fragmentManager = getFragmentManager();
 		Intent intent;
 		switch(position){
-		case 6:
-			intent = new Intent(Friseurstudio.this, KundenProfil.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            this.startActivity(intent);
-        break;
+		
 		case 5:
 		    fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,new GalerieFragment()).commit();
             break;
 		case 4:
-			fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new ProduktListFragment()).commit();
-			
+//			fragmentManager
+//			.beginTransaction()
+//			.replace(R.id.container,new ProduktListFragment()).commit();
 			switch (childPosition) {
 			case 0:
 				fragmentManager
@@ -115,9 +113,9 @@ public class Friseurstudio extends Activity implements
 			.replace(R.id.container,new FriseurstudioFragment()).commit();
 			break;
 		case 1:
-			fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new FriseurstudioFragment()).commit();
+			//fragmentManager
+			//.beginTransaction()
+			//.replace(R.id.container,new FriseurstudioFragment()).commit();
 		default:
 			switch (childPosition) {
 			case 4:
@@ -197,6 +195,7 @@ public class Friseurstudio extends Activity implements
 		return super.onCreateOptionsMenu(menu);
 	}
 
+	// Logout Button
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -205,7 +204,13 @@ public class Friseurstudio extends Activity implements
 		int id = item.getItemId();
 		switch (id) {
 		case R.id.logout:
+			// Shared Preferences holen
+			SharedPreferences sharedPreferences = getSharedPreferences(Login.PREF_TAG, Context.MODE_PRIVATE);
+			// Session id und Username löschen
+			sharedPreferences.edit().remove(Login.LOGIN_SESSION_ID).remove(Login.LOGIN_USERNAME).commit();
+			// auf Login Fragment weiterleiten
 			startActivity(new Intent(Friseurstudio.this, Login.class));
+			finish();
 			break;
 		}
 		return super.onOptionsItemSelected(item);

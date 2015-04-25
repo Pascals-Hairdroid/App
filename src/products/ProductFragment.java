@@ -49,9 +49,9 @@ public class ProductFragment extends Fragment {
 			});
 			
 			if (id==0)
-			view.loadUrl("http://google.com?id="+this.id);
+			view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1"+this.id);
 			if (id==1)
-			view.loadUrl("http://www.youtube.com"+this.id);
+			view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1"+this.id);
 			
 				
 			

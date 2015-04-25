@@ -1,5 +1,9 @@
 package login_register;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,8 +32,12 @@ public class Login extends Activity {
 	public static final String PREF_TAG = "abc";
 	//Feldname von der PHP Session ID
 	public static final String LOGIN_SESSION_ID = "def";
-	
 	public static final String LOGIN_USERNAME = "ghi";
+	public static final String LOGIN_VORNAME = "sfdgsdfg ";
+	public static final String LOGIN_NACHNAME = "gsdfg sdhi";
+	public static final String LOGIN_TELEFON = "shsasdf";
+	public static final String LOGIN_INTERESSEN = "5arhje 7e";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,13 +46,12 @@ public class Login extends Activity {
 		// wenn die Session in der DB gespeichert dann überspringe login vorgang unnd wechsle sofort in friseurstudio class
 		
 		if(preferences.contains(LOGIN_SESSION_ID)){
-			
 			startActivity(new Intent(Login.this, Friseurstudio.class));
 			finish();
+		}else{
+			setContentView(R.layout.fragment_login);
+			Action();
 		}
-		
-		setContentView(R.layout.fragment_login);
-		Action();
 	}
 
 	@Override
@@ -110,10 +117,23 @@ public class Login extends Activity {
 				}else{
 					// wenn alles ok dann
 					String sessionId = j.getString("sessionId"); // session id aus Json holen
+					JSONObject kunde = j.getJSONObject("kunde");
+					HashSet<String> interessen = new HashSet<String>();
+					for (int index = 0; index < kunde.getJSONArray("interessen").length();index++) {
+						interessen.add(kunde.getJSONArray("interessen").getJSONObject(index).getString("bezeichnung"));
+						
+					}
+					
 					
 					SharedPreferences preferences = this.getSharedPreferences(PREF_TAG, MODE_PRIVATE); // lade shared pref db
 					// öffne db zum bearbeiten (edit()), speicher session id , speichere username, sichere db
-					preferences.edit().putString(LOGIN_SESSION_ID, sessionId).putString(LOGIN_USERNAME, username).commit();
+					preferences.edit().putString(LOGIN_SESSION_ID, sessionId)
+					.putString(LOGIN_USERNAME, username)
+					.putString(LOGIN_VORNAME, kunde.getString("vorname"))
+					.putString(LOGIN_NACHNAME, kunde.getString("nachname"))
+					.putString(LOGIN_TELEFON, kunde.getString("telNr"))
+					.putStringSet(LOGIN_INTERESSEN, interessen)
+					.commit();
 					
 					startActivity(new Intent(Login.this, Friseurstudio.class));
 					// sofortiges finishen von dieser activity (beenden)

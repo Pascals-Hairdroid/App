@@ -12,13 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.HeterogeneousExpandableList;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 
 	public ArrayList<String> groupItem, tempChild;
-	public HashMap<Integer, ArrayList<String>> childtem = new HashMap<Integer, ArrayList<String>>(); // in
+	public HashMap<Integer, ArrayList<String>> childItem = new HashMap<Integer, ArrayList<String>>(); // in
 																										// hashmap
 																										// ist
 																										// eine
@@ -31,7 +32,7 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 			HashMap<Integer, ArrayList<String>> childItem) {
 		this.context = context;
 		this.groupItem = grList;
-		this.childtem = childItem;
+		this.childItem = childItem;
 	}
 
 	public void setInflater(LayoutInflater mInflater) {
@@ -58,7 +59,7 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getChildView(int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
-		tempChild = (ArrayList<String>) childtem.get(groupPosition);
+		tempChild = (ArrayList<String>) childItem.get(groupPosition);
 		if (convertView == null) {
 			convertView = minflater.inflate(
 					android.R.layout.simple_list_item_1, parent, false);
@@ -71,8 +72,8 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		if (childtem.get(groupPosition) != null) {
-			return ((ArrayList<String>) childtem.get(groupPosition)).size();
+		if (childItem.get(groupPosition) != null) {
+			return ((ArrayList<String>) childItem.get(groupPosition)).size();
 		} else {
 			return 0;
 		}
@@ -111,26 +112,38 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 			View convertView, ViewGroup parent) {
 		String s = groupItem.get(groupPosition);
 
+		if (convertView == null ||
+				convertView.getId() != R.id.drawer_bitch) {
+			convertView = minflater.inflate(R.layout.drawer_row, parent, false);
+		}
+
+		TextView text = (TextView) convertView.findViewById(R.id.text1);
+		// text.setPadding(200, text.getPaddingTop(),
+		// text.getPaddingRight(), text.getPaddingBottom());
+		text.setText(s);
+
+		if (!childItem.containsKey(groupPosition)) {
+			convertView.findViewById(R.id.indecator).setVisibility(
+					View.INVISIBLE);
+		} else {
+			convertView.findViewById(R.id.indecator)
+					.setVisibility(View.VISIBLE);
+			if (isExpanded) {
+				((ImageView) convertView.findViewById(R.id.indecator))
+						.setImageResource(android.R.drawable.arrow_up_float);
+
+			} else {
+				((ImageView) convertView.findViewById(R.id.indecator))
+						.setImageResource(android.R.drawable.arrow_down_float);
+			}
+		}
+
 		if (s.equals("Zeichen")) {
 
 			ImageView i = new ImageView(context);
 			i.setImageResource(R.drawable.ic_launcher);
 			convertView = i;
 
-		} else {
-			if (convertView == null || !(convertView instanceof TextView)) { // convertView ist ein bestehender View
-										// der der nur abgeändert wird
-				convertView = minflater.inflate(
-						android.R.layout.simple_expandable_list_item_1, parent,
-						false);
-			}
-
-			TextView text = (TextView) convertView
-					.findViewById(android.R.id.text1);
-			// text.setPadding(200, text.getPaddingTop(),
-			// text.getPaddingRight(), text.getPaddingBottom());
-			text.setText(s);
-			convertView.setTag(s);
 		}
 
 		return convertView;
@@ -151,7 +164,7 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 	}
 
 	public HashMap<Integer, ArrayList<String>> getChildtem() {
-		return childtem;
+		return childItem;
 	}
 
 }

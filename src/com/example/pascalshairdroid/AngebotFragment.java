@@ -33,7 +33,7 @@ public class AngebotFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl("http://pascalshairdroid.bplaced.net/Seiten/Angebote.php?web=1");
+			view.loadUrl("http://pascals.at/v2/Seiten/Angebote.php?web=1");
 			
 			
 			return rootView;

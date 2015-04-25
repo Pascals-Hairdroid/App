@@ -47,11 +47,11 @@ public class TeamFragment extends Fragment {
 			});
 			
 			if (id==0)
-				view.loadUrl("http://google.com?id="+this.id);
+				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=1000000000"+this.id);
 			if (id==1)
-				view.loadUrl("http://www.youtube.com"+this.id);
+				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=1000000000"+this.id);
 			if (id==2)
-				view.loadUrl("http://myfirsttrysodontblameme.ddns.net/v0.3/Seiten/team.php"+this.id);
+				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=1000000000"+this.id);
 			
 			
 			return rootView;

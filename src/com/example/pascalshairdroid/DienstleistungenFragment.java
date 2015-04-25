@@ -33,7 +33,7 @@ public class DienstleistungenFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl("http://pascalshairdroid.bplaced.net/Seiten/dienstleistung.php?web=1");
+			view.loadUrl("http://pascals.at/v2/Seiten/dienstleistung.php?web=1");
 			
 			
 			return rootView;

@@ -16,6 +16,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,8 +42,7 @@ public class KundenProfil extends Activity {
 	
 	protected void onCreate(Bundle savedInstanceState) 
 	{
-		
-		
+				
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_kunden_profil);
 		
@@ -51,10 +51,12 @@ public class KundenProfil extends Activity {
 		 pw = (EditText) findViewById(R.id.passwort);
 		 mail = (EditText) findViewById(R.id.email);
 		 tele = (EditText) findViewById(R.id.phoneNr);
+		 SharedPreferences sharedPreferences = getSharedPreferences(Login.PREF_TAG, Context.MODE_PRIVATE);
 		 
-		 
-		 
-		 
+		 vor.setText(sharedPreferences.getString(Login.LOGIN_VORNAME, ""));
+		 nach.setText(sharedPreferences.getString(Login.LOGIN_NACHNAME, ""));
+		 mail.setText(sharedPreferences.getString(Login.LOGIN_USERNAME, ""));
+		 tele.setText(sharedPreferences.getString(Login.LOGIN_TELEFON, ""));
 		 
 		 vor.setOnClickListener(new OnClickListener() {
 			

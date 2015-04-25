@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import kundenprofil.KundenProfil;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -20,10 +23,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnGroupClickListener;
+import android.widget.HeterogeneousExpandableList;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -84,7 +92,7 @@ public class NavigationDrawerFragment extends Fragment {
 					.getInt(STATE_SELECTED_POSITION);
 			mFromSavedInstanceState = true;
 		}
-
+		
 		// Select either the default item (0) or the last selected item.
 		selectItem(mCurrentSelectedPosition, -1);
 	}
@@ -100,8 +108,26 @@ public class NavigationDrawerFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		mDrawerListView = (ExpandableListView) inflater.inflate(
-				R.layout.fragment_navigation_drawer, container, false);
+		
+		LinearLayout layout = (LinearLayout) inflater.inflate(
+				R.layout.fragment_navigation_drawer, null, false);
+		
+		ImageView imageView = (ImageView)layout.findViewById(R.id.kundenbild);
+		
+		
+		//setze das kunden bild
+		imageView.setImageResource(R.drawable.galerie8);
+		imageView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), KundenProfil.class);
+	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	            getActivity().startActivity(intent);					
+			}
+		});
+		
+		mDrawerListView = (ExpandableListView)layout.findViewById(R.id.nav_list);
 		/*
 		 * mDrawerListView .setOnItemClickListener(new
 		 * AdapterView.OnItemClickListener() {
@@ -123,7 +149,8 @@ public class NavigationDrawerFragment extends Fragment {
 						4,
 						new ArrayList<String>(Arrays.asList(getActivity().getResources().getStringArray(R.array.child_navigation_items2))));
 
-		mDrawerListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+		
+		mDrawerListView.setOnGroupClickListener(new OnGroupClickListener() {
 
 					@Override
 					public boolean onGroupClick(ExpandableListView parent,
@@ -165,9 +192,9 @@ public class NavigationDrawerFragment extends Fragment {
 		adapter.setInflater(getActivity().getLayoutInflater());
 		adapter.setExpandableListView(mDrawerListView);
 		mDrawerListView.setAdapter(adapter);
-
+		mDrawerListView.setGroupIndicator(null);
 		mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
-		return mDrawerListView;
+		return layout;
 	}
 
 	public boolean isDrawerOpen() {
@@ -265,8 +292,8 @@ public class NavigationDrawerFragment extends Fragment {
 	}
 
 	private void selectItem(int goupeposition, int childPosition) {
-		Log.d("fuck", "g:"+goupeposition);
-		Log.d("fuck", "c:"+childPosition);
+	//	Log.d("adesf", "g:"+goupeposition);
+	//Log.d("sfdf", "c:"+childPosition);
 		mCurrentSelectedPosition = goupeposition;
 		if (mDrawerListView != null) {
 			mDrawerListView.setItemChecked(goupeposition, true);
