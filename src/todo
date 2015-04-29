@@ -1,0 +1,27 @@
+--> Kundenprofil
+      -->Eigenes Foto an erster stelle bei naviDrawer 
+	  -->Dialoge mit Funktionen (an Server schicken) 
+			-->InputDialog 
+			-->KundenFoto aus Kamera und Galery (Handyspeicher)
+	  -->Daten Laden bei Foto klick check
+	  --> foto intern speichern und beim öffnen laden.
+	  -->Interessen auswählen --> schicken an Server
+	  
+--> Notifications 
+--> Register bei NavigationDrawer sperren 
+--> Registriern download foto speichern intern und anzeigen
+--> auto login nach reg  check
+--> profilbild laden nach erst login (path speichern und wenn nötig profilbild nach login updaten)
+
+--> home Lösung (erste Stelle bei NavigationDrawer)finden
+--> möglicherweise ein männlich weiblichfeld zur unterscheidung von defaut profil bildern -> oli
+--> speicher button check
+
+--> Brauche ich die Class Daten Dialog? nein
+
+
+
+
+
+    
+    
