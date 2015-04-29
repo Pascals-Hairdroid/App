@@ -47,134 +47,119 @@ public class Friseurstudio extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-//		if(true){
-//			startActivity(new Intent(this, Register.class));
-//		}
-		
-		
+
+		// if(true){
+		// startActivity(new Intent(this, Register.class));
+		// }
+
 		setContentView(R.layout.activity_home);
 
-		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
-		
-		
+		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
+				.findFragmentById(R.id.navigation_drawer);
+
 		mTitle = getTitle();
 
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
-		Toast.makeText(this, "Hallo "+getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE).getString(Login.LOGIN_USERNAME,""), Toast.LENGTH_LONG).show();
-		
+		Toast.makeText(
+				this,
+				"Hallo "
+						+ getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE)
+								.getString(Login.LOGIN_USERNAME, ""),
+				Toast.LENGTH_LONG).show();
+
 	}
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position, int childPosition) {
 		// update the main content by replacing fragments
 		
-		
 		FragmentManager fragmentManager = getFragmentManager();
-		Intent intent;
-		switch(position){
-		
+		switch (position) {
+
 		case 5:
-		    fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new GalerieFragment()).commit();
-            break;
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, new GalerieFragment()).commit();
+			break;
 		case 4:
-//			fragmentManager
-//			.beginTransaction()
-//			.replace(R.id.container,new ProduktListFragment()).commit();
 			switch (childPosition) {
 			case 0:
 				fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,new ProductFragment("Färben",0)).commit();
+						.beginTransaction()
+						.replace(R.id.container,
+								new ProductFragment("Färben", 0)).commit();
 				break;
 			case 1:
 				fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,new ProductFragment("Pflegen",1)).commit();
+						.beginTransaction()
+						.replace(R.id.container,
+								new ProductFragment("Pflegen", 1)).commit();
 				break;
+
 			}
+			break;
 		case 3:
-			fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new AngebotFragment()).commit();
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, new AngebotFragment()).commit();
 			break;
 		case 2:
-			fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new TerminEintragenFragment()).commit();
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, new TerminEintragenFragment())
+					.commit();
 			break;
 		case 0:
-			fragmentManager
-			.beginTransaction()
-			.replace(R.id.container,new FriseurstudioFragment()).commit();
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, new FriseurstudioFragment())
+					.commit();
 			break;
 		case 1:
-			//fragmentManager
-			//.beginTransaction()
-			//.replace(R.id.container,new FriseurstudioFragment()).commit();
 		default:
 			switch (childPosition) {
 			case 4:
-				fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,new KontaktFragment()).commit();
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, new KontaktFragment())
+						.commit();
 				break;
 			case 3:
-				fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,new OpentimeFragment()).commit();
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, new OpentimeFragment())
+						.commit();
 				break;
 			case 2:
 				fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,new DienstleistungenFragment()).commit();
+						.beginTransaction()
+						.replace(R.id.container, new DienstleistungenFragment())
+						.commit();
 				break;
 			case 1:
-				fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,new TeamListFragment()).commit();
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, new TeamListFragment())
+						.commit();
 				break;
 			case 0:
-				fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,new FriseurstudioFragment()).commit();
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, new FriseurstudioFragment())
+						.commit();
 				break;
-			
+
 			}
-		
-		
+
 		}
-			
+
 	}
 
-	/*public void onSectionAttached(int number) {
-		switch (number) {
-		case 1:
-			mTitle = getString(R.string.title_section1);
-			break;
-		case 2:
-			mTitle = getString(R.string.title_section2);
-			break;
-		case 3:
-			mTitle = getString(R.string.title_section3);
-			break;
-		case 4:
-			mTitle = getString(R.string.title_section4);
-			break;
-		case 5:
-			mTitle = getString(R.string.title_section5);
-			break;
-		case 6:
-			mTitle = getString(R.string.title_section6);
-			break;
-		
-		}
-	}
-*/
+	/*
+	 * public void onSectionAttached(int number) { switch (number) { case 1:
+	 * mTitle = getString(R.string.title_section1); break; case 2: mTitle =
+	 * getString(R.string.title_section2); break; case 3: mTitle =
+	 * getString(R.string.title_section3); break; case 4: mTitle =
+	 * getString(R.string.title_section4); break; case 5: mTitle =
+	 * getString(R.string.title_section5); break; case 6: mTitle =
+	 * getString(R.string.title_section6); break;
+	 * 
+	 * } }
+	 */
 	public void restoreActionBar() {
 		ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -205,9 +190,11 @@ public class Friseurstudio extends Activity implements
 		switch (id) {
 		case R.id.logout:
 			// Shared Preferences holen
-			SharedPreferences sharedPreferences = getSharedPreferences(Login.PREF_TAG, Context.MODE_PRIVATE);
+			SharedPreferences sharedPreferences = getSharedPreferences(
+					Login.PREF_TAG, Context.MODE_PRIVATE);
 			// Session id und Username löschen
-			sharedPreferences.edit().remove(Login.LOGIN_SESSION_ID).remove(Login.LOGIN_USERNAME).commit();
+			sharedPreferences.edit().remove(Login.LOGIN_SESSION_ID)
+					.remove(Login.LOGIN_USERNAME).commit();
 			// auf Login Fragment weiterleiten
 			startActivity(new Intent(Friseurstudio.this, Login.class));
 			finish();
@@ -215,10 +202,5 @@ public class Friseurstudio extends Activity implements
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
-	
-
-	
 
 }

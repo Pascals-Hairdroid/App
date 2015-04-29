@@ -26,10 +26,13 @@ public class InteressenDialog extends DialogFragment {
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setTitle("Interessen");
+		builder.setTitle("Interessen wählen");
+		//String Array mit den Interessen befüllen die im String.xml stehen
 		String[] interessen = getActivity().getResources().getStringArray(R.array.interessen);
+		// Die Interessen auswählen die der Kunde bereits hat aus Preferences
 		Set myInteressen = getActivity().getSharedPreferences(Login.PREF_TAG,Context.MODE_PRIVATE).getStringSet(Login.LOGIN_INTERESSEN, new HashSet<String>());
 		
+		// boolean array das die liste der Interessen durchgeht und kontrolliert ob das Feld schon angehackelt ist oder nicht wenn nicht dann macht die Schleife das
 		 boolean[] checked = new boolean[interessen.length];
 		 for (int i =0; i < interessen.length; i ++) {
 		   checked[i] = myInteressen.contains(interessen[i]);

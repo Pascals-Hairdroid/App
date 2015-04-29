@@ -124,7 +124,7 @@ public class Login extends Activity {
 						
 					}
 					
-					
+					// für Kundenprofil die gespeicherten Daten in die Preferences schreiben
 					SharedPreferences preferences = this.getSharedPreferences(PREF_TAG, MODE_PRIVATE); // lade shared pref db
 					// öffne db zum bearbeiten (edit()), speicher session id , speichere username, sichere db
 					preferences.edit().putString(LOGIN_SESSION_ID, sessionId)

@@ -1,6 +1,8 @@
 package login_register;
 
 
+import java.util.HashSet;
+
 import kundenprofil.KundenProfil;
 
 import org.json.JSONException;
@@ -74,7 +76,7 @@ public class Register extends Activity {
 			
     		@Override
 			public void onClick(View v) {
-				//Loginchecker init
+				//Registchecker init
 				RegisterChecker checker = new RegisterChecker(Register.this);
 				
 				// auslesen felder
@@ -83,7 +85,7 @@ public class Register extends Activity {
 				String passw = ((EditText)findViewById(R.id.t_passwort)).getText().toString();
 				String email = ((EditText)findViewById(R.id.email)).getText().toString();
 				String phoneNr = ((EditText)findViewById(R.id.t_phoneNr)).getText().toString();
-				Log.d("test2",email);
+				//Log.d("test2",email);
 				// hintergrund prozess starten, url ersetzten durch (König)
 				checker.execute("http://www.pascals.at/v2/PHD_DBA/DBA.php?f=kundeEintragen",vorname,nachname,passw,email, phoneNr);
 			}
@@ -103,11 +105,28 @@ public class Register extends Activity {
 							Toast.LENGTH_LONG).show();
 				}else{
 					// wenn alles ok dann
-					Boolean res = j.getBoolean("res"); // session id aus Json holen
-					if (!res)
+					Boolean hasSessionId = j.has("sessionId"); // session id aus Json holen
+					if (!hasSessionId)
 						Toast.makeText(this, "Regist faild", Toast.LENGTH_LONG).show();
 					else
 					{
+						//für automatischen Login nach Registrierung 
+						String sessionId = j.getString("sessionId"); // session id aus Json holen
+						JSONObject kunde = j.getJSONObject("kunde");
+						HashSet<String> interessen = new HashSet<String>();
+						for (int index = 0; index < kunde.getJSONArray("interessen").length();index++) {
+							interessen.add(kunde.getJSONArray("interessen").getJSONObject(index).getString("bezeichnung"));
+							
+						}
+						SharedPreferences preferences = this.getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE); // lade shared pref db
+						// öffne db zum bearbeiten (edit()), speicher session id , speichere username, sichere db
+						preferences.edit().putString(Login.LOGIN_SESSION_ID, sessionId)
+						.putString(Login.LOGIN_USERNAME, username)
+						.putString(Login.LOGIN_VORNAME, kunde.getString("vorname"))
+						.putString(Login.LOGIN_NACHNAME, kunde.getString("nachname"))
+						.putString(Login.LOGIN_TELEFON, kunde.getString("telNr"))
+						.putStringSet(Login.LOGIN_INTERESSEN, interessen)
+						.commit();
 						Toast.makeText(this, "Regist", Toast.LENGTH_LONG).show();
 						startActivity(new Intent(Register.this, Friseurstudio.class));
 						// sofortiges finishen von dieser activity (beenden)

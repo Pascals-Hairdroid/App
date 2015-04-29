@@ -1,23 +1,19 @@
 --> Kundenprofil
       -->Eigenes Foto an erster stelle bei naviDrawer 
 	  -->Dialoge mit Funktionen (an Server schicken) 
-			-->InputDialog 
-			-->KundenFoto aus Kamera und Galery (Handyspeicher)
 	  -->Daten Laden bei Foto klick check
-	  --> foto intern speichern und beim öffnen laden.
+	  -->foto intern speichern und beim öffnen laden (android save data on internal storage)
 	  -->Interessen auswählen --> schicken an Server
+	  -->Registriern download foto speichern intern und anzeigen
+	  -->profilbild laden nach erst login (path speichern und wenn nötig profilbild nach login updaten)
+	  -->möglicherweise ein männlich weiblichfeld zur unterscheidung von defaut profil bildern -> oli
 	  
 --> Notifications 
 --> Register bei NavigationDrawer sperren 
---> Registriern download foto speichern intern und anzeigen
---> auto login nach reg  check
---> profilbild laden nach erst login (path speichern und wenn nötig profilbild nach login updaten)
-
 --> home Lösung (erste Stelle bei NavigationDrawer)finden
---> möglicherweise ein männlich weiblichfeld zur unterscheidung von defaut profil bildern -> oli
---> speicher button check
+--> Wenn Handy offline, sinnvolle Mitteilung an user ausgeben
+--> Die Zurücktaste im App anpassen, derzeit schließt sie die App
 
---> Brauche ich die Class Daten Dialog? nein
 
 
 

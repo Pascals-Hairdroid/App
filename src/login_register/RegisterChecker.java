@@ -54,10 +54,10 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			
-			username = params[1];
+			username = params[4];
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
 			String s =EntityUtils.toString(httpResponse.getEntity());
-			Log.d("test3",s);
+			//Log.d("test3",s);
 			return new JSONObject(s);
 			
 		} catch (ClientProtocolException e) {
