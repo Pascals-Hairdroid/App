@@ -123,11 +123,13 @@ public class KundenProfil extends Activity {
 		int id = item.getItemId();
 		Intent intent;
 		switch (id) {
-		case R.id.back:
+		case R.id.cancel:
 			intent = new Intent(KundenProfil.this, Friseurstudio.class);
 	        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	        this.startActivity(intent);
 			break;
+		case R.id.save:
+			
 		}
 		
 		return super.onOptionsItemSelected(item);

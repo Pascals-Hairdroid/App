@@ -3,9 +3,17 @@
     tools:context="com.example.pascalshairdroid.KundenProfil" >
 
     <item
-        android:id="@+id/back"
+        android:id="@+id/cancel"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="@string/back"/>
+        android:title="@string/cancel"/>
+    
+    <item
+        android:id="@+id/save"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/save" />
+    
+    
 
 </menu>

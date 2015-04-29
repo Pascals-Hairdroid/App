@@ -109,7 +109,7 @@ public class Register extends Activity {
 					else
 					{
 						Toast.makeText(this, "Regist", Toast.LENGTH_LONG).show();
-						startActivity(new Intent(Register.this, Login.class));
+						startActivity(new Intent(Register.this, Friseurstudio.class));
 						// sofortiges finishen von dieser activity (beenden)
 						finish();
 					}

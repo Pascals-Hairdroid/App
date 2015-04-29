@@ -100,6 +100,8 @@
     <string name="tv_label">Type your Text: </string>
     <string name="interessenBt">Interessen wählen</string>
     
+     <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
     
 
 </resources>
