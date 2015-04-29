@@ -7,6 +7,9 @@
 	  -->Registriern download foto speichern intern und anzeigen
 	  -->profilbild laden nach erst login (path speichern und wenn nötig profilbild nach login updaten)
 	  -->möglicherweise ein männlich weiblichfeld zur unterscheidung von defaut profil bildern -> oli
+	  -->Bei Textfeld Dialog öffnen oder nicht? Bei ersten realisiert 
+	  -->Bei drehen von Handy Foto wird nicht gespeichert?
+	  -->Foto muss im Querformat aufgenommen werden damit es richtig steht im App
 	  
 --> Notifications 
 --> Register bei NavigationDrawer sperren 

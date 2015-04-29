@@ -27,7 +27,9 @@ android:background="@color/white" >
         android:layout_height="184dp"
         android:layout_marginTop="22dp"
         android:onClick="showImage"
-        android:src="@drawable/galerie8" />
+        android:src="@drawable/galerie8" 
+        android:maxWidth="10dp"
+        android:maxHeight="10dp"/>
 
     <EditText
         android:id="@+id/vorname"
