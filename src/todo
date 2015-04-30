@@ -7,21 +7,15 @@
 	  -->Registriern download foto speichern intern und anzeigen
 	  -->profilbild laden nach erst login (path speichern und wenn nötig profilbild nach login updaten)
 	  -->möglicherweise ein männlich weiblichfeld zur unterscheidung von defaut profil bildern -> oli
-	  -->Bei Textfeld Dialog öffnen oder nicht? Bei ersten realisiert 
-	  -->Bei drehen von Handy Foto wird nicht gespeichert?
-	  -->Foto muss im Querformat aufgenommen werden damit es richtig steht im App
-	  -->Max width und Height von Bild definieren 
+	  -->Bei Textfeld Dialog öffnen oder nicht? Bei ersten realisiert
+	  -->Max width und Height von Bild definieren
+	  -->Problem bei Samsung/LG Handys mit Laden aus der SD Karte
+	  -->Problem bei LG mit Fotos im Querformat angezeigt  (Foto muss im Querformat aufgenommen werden damit es richtig steht im App)
+	  -->Activity neu gestartet wenn Handy im Querformat (Manifest) (Bei drehen von Handy Foto wird nicht gespeichert?)
+	  -->Textfelder (Weiter) oder (Fertig) --> Derzeit stürtzt App ab
 	  
 --> Notifications 
 --> Register bei NavigationDrawer sperren 
 --> home Lösung (erste Stelle bei NavigationDrawer)finden
 --> Wenn Handy offline, sinnvolle Mitteilung an user ausgeben
 --> Die Zurücktaste im App anpassen, derzeit schließt sie die App
-
-
-
-
-
-
-    
-    
