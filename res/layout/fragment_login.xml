@@ -25,7 +25,10 @@
         android:ems="10"
         android:textColor="@color/orange"
         android:hint="Email"
-        android:inputType="textEmailAddress" >
+        android:inputType="textEmailAddress" 
+        android:singleLine="true"
+    	android:lines="1"
+    	android:maxLines="1">
 
         <requestFocus />
     </EditText>
@@ -49,6 +52,9 @@
         android:ems="10"
         android:hint="Passwort"
         android:textColor="@color/orange"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:singleLine="true"
+    	android:lines="1"
+    	android:maxLines="1" />
     	
 </RelativeLayout>

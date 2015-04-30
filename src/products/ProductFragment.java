@@ -49,9 +49,9 @@ public class ProductFragment extends Fragment {
 			});
 			
 			if (id==0)
-			view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1"+this.id);
+			view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1&Kat=farbe");
 			if (id==1)
-			view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1"+this.id);
+			view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1&Kat=pflege");
 			
 				
 			

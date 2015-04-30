@@ -41,7 +41,10 @@ android:background="@color/white" >
         android:onClick="vorn"
         android:textColor="@color/orange" 
         android:nextFocusForward="@+id/nachname"
-        android:imeOptions="actionNext">
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+    	android:lines="1"
+   		android:maxLines="1">
 
         <requestFocus />
     </EditText>
@@ -58,7 +61,10 @@ android:background="@color/white" >
         android:onClick="nachn"
         android:textColor="@color/orange" 
         android:nextFocusForward="@+id/passwort"
-        android:imeOptions="actionNext"/>
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+    		android:lines="1"
+   			 android:maxLines="1"/>
 
     <EditText
         android:id="@+id/passwort"
@@ -72,7 +78,10 @@ android:background="@color/white" >
         android:onClick="passw"
         android:textColor="@color/orange"
         android:nextFocusForward="@+id/email" 
-        android:imeOptions="actionNext"/>
+        android:imeOptions="actionNext"
+        android:singleLine="true"
+    		android:lines="1"
+   			 android:maxLines="1"/>
 
     <EditText
         android:id="@+id/email"
@@ -86,7 +95,10 @@ android:background="@color/white" >
         android:onClick="emai"
         android:textColor="@color/orange"
         android:nextFocusForward="@+id/phoneNr"
-        android:imeOptions="actionNext" />
+        android:imeOptions="actionNext" 
+        android:singleLine="true"
+    		android:lines="1"
+   			 android:maxLines="1"/>
 
     <EditText
         android:id="@+id/phoneNr"
@@ -98,7 +110,10 @@ android:background="@color/white" >
         android:hint="@string/telenr"
         android:inputType="phone"
         android:onClick="phone"
-        android:textColor="@color/orange" />
+        android:textColor="@color/orange" 
+        android:singleLine="true"
+    		android:lines="1"
+   			 android:maxLines="1"/>
 
     <Button
         android:id="@+id/button1"
