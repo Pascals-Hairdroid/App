@@ -6,7 +6,7 @@
 
     tools:context="login_register.Register" >
    
-        <requestFocus />
+        
 
         <ImageView
             android:id="@+id/imgLogo"
@@ -24,6 +24,17 @@
             android:ems="10"
             android:textColor="@color/orange"
             android:hint="@string/vorname" />
+        <requestFocus />
+        
+        <EditText
+            android:id="@+id/t_nachname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/t_vorname"
+            android:layout_centerHorizontal="true"
+            android:ems="10"
+            android:textColor="@color/orange"
+            android:hint="@string/nachname" />
 
         <EditText
             android:id="@+id/t_passwort"
@@ -35,16 +46,6 @@
             android:inputType="textPassword"
             android:textColor="@color/orange"
             android:hint="@string/passwort" />
-        
-        <EditText
-            android:id="@+id/t_nachname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/t_vorname"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:textColor="@color/orange"
-            android:hint="@string/nachname" />
 
         <EditText
             android:id="@+id/email"

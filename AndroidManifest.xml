@@ -45,7 +45,8 @@
             android:name="galerie.FullScreenViewActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
-        <activity
+        <activity 
+            android:configChanges="orientation|keyboard"
             android:name="kundenprofil.KundenProfil"
             android:label="@string/title_activity_kunden_profil" >
         </activity>

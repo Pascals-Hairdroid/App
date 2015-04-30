@@ -23,13 +23,13 @@ android:background="@color/white" >
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="118dp"
-        android:layout_height="184dp"
-        android:layout_marginTop="22dp"
+        android:maxWidth="140dip"
+        android:maxHeight="140dip"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:onClick="showImage"
-        android:src="@drawable/galerie8" 
-        android:maxWidth="10dp"
-        android:maxHeight="10dp"/>
+        android:scaleType="centerInside"
+        android:src="@drawable/galerie8" />
 
     <EditText
         android:id="@+id/vorname"
@@ -39,7 +39,9 @@ android:background="@color/white" >
         android:hint="@string/vorname"
         android:inputType="text"
         android:onClick="vorn"
-        android:textColor="@color/orange" >
+        android:textColor="@color/orange" 
+        android:nextFocusForward="@+id/nachname"
+        android:imeOptions="actionNext">
 
         <requestFocus />
     </EditText>
@@ -54,7 +56,9 @@ android:background="@color/white" >
         android:hint="@string/nachname"
         android:inputType="text"
         android:onClick="nachn"
-        android:textColor="@color/orange" />
+        android:textColor="@color/orange" 
+        android:nextFocusForward="@+id/passwort"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/passwort"
@@ -66,7 +70,9 @@ android:background="@color/white" >
         android:hint="@string/passwort"
         android:inputType="textPassword"
         android:onClick="passw"
-        android:textColor="@color/orange" />
+        android:textColor="@color/orange"
+        android:nextFocusForward="@+id/email" 
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/email"
@@ -78,7 +84,9 @@ android:background="@color/white" >
         android:hint="@string/email"
         android:inputType="text"
         android:onClick="emai"
-        android:textColor="@color/orange" />
+        android:textColor="@color/orange"
+        android:nextFocusForward="@+id/phoneNr"
+        android:imeOptions="actionNext" />
 
     <EditText
         android:id="@+id/phoneNr"

@@ -62,12 +62,12 @@ public class Friseurstudio extends Activity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
-		Toast.makeText(
+		/*Toast.makeText(
 				this,
 				"Hallo "
 						+ getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE)
 								.getString(Login.LOGIN_USERNAME, ""),
-				Toast.LENGTH_LONG).show();
+				Toast.LENGTH_LONG).show();*/
 
 	}
 

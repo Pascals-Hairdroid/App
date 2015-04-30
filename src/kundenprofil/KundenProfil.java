@@ -78,39 +78,39 @@ public class KundenProfil extends Activity {
 
 			@Override
 			public void onClick(View view) {
-				LayoutInflater layoutInflater = LayoutInflater
-						.from(KundenProfil.this);
-				View promptView = layoutInflater.inflate(
-						R.layout.fragment_kundendaten, null);
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						KundenProfil.this);
-				// set prompts.xml to be the layout file of the alertdialog
-				// builder
-				alertDialogBuilder.setView(promptView);
-				final EditText input = (EditText) promptView
-						.findViewById(R.id.userInput);
-				// setup a dialog window
-				alertDialogBuilder
-						.setCancelable(false)
-						.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-										// get user input and set it to result
-										vor.setText(input.getText());
-									}
-								})
-						.setNegativeButton("Cancel",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,
-											int id) {
-										dialog.cancel();
-									}
-								});
-
-				// create an alert dialog
-				AlertDialog alertD = alertDialogBuilder.create();
-				alertD.show();
+//				LayoutInflater layoutInflater = LayoutInflater
+//						.from(KundenProfil.this);
+//				View promptView = layoutInflater.inflate(
+//						R.layout.fragment_kundendaten, null);
+//				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//						KundenProfil.this);
+//				// set prompts.xml to be the layout file of the alertdialog
+//				// builder
+//				alertDialogBuilder.setView(promptView);
+//				final EditText input = (EditText) promptView
+//						.findViewById(R.id.userInput);
+//				// setup a dialog window
+//				alertDialogBuilder
+//						.setCancelable(false)
+//						.setPositiveButton("OK",
+//								new DialogInterface.OnClickListener() {
+//									public void onClick(DialogInterface dialog,
+//											int id) {
+//										// get user input and set it to result
+//										vor.setText(input.getText());
+//									}
+//								})
+//						.setNegativeButton("Cancel",
+//								new DialogInterface.OnClickListener() {
+//									public void onClick(DialogInterface dialog,
+//											int id) {
+//										dialog.cancel();
+//									}
+//								});
+//
+//				// create an alert dialog
+//				AlertDialog alertD = alertDialogBuilder.create();
+//				alertD.show();
 
 			}
 		});
