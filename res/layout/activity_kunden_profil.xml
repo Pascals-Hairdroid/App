@@ -63,8 +63,8 @@ android:background="@color/white" >
         android:nextFocusForward="@+id/passwort"
         android:imeOptions="actionNext"
         android:singleLine="true"
-    		android:lines="1"
-   			 android:maxLines="1"/>
+    	android:lines="1"
+   		android:maxLines="1"/>
 
     <EditText
         android:id="@+id/passwort"
@@ -80,8 +80,8 @@ android:background="@color/white" >
         android:nextFocusForward="@+id/email" 
         android:imeOptions="actionNext"
         android:singleLine="true"
-    		android:lines="1"
-   			 android:maxLines="1"/>
+    	android:lines="1"
+   		android:maxLines="1"/>
 
     <EditText
         android:id="@+id/email"
@@ -97,8 +97,8 @@ android:background="@color/white" >
         android:nextFocusForward="@+id/phoneNr"
         android:imeOptions="actionNext" 
         android:singleLine="true"
-    		android:lines="1"
-   			 android:maxLines="1"/>
+    	android:lines="1"
+   		android:maxLines="1"/>
 
     <EditText
         android:id="@+id/phoneNr"
@@ -112,8 +112,8 @@ android:background="@color/white" >
         android:onClick="phone"
         android:textColor="@color/orange" 
         android:singleLine="true"
-    		android:lines="1"
-   			 android:maxLines="1"/>
+    	android:lines="1"
+   		android:maxLines="1"/>
 
     <Button
         android:id="@+id/button1"

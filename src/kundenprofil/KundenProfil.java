@@ -131,10 +131,8 @@ public class KundenProfil extends Activity {
 						// Foto von kamera holen
 						case 0:
 							intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-							Intent cameraIntent = new Intent(
-									android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-							startActivityForResult(cameraIntent,
-									PICK_FROM_CAMERA);
+							Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+							startActivityForResult(cameraIntent,PICK_FROM_CAMERA);
 							dialog.dismiss();
 							break;
 							// foto von SD Karte holen
@@ -142,8 +140,7 @@ public class KundenProfil extends Activity {
 							intent = new Intent();
 							intent.setType("image/*");
 							intent.setAction(Intent.ACTION_GET_CONTENT);
-							startActivityForResult(Intent.createChooser(intent,
-									"Complete action using"), PICK_FROM_FILE);
+							startActivityForResult(Intent.createChooser(intent,"Complete action using"), PICK_FROM_FILE);
 							dialog.dismiss();
 							break;
 						}
@@ -189,19 +186,23 @@ public class KundenProfil extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	// Result von onClick speichern 
+	// Result von onClick in Bitmap speichern 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode != RESULT_OK) {
-			System.out
-					.println("not returning RESULT_OK");
+			System.out.println("not returning RESULT_OK");
 		}
 		switch (requestCode) {
+		// wenn von Kamera das Foto
 		case PICK_FROM_CAMERA:
+			// in Bitmap speichern
 			imageRaw = (Bitmap) data.getExtras().get("data");
+			// altes Foto durch neues ersetzen
 			image.setImageBitmap(imageRaw);
+			// Kontrolle auf true setzen
 			imageChanged = true;
 			break;
+		// wenn von SD Karte das Foto
 		case PICK_FROM_FILE:
 			Uri mImageCaptureUri = data.getData();
 			System.out.println(mImageCaptureUri.toString());

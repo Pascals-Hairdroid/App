@@ -9,6 +9,7 @@ import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
+// Zum MD5 verschlüsseln von PWD
 public class Utils {
 	public static String MD5(String md5) {
 		try {
