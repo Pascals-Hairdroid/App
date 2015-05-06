@@ -1,6 +1,7 @@
 package com.example.pascalshairdroid;
 
 
+import utils.Utils;
 import login_register.Login;
 import android.app.Activity;
 import android.app.Fragment;
@@ -35,7 +36,11 @@ public class TerminEintragenFragment extends Fragment {
 			View rootView = inflater.inflate(R.layout.fragment_termin_eintragen, container,
 					false);
 			WebView view = (WebView)rootView.findViewById(R.id.termin_webview);
-					view.loadUrl("http://pascals.at/v2/Seiten/terminvergabe.php?web=1");
+			if (Utils.isInternetAvailable(getActivity())) {
+				view.loadUrl("http://pascals.at/v2/Seiten/terminvergabe.php?web=1");
+			} else {
+				view.loadData("<h1>Y U NO haV internezzzz?</h1>", "text/html", "UTF-8");
+			}
 			
 			return rootView;
 		}

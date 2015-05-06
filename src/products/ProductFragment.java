@@ -1,5 +1,6 @@
 package products;
 
+import utils.Utils;
 
 import com.example.pascalshairdroid.R;
 import com.example.pascalshairdroid.R.id;
@@ -21,44 +22,42 @@ import android.widget.AdapterView.OnItemClickListener;
 public class ProductFragment extends Fragment {
 	private String name;
 	private int id;
-	
-	
-		private static final String ARG_SECTION_NUMBER = "section_number";
 
-		
+	private static final String ARG_SECTION_NUMBER = "section_number";
 
-		public ProductFragment(String name, int id) {
+	public ProductFragment(String name, int id) {
 
+		this.name = name;
+		this.id = id;
+	}
 
-				this.name = name;
-				this.id = id;
-		}
-		
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_products, container,
-					false);
-			WebView view = (WebView)rootView.findViewById(R.id.product_webview);
-			view.setWebViewClient(new WebViewClient(){
-				@Override
-				public boolean shouldOverrideUrlLoading(WebView view, String url) {
-					view.loadUrl(url);
-					return false;
-				}
-			});
-			
-			if (id==0)
-			view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1&Kat=farbe");
-			if (id==1)
-			view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1&Kat=pflege");
-			
-				
-			
-			
-			return rootView;
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.fragment_products, container,
+				false);
+		WebView view = (WebView) rootView.findViewById(R.id.product_webview);
+		view.setWebViewClient(new WebViewClient() {
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				view.loadUrl(url);
+				return false;
+			}
+		});
+
+		if (Utils.isInternetAvailable(getActivity())) {
+			if (id == 0) {
+				view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1&Kat=farbe");
+			}
+			if (id == 1) {
+				view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1&Kat=pflege");
+			}
+		} else {
+			view.loadData("<h1>Y U NO haV internezzzz?</h1>", "text/html",
+					"UTF-8");
 		}
 
-		
+		return rootView;
+	}
 
 }

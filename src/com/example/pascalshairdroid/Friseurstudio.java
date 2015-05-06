@@ -1,5 +1,9 @@
 package com.example.pascalshairdroid;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
 import kundenprofil.KundenProfil;
 import products.ProductFragment;
 import products.ProduktListFragment;
@@ -75,12 +79,19 @@ public class Friseurstudio extends Activity implements
 	public void onNavigationDrawerItemSelected(int position, int childPosition) {
 		// update the main content by replacing fragments
 		
+		Boolean isFreigeschalten = getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE).getBoolean(Login.LOGIN_FREIGESCHALTEN,false);
+		List<Integer> integers = Arrays.asList(new Integer[]{2});
+		if(!isFreigeschalten && integers.contains(position)){
+
+			return;
+		}
+		
 		FragmentManager fragmentManager = getFragmentManager();
 		switch (position) {
 
 		case 5:
 			fragmentManager.beginTransaction()
-					.replace(R.id.container, new GalerieFragment()).commit();
+					.replace(R.id.container, new GalerieFragment()).addToBackStack("1").commit();
 			break;
 		case 4:
 			switch (childPosition) {
@@ -88,24 +99,24 @@ public class Friseurstudio extends Activity implements
 				fragmentManager
 						.beginTransaction()
 						.replace(R.id.container,
-								new ProductFragment("Färben", 0)).commit();
+								new ProductFragment("Färben", 0)).addToBackStack("2").commit();
 				break;
 			case 1:
 				fragmentManager
 						.beginTransaction()
 						.replace(R.id.container,
-								new ProductFragment("Pflegen", 1)).commit();
+								new ProductFragment("Pflegen", 1)).addToBackStack("3").commit();
 				break;
 
 			}
 			break;
 		case 3:
 			fragmentManager.beginTransaction()
-					.replace(R.id.container, new AngebotFragment()).commit();
+					.replace(R.id.container, new AngebotFragment()).addToBackStack("4").commit();
 			break;
 		case 2:
 			fragmentManager.beginTransaction()
-					.replace(R.id.container, new TerminEintragenFragment())
+					.replace(R.id.container, new TerminEintragenFragment()).addToBackStack("5")
 					.commit();
 			break;
 		case 0:
@@ -118,27 +129,27 @@ public class Friseurstudio extends Activity implements
 			switch (childPosition) {
 			case 4:
 				fragmentManager.beginTransaction()
-						.replace(R.id.container, new KontaktFragment())
+						.replace(R.id.container, new KontaktFragment()).addToBackStack("7")
 						.commit();
 				break;
 			case 3:
 				fragmentManager.beginTransaction()
-						.replace(R.id.container, new OpentimeFragment())
+						.replace(R.id.container, new OpentimeFragment()).addToBackStack("8")
 						.commit();
 				break;
 			case 2:
 				fragmentManager
 						.beginTransaction()
-						.replace(R.id.container, new DienstleistungenFragment())
+						.replace(R.id.container, new DienstleistungenFragment()).addToBackStack("9")
 						.commit();
 				break;
 			case 1:
 				fragmentManager.beginTransaction()
-						.replace(R.id.container, new TeamListFragment())
+						.replace(R.id.container, new TeamListFragment()).addToBackStack("10")
 						.commit();
 				break;
 			case 0:
-				fragmentManager.beginTransaction()
+				fragmentManager.beginTransaction().addToBackStack("6")
 						.replace(R.id.container, new FriseurstudioFragment())
 						.commit();
 				break;

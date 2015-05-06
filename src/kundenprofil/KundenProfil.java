@@ -1,6 +1,23 @@
 package kundenprofil;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Stack;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
+import kundenprofil.async.DataSaver;
+import kundenprofil.async.ImageSaver;
 
 import utils.Utils;
 
@@ -24,6 +41,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Images;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -43,11 +63,13 @@ public class KundenProfil extends Activity {
 	private EditText tele;
 	private ImageView image;
 	final Context context = this;
-	private boolean imageChanged = false;
-	private boolean dataChanged = false;
-	private boolean interessenChanged = false;
 	private Bitmap imageRaw;
-
+	private Set<String> tempInteressen = new HashSet<String>();
+	private String sessionId = "";
+	public static final int DATA_CHANGED = 0;
+	public static final int INTERESSEN_CHANGED = 1;
+	public static final int IMAGE_CHANGED = 2;
+	private boolean[] changed = new boolean[] { false, false, false };
 	public static final int PICK_FROM_CAMERA = 1;
 	public static final int PICK_FROM_FILE = 2;
 
@@ -56,14 +78,27 @@ public class KundenProfil extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_kunden_profil);
 
-		// Textfelder finden 
+		sessionId = getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE)
+				.getString(Login.LOGIN_SESSION_ID, "");
+		// Textfelder finden
 		vor = (EditText) findViewById(R.id.vorname);
 		nach = (EditText) findViewById(R.id.nachname);
 		pw = (EditText) findViewById(R.id.passwort);
-		mail = (EditText) findViewById(R.id.email);
 		tele = (EditText) findViewById(R.id.phoneNr);
 		image = (ImageView) findViewById(R.id.imageView1);
-		
+		File myImage = new File(getFilesDir(), "myImage.jpg");
+		if (myImage.exists()) {
+			try {
+				image.setImageBitmap(BitmapFactory
+						.decodeStream(new FileInputStream(myImage)));
+			} catch (FileNotFoundException e) {
+				image.setImageResource(R.drawable.nobody_no);
+				e.printStackTrace();
+			}
+		} else {
+			image.setImageResource(R.drawable.nobody_no);
+		}
+
 		// SharedPreferences instanzieren und von Login die Prev Tags bekommen
 		SharedPreferences sharedPreferences = getSharedPreferences(
 				Login.PREF_TAG, Context.MODE_PRIVATE);
@@ -71,53 +106,36 @@ public class KundenProfil extends Activity {
 		// text von den Preferences in die Textfelder schreiben
 		vor.setText(sharedPreferences.getString(Login.LOGIN_VORNAME, ""));
 		nach.setText(sharedPreferences.getString(Login.LOGIN_NACHNAME, ""));
-		mail.setText(sharedPreferences.getString(Login.LOGIN_USERNAME, ""));
 		tele.setText(sharedPreferences.getString(Login.LOGIN_TELEFON, ""));
-
-		vor.setOnClickListener(new OnClickListener() {
+		TextWatcher textWatcher = new TextWatcher() {
 
 			@Override
-			public void onClick(View view) {
-//				LayoutInflater layoutInflater = LayoutInflater
-//						.from(KundenProfil.this);
-//				View promptView = layoutInflater.inflate(
-//						R.layout.fragment_kundendaten, null);
-//				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-//						KundenProfil.this);
-//				// set prompts.xml to be the layout file of the alertdialog
-//				// builder
-//				alertDialogBuilder.setView(promptView);
-//				final EditText input = (EditText) promptView
-//						.findViewById(R.id.userInput);
-//				// setup a dialog window
-//				alertDialogBuilder
-//						.setCancelable(false)
-//						.setPositiveButton("OK",
-//								new DialogInterface.OnClickListener() {
-//									public void onClick(DialogInterface dialog,
-//											int id) {
-//										// get user input and set it to result
-//										vor.setText(input.getText());
-//									}
-//								})
-//						.setNegativeButton("Cancel",
-//								new DialogInterface.OnClickListener() {
-//									public void onClick(DialogInterface dialog,
-//											int id) {
-//										dialog.cancel();
-//									}
-//								});
-//
-//				// create an alert dialog
-//				AlertDialog alertD = alertDialogBuilder.create();
-//				alertD.show();
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				changed[DATA_CHANGED] = true;
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
 
 			}
-		});
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+
+			}
+		};
+		vor.addTextChangedListener(textWatcher);
+		nach.addTextChangedListener(textWatcher);
+		pw.addTextChangedListener(textWatcher);
+		tele.addTextChangedListener(textWatcher);
 
 	}
 
-	// Dialog öffnen und Bild auswählen 
+	// Dialog öffnen und Bild auswählen
 	public void showImage(View v) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Kundenfoto ändern");
@@ -131,16 +149,19 @@ public class KundenProfil extends Activity {
 						// Foto von kamera holen
 						case 0:
 							intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-							Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-							startActivityForResult(cameraIntent,PICK_FROM_CAMERA);
+							Intent cameraIntent = new Intent(
+									android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+							startActivityForResult(cameraIntent,
+									PICK_FROM_CAMERA);
 							dialog.dismiss();
 							break;
-							// foto von SD Karte holen
+						// foto von SD Karte holen
 						case 1:
 							intent = new Intent();
 							intent.setType("image/*");
 							intent.setAction(Intent.ACTION_GET_CONTENT);
-							startActivityForResult(Intent.createChooser(intent,"Complete action using"), PICK_FROM_FILE);
+							startActivityForResult(Intent.createChooser(intent,
+									"Complete action using"), PICK_FROM_FILE);
 							dialog.dismiss();
 							break;
 						}
@@ -178,15 +199,63 @@ public class KundenProfil extends Activity {
 			this.startActivity(intent);
 			break;
 		case R.id.save:
+			if (changed[IMAGE_CHANGED]) {
+				try {
+					FileOutputStream fos = openFileOutput("myImage.jpg",
+							MODE_PRIVATE);
+					imageRaw.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+					fos.close();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 
-			
-			
+			}
+			if (changed[DATA_CHANGED] || changed[INTERESSEN_CHANGED]) {
+				DataSaver dataSaver = new DataSaver(this);
+				System.out.println(sessionId);
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+				 nameValuePairs.add(new BasicNameValuePair("sessionId", sessionId));
+				 nameValuePairs.add(new BasicNameValuePair("vorname", vor.getText().toString()));
+				 nameValuePairs.add(new BasicNameValuePair("nachname", nach.getText().toString()));
+				 nameValuePairs.add(new BasicNameValuePair("telnr", tele.getText().toString()));
+				 nameValuePairs.add(new BasicNameValuePair("passwort", Utils.MD5(pw.getText().toString())));
+				 if(changed[INTERESSEN_CHANGED]){
+					 nameValuePairs.addAll(arrayAsNameValuePairs("interessen", interessenToIds(tempInteressen)));
+				 }
+				 
+				 dataSaver.execute(nameValuePairs);
+			}
 		}
 
 		return super.onOptionsItemSelected(item);
 	}
+	private List<BasicNameValuePair> arrayAsNameValuePairs(String name, String[] values){
+		List<BasicNameValuePair> basicNameValuePairs = new ArrayList<BasicNameValuePair>();
+		for (int i = 0; i < values.length; i++) {
+			basicNameValuePairs.add(new BasicNameValuePair("interessen["+i+"]", values[i]));
+		}
+		return basicNameValuePairs;
+	}
+	private String[] interessenToIds(Set<String> values){
+		String[] allId = getResources().getStringArray(R.array.interessen_ids);
+		String[] ids = new String[values.size()];
+		String[] all = getResources().getStringArray(R.array.interessen);
+		int idIndex = 0;
+		for (int i = 0; i < allId.length; i++) {
+			if(values.contains(all[i])){
+				ids[idIndex++] = allId[i];
+			}
+		}
+		return ids;
+	}
+	
+	public void setChanged(int type){
+		changed[type] = true;
+	}
 
-	// Result von onClick in Bitmap speichern 
+	// Result von onClick in Bitmap speichern
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode != RESULT_OK) {
@@ -200,26 +269,39 @@ public class KundenProfil extends Activity {
 			// altes Foto durch neues ersetzen
 			image.setImageBitmap(imageRaw);
 			// Kontrolle auf true setzen
-			imageChanged = true;
+			changed[IMAGE_CHANGED] = true;
 			break;
 		// wenn von SD Karte das Foto
 		case PICK_FROM_FILE:
 			Uri mImageCaptureUri = data.getData();
 			System.out.println(mImageCaptureUri.toString());
-			String path = Utils.getRealPathFromURI(this, mImageCaptureUri); // from Gallery
-			if (path == null) {
-				path = mImageCaptureUri.getPath(); // from File Manager
-			}
-			System.out.println(path);
-			if (path != null) {
-				imageRaw = BitmapFactory.decodeFile(path);
-				image.setImageBitmap(imageRaw);
-				imageChanged = true;
-			}
+			imageRaw = Utils.getRealPathFromURI(this, mImageCaptureUri);
+			image.setImageBitmap(imageRaw);
+			changed[IMAGE_CHANGED] = true;
 			break;
 		}
 
 	}
 
+	public void onHttpFin(int type, JSONObject j) {
+		changed[type] = false;
+		boolean waiting = false;
+		for (int i = 0; i < changed.length; i++) {
+			waiting = waiting || !changed[i];
+		}
+		if (!waiting) {
+			finish();
+		}
+
+	}
+
+	public Set<String> getTempInteressen() {
+		return tempInteressen;
+	}
+
+	public void setTempInteressen(Set<String> tempInteressen) {
+		this.tempInteressen = tempInteressen;
+	}
 	
+
 }

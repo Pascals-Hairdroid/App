@@ -1,9 +1,15 @@
 package utils;
 
+import java.io.FileNotFoundException;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
@@ -26,36 +32,59 @@ public class Utils {
 		}
 		return null;
 	}
-	
-	// weil ab Android 4.4 gibt es andere Aufrufe des Verzeichnisses 
+
+	// weil ab Android 4.4 gibt es andere Aufrufe des Verzeichnisses
 
 	@SuppressLint("NewApi")
-	public static String getRealPathFromURI_API19(Context context, Uri uri) {
+	public static Bitmap getRealPathFromURI_API19(Context context, Uri uri) {
 		String filePath = "";
-		String wholeID = DocumentsContract.getDocumentId(uri);
+		try {
+			String wholeID = DocumentsContract.getDocumentId(uri);
 
-		// Split at colon, use second item in the array
-		String id = wholeID.split(":")[1];
+			// Split at colon, use second item in the array
+			String id = wholeID.split(":")[1];
 
-		String[] column = { MediaStore.Images.Media.DATA };
+			String[] column = { MediaStore.Images.Media.DATA };
 
-		// where id is equal to
-		String sel = MediaStore.Images.Media._ID + "=?";
+			// where id is equal to
+			String sel = MediaStore.Images.Media._ID + "=?";
 
-		Cursor cursor = context.getContentResolver().query(
-				MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel,
-				new String[] { id }, null);
+			Cursor cursor = context.getContentResolver().query(
+					MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel,
+					new String[] { id }, null);
 
-		int columnIndex = cursor.getColumnIndex(column[0]);
+			int columnIndex = cursor.getColumnIndex(column[0]);
 
-		if (cursor.moveToFirst()) {
-			filePath = cursor.getString(columnIndex);
+			if (cursor.moveToFirst()) {
+				filePath = cursor.getString(columnIndex);
+			}
+			cursor.close();
+		} catch (IllegalArgumentException e) {
+
+			try {
+				String[] projection = { MediaStore.Images.Media.DATA };
+
+				Cursor cursor = context.getContentResolver().query(uri,
+						projection, null, null, null);
+				cursor.moveToFirst();
+
+				int columnIndex = cursor.getColumnIndex(projection[0]);
+				filePath = cursor.getString(columnIndex); // returns null
+				cursor.close();
+			} catch (NullPointerException e1) {
+				try {
+					return BitmapFactory.decodeStream(context
+							.getContentResolver().openInputStream(uri));
+				} catch (FileNotFoundException e2) {
+					e2.printStackTrace();
+				}
+			}
+
 		}
-		cursor.close();
-		return filePath;
+		return BitmapFactory.decodeFile(filePath);
 	}
 
-	public static String getRealPathFromURI_API11to18(Context context,
+	public static Bitmap getRealPathFromURI_API11to18(Context context,
 			Uri contentUri) {
 		String[] proj = { MediaStore.Images.Media.DATA };
 		String result = null;
@@ -70,10 +99,10 @@ public class Utils {
 			cursor.moveToFirst();
 			result = cursor.getString(column_index);
 		}
-		return result;
+		return BitmapFactory.decodeFile(result);
 	}
 
-	public static String getRealPathFromURI_BelowAPI11(Context context,
+	public static Bitmap getRealPathFromURI_BelowAPI11(Context context,
 			Uri contentUri) {
 		String[] proj = { MediaStore.Images.Media.DATA };
 		Cursor cursor = context.getContentResolver().query(contentUri, proj,
@@ -81,11 +110,11 @@ public class Utils {
 		int column_index = cursor
 				.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 		cursor.moveToFirst();
-		return cursor.getString(column_index);
+		return BitmapFactory.decodeFile(cursor.getString(column_index));
 	}
 
-	public static String getRealPathFromURI(Context context, Uri contentUri) {
-		String realPath;
+	public static Bitmap getRealPathFromURI(Context context, Uri contentUri) {
+		Bitmap realPath;
 		if (Build.VERSION.SDK_INT < 11) {
 			realPath = getRealPathFromURI_BelowAPI11(context, contentUri);
 		}
@@ -98,5 +127,22 @@ public class Utils {
 			realPath = getRealPathFromURI_API19(context, contentUri);
 		}
 		return realPath;
+	}
+
+	public static boolean isInternetAvailable(Context context) {
+		NetworkInfo info = (NetworkInfo) ((ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE))
+				.getActiveNetworkInfo();
+
+		if (info == null) {
+			return false;
+		} else {
+			if (info.isConnected()) {
+				return true;
+			} else {
+				return true;
+			}
+
+		}
 	}
 }

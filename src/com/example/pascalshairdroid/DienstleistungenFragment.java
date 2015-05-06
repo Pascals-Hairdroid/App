@@ -1,6 +1,7 @@
 package com.example.pascalshairdroid;
 
 
+import utils.Utils;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -33,7 +34,11 @@ public class DienstleistungenFragment extends Fragment {
 					return false;
 				}
 			});
-			view.loadUrl("http://pascals.at/v2/Seiten/dienstleistung.php?web=1");
+			if (Utils.isInternetAvailable(getActivity())) {
+				view.loadUrl("http://pascals.at/v2/Seiten/dienstleistung.php?web=1");
+			} else {
+				view.loadData("<h1>Y U NO haV internezzzz?</h1>", "text/html", "UTF-8");
+			}
 			
 			
 			return rootView;

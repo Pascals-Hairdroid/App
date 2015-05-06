@@ -23,12 +23,12 @@ android:background="@color/white" >
 
     <ImageView
         android:id="@+id/imageView1"
-        android:maxWidth="140dip"
-        android:maxHeight="140dip"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:maxHeight="140dip"
+        android:maxWidth="140dip"
         android:onClick="showImage"
-        android:scaleType="centerInside"
+        android:scaleType="centerCrop"
         android:src="@drawable/galerie8" />
 
     <EditText
@@ -38,7 +38,6 @@ android:background="@color/white" >
         android:ems="10"
         android:hint="@string/vorname"
         android:inputType="text"
-        android:onClick="vorn"
         android:textColor="@color/orange" 
         android:nextFocusForward="@+id/nachname"
         android:imeOptions="actionNext"
@@ -46,7 +45,8 @@ android:background="@color/white" >
     	android:lines="1"
    		android:maxLines="1">
 
-        <requestFocus />
+        <requestFocus android:layout_height="match_parent" />
+
     </EditText>
 
     <EditText
@@ -83,22 +83,7 @@ android:background="@color/white" >
     	android:lines="1"
    		android:maxLines="1"/>
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/passwort"
-        android:layout_below="@+id/passwort"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="text"
-        android:onClick="emai"
-        android:textColor="@color/orange"
-        android:nextFocusForward="@+id/phoneNr"
-        android:imeOptions="actionNext" 
-        android:singleLine="true"
-    	android:lines="1"
-   		android:maxLines="1"/>
+
 
     <EditText
         android:id="@+id/phoneNr"
@@ -121,6 +106,7 @@ android:background="@color/white" >
         android:layout_height="wrap_content"
         android:onClick="showInteressen"
         android:text="@string/interessenBt" />
+
 </LinearLayout>
 
 </RelativeLayout>
