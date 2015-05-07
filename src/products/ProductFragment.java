@@ -53,7 +53,7 @@ public class ProductFragment extends Fragment {
 				view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1&Kat=pflege");
 			}
 		} else {
-			view.loadData("<h1>Y U NO haV internezzzz?</h1>", "text/html",
+			view.loadData("<h1>No Internet connection</h1>", "text/html",
 					"UTF-8");
 		}
 

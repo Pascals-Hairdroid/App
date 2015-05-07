@@ -37,7 +37,7 @@ public class DienstleistungenFragment extends Fragment {
 			if (Utils.isInternetAvailable(getActivity())) {
 				view.loadUrl("http://pascals.at/v2/Seiten/dienstleistung.php?web=1");
 			} else {
-				view.loadData("<h1>Y U NO haV internezzzz?</h1>", "text/html", "UTF-8");
+				view.loadData("<h1>No Internet connection</h1>", "text/html", "UTF-8");
 			}
 			
 			

@@ -129,6 +129,7 @@ public class Utils {
 		return realPath;
 	}
 
+	// prüft ob Internet connection vorhanden ist 
 	public static boolean isInternetAvailable(Context context) {
 		NetworkInfo info = (NetworkInfo) ((ConnectivityManager) context
 				.getSystemService(Context.CONNECTIVITY_SERVICE))

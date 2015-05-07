@@ -1,24 +1,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.pascalshairdroid.Home$PlaceholderFragment" >
+				xmlns:tools="http://schemas.android.com/tools"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:background="@color/white" >
     
-    <WebView 
+  <!--    <WebView 
         android:id="@+id/kontakt_webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" /> -->
         
-
- <!--    <TextView
+        
+         <ImageView
+    	style="@style/BackGroundImageView2"
+    	android:layout_width="match_parent"
+   		 android:layout_height="match_parent"
+    	android:layout_alignParentTop="true"
+    	android:layout_centerHorizontal="true"
+    	
+    	 />
+         
+         
+         <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:gravity="center"
+    android:orientation="vertical" >
+    
+    <TextView
         android:id="@+id/company_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
+        android:textSize="18pt"
+        android:textColor="@color/orange"
         android:text="@string/pascals_hairdroid" />
+    
+    <TextView
+            android:id="@+id/petritsch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/adresse"
+            android:layout_alignLeft="@+id/adresse"
+            android:layout_marginTop="37dp"
+            android:textSize="12pt"
+            
+            android:text="@string/pascal_petritsch" />
+    
 
         <TextView
             android:id="@+id/adresse"
@@ -26,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/company_name"
             android:layout_below="@+id/company_name"
-            android:layout_marginTop="37dp"
+            android:textSize="12pt"
             android:text="@string/adresse" />
         
 
@@ -36,17 +64,10 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/adresse"
             android:layout_below="@+id/adresse"
+            android:textSize="12pt"
             android:text="@string/ort" />
 
-        <TextView
-            android:id="@+id/petritsch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/adresse"
-            android:layout_alignLeft="@+id/adresse"
-            android:layout_marginBottom="16dp"
-            android:text="@string/pascal_petritsch" />
-
+        
         <TextView
             android:id="@+id/mobil"
             android:layout_width="wrap_content"
@@ -54,6 +75,8 @@
             android:layout_alignBottom="@+id/mofr"
             android:layout_alignLeft="@+id/ort"
             android:layout_below="@+id/ort"
+            android:layout_marginTop="40dp"
+            android:textSize="12pt"
             android:text="@string/mobil" />
 
         <TextView
@@ -62,10 +85,10 @@
             android:layout_height="wrap_content"
             android:layout_alignRight="@+id/adresse"
             android:layout_below="@+id/mobil"
-            android:layout_marginTop="78dp"
+            android:textSize="12pt"
             android:text="@string/homepage" />
 
-        <TextView
+     <!--    <TextView
             android:id="@+id/sa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,13 +96,15 @@
             android:layout_centerVertical="true"
             android:text="@string/sa" />
 
-        <TextView
+         <TextView
             android:id="@+id/mofr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/sa"
             android:layout_alignLeft="@+id/mobil"
             android:layout_marginBottom="21dp"
-            android:text="@string/mofr" /> --> 
+            android:text="@string/mofr" /> -->
+            
+            </LinearLayout>
 
 </RelativeLayout>

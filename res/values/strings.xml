@@ -50,7 +50,7 @@
     <string name="mofr">Montag - Freitag : 	11:00 -19:00 Uhr</string>
     <string name="sa">Samstag : 	09:00 -15:00 Uhr</string>
     <string name="ort">1220 Wien</string>
-    <string name="homepage">http://www.pascals.at</string>
+    <string name="homepage">www.pascals.at</string>
 
     <!-- Button Termin reservieren in fragment_termin_eintragen -->
     <string name="termin_resevieren">Termin eintragen</string>

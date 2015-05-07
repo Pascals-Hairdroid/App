@@ -4,6 +4,8 @@
     <color name="black">#000000</color>
     <color name="orange">#FE9A2E</color>
     <color name="lightorange">#F8DE97</color>
+    <color name="blue">#0F11AA</color>
+    <color name="blue_light">#6A6CE6</color>
     
 </resources>
 

@@ -15,6 +15,12 @@
     <style name="BackGroundImageView">
     <item name="android:alpha">0.5</item>
     <item name="android:scaleType">fitXY</item>
-    <item name="android:src">@drawable/ph1</item>
+    <item name="android:src">@drawable/galerie12</item>
+	</style>
+	
+    <style name="BackGroundImageView2">
+    <item name="android:alpha">0.5</item>
+    <item name="android:scaleType">fitXY</item>
+    <item name="android:src">@drawable/galerie2</item>
 	</style>
 </resources>

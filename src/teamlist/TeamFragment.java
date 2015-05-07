@@ -58,7 +58,7 @@ public class TeamFragment extends Fragment {
 						+ this.id);
 			}
 		} else {
-			view.loadData("<h1>Y U NO haV internezzzz?</h1>", "text/html",
+			view.loadData("<h1>No Internet connection</h1>", "text/html",
 					"UTF-8");
 		}
 		return rootView;

@@ -39,7 +39,7 @@ public class TerminEintragenFragment extends Fragment {
 			if (Utils.isInternetAvailable(getActivity())) {
 				view.loadUrl("http://pascals.at/v2/Seiten/terminvergabe.php?web=1");
 			} else {
-				view.loadData("<h1>Y U NO haV internezzzz?</h1>", "text/html", "UTF-8");
+				view.loadData("<h1>No Internet connection</h1>", "text/html", "UTF-8");
 			}
 			
 			return rootView;

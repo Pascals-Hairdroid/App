@@ -27,7 +27,7 @@ import android.util.Log;
 public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 	
 	private Login login;
-	private String username;
+	private String email;
 	
 	
 	
@@ -48,13 +48,13 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 			
 			
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	        nameValuePairs.add(new BasicNameValuePair("username", params[1]));
+	        nameValuePairs.add(new BasicNameValuePair("email", params[1]));
 	        nameValuePairs.add(new BasicNameValuePair("passwort", Utils.MD5(params[2])));
 	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			String s = EntityUtils.toString(httpResponse.getEntity());
-			username= params[1];
+			email= params[1];
 		Log.d("test",s );
 //			Log.d("param1",params[1]);
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
@@ -76,6 +76,6 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 	// nach hintergrund arbeit im vordergrund do login von login
 	@Override
 	protected void onPostExecute(JSONObject result) {
-		login.doLogin(result,username);
+		login.doLogin(result,email);
 	}
 }

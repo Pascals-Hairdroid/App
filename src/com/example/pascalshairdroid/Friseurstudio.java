@@ -149,8 +149,8 @@ public class Friseurstudio extends Activity implements
 						.commit();
 				break;
 			case 0:
-				fragmentManager.beginTransaction().addToBackStack("6")
-						.replace(R.id.container, new FriseurstudioFragment())
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, new DasStudioFragment()).addToBackStack("6")
 						.commit();
 				break;
 
