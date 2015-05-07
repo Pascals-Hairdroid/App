@@ -1,33 +1,20 @@
---> Kundenprofil
-      -->Eigenes Foto an erster stelle bei naviDrawer 
-	  -->Dialoge mit Funktionen (an Server schicken) 
-	  -->Ohne Freischaltung keine Imageupload
-	  -->Foto Datenmenge einschränken
-	  -->Daten Laden bei Foto klick check
-	  -->foto intern speichern und beim öffnen laden (android save data on internal storage)
-	  -->Interessen werden nicht aus der DB genommen 
-	  -->Interessen auswählen --> schicken an Server
-	  -->Registriern download foto speichern intern und anzeigen
-	  -->profilbild laden nach erst login (path speichern und wenn nötig profilbild nach login updaten)
-	  -->möglicherweise ein männlich weiblichfeld zur unterscheidung von defaut profil bildern -> oli
-	  -->Max width und Height von Bild definieren
-	  -->Problem bei Samsung/LG Handys mit Laden aus der SD Karte
-	  -->Problem bei LG mit Fotos im Querformat angezeigt  (Foto muss im Querformat aufgenommen werden damit es richtig steht im App)
-	  -->Activity neu gestartet wenn Handy im Querformat (Manifest) (Bei drehen von Handy Foto wird nicht gespeichert?)
-	  -->keine emoticons bei den Textfelder 
-			android:inputType="text|textNoSuggestions"
-			android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	  
+--> Foto Datenmenge einschränken 	  
+--> Registriern download foto speichern intern und anzeigen
+--> profilbild laden nach erst login (path speichern und wenn nötig profilbild nach login updaten)
+--> naviDrawer sehr langsam bei big pictures
+--> Interessen id werden nicht gespeichert (OLI)
 --> Notifications 
---> Register bei NavigationDrawer sperren 
 --> home Lösung (erste Stelle bei NavigationDrawer)finden
---> Wenn Handy offline, sinnvolle Mitteilung an user ausgeben
---> Die Zurücktaste im App anpassen, derzeit schließt sie die App
 
 
-
-
-
-
-    
-    
+--> Bessere Html Seite für Offline
+	--> bei allen Fragmenten Webviews einbauen
+	--> Padding rausgeben
+--> Kundenprofil überarbeiten 
+	-->Cycle profilbild
+	-->Message bei Save und close von Kundenprofil 
+--> DB Orginal MA eintragen
+--> Code kommentieren
+--> Kundenprofil: Textfelder Keyboard weg
+--> Kundenprofil: Textfelder TeleNr Weiter --> App down
+--> Wenn von SD Karte geladen Zurück Taste --> App down
