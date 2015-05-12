@@ -108,7 +108,7 @@ public class Login extends Activity {
 							email, password);
 				} else {
 					Toast.makeText(Login.this,
-							"No Internet connection",
+							"Keine Internetverbindung",
 							Toast.LENGTH_LONG).show();
 				}
 			}

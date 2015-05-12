@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
@@ -191,12 +192,9 @@ public class KundenProfil extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		Intent intent;
 		switch (id) {
 		case R.id.cancel:
-			intent = new Intent(KundenProfil.this, Friseurstudio.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			this.startActivity(intent);
+			finish();
 			break;
 		case R.id.save:
 			if (changed[IMAGE_CHANGED]) {
@@ -204,6 +202,9 @@ public class KundenProfil extends Activity {
 					FileOutputStream fos = openFileOutput("myImage.jpg",
 							MODE_PRIVATE);
 					imageRaw.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+					ImageSaver imageSaver = new ImageSaver(this);
+					imageSaver.execute();
+
 					fos.close();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
@@ -214,13 +215,15 @@ public class KundenProfil extends Activity {
 			}
 			if (changed[DATA_CHANGED] || changed[INTERESSEN_CHANGED]) {
 				DataSaver dataSaver = new DataSaver(this);
-				System.out.println(sessionId);
+				
 				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 				 nameValuePairs.add(new BasicNameValuePair("sessionId", sessionId));
 				 nameValuePairs.add(new BasicNameValuePair("vorname", vor.getText().toString()));
 				 nameValuePairs.add(new BasicNameValuePair("nachname", nach.getText().toString()));
 				 nameValuePairs.add(new BasicNameValuePair("telnr", tele.getText().toString()));
-				 nameValuePairs.add(new BasicNameValuePair("passwort", Utils.MD5(pw.getText().toString())));
+				 if(!pw.getText().toString().equals("")){
+					 nameValuePairs.add(new BasicNameValuePair("passwort", Utils.MD5(pw.getText().toString())));
+				 }
 				 if(changed[INTERESSEN_CHANGED]){
 					 nameValuePairs.addAll(arrayAsNameValuePairs("interessen", interessenToIds(tempInteressen)));
 				 }
@@ -240,11 +243,16 @@ public class KundenProfil extends Activity {
 	}
 	private String[] interessenToIds(Set<String> values){
 		String[] allId = getResources().getStringArray(R.array.interessen_ids);
+		for (Iterator iterator = values.iterator(); iterator.hasNext();) {
+			String string = (String) iterator.next();
+			System.out.println(string);
+		}
 		String[] ids = new String[values.size()];
 		String[] all = getResources().getStringArray(R.array.interessen);
 		int idIndex = 0;
 		for (int i = 0; i < allId.length; i++) {
 			if(values.contains(all[i])){
+				System.out.println(i+"");
 				ids[idIndex++] = allId[i];
 			}
 		}
@@ -260,12 +268,13 @@ public class KundenProfil extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode != RESULT_OK) {
 			System.out.println("not returning RESULT_OK");
+			return;
 		}
 		switch (requestCode) {
 		// wenn von Kamera das Foto
 		case PICK_FROM_CAMERA:
 			// in Bitmap speichern
-			imageRaw = (Bitmap) data.getExtras().get("data");
+			imageRaw = resize((Bitmap) data.getExtras().get("data"));
 			// altes Foto durch neues ersetzen
 			image.setImageBitmap(imageRaw);
 			// Kontrolle auf true setzen
@@ -275,19 +284,35 @@ public class KundenProfil extends Activity {
 		case PICK_FROM_FILE:
 			Uri mImageCaptureUri = data.getData();
 			System.out.println(mImageCaptureUri.toString());
-			imageRaw = Utils.getRealPathFromURI(this, mImageCaptureUri);
+			imageRaw = resize(Utils.getRealPathFromURI(this, mImageCaptureUri));
 			image.setImageBitmap(imageRaw);
 			changed[IMAGE_CHANGED] = true;
 			break;
 		}
 
 	}
+	private Bitmap resize(Bitmap b){
+		int originalWidth = b.getWidth();
+        int originalHeight = b.getHeight();
+        int newWidth = 500; 
+        int newHeight = 500; 
+
+        if(newWidth < newHeight){
+            newHeight = Math.round(newWidth * ((float)originalHeight/originalWidth));
+        }
+        else if(newHeight< newWidth){            
+            newWidth = Math.round(newHeight * ((float)originalWidth/originalHeight));
+        }
+        return Bitmap.createScaledBitmap(b, newWidth, newHeight, true);
+	}
 
 	public void onHttpFin(int type, JSONObject j) {
 		changed[type] = false;
 		boolean waiting = false;
 		for (int i = 0; i < changed.length; i++) {
-			waiting = waiting || !changed[i];
+			if(changed[i]){
+				waiting = true;
+			}
 		}
 		if (!waiting) {
 			finish();

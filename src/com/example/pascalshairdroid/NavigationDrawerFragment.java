@@ -419,4 +419,23 @@ public class NavigationDrawerFragment extends Fragment {
 		void onNavigationDrawerItemSelected(int groupePosition,
 				int childPosition);
 	}
+
+	public void reloadImage() {
+		
+		ImageView imageView = (ImageView) getView().findViewById(R.id.kundenbild);
+		File myImage = new File(getActivity().getFilesDir(), "myImage.jpg");
+
+		// setze das kunden bild
+		if (myImage.exists()) {
+			try {
+				imageView.setImageBitmap(BitmapFactory
+						.decodeStream(new FileInputStream(myImage)));
+			} catch (FileNotFoundException e) {
+				imageView.setImageResource(R.drawable.nobody_no);
+			}
+		} else {
+			imageView.setImageResource(R.drawable.nobody_no);
+		}
+
+	}
 }

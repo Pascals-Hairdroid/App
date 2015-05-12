@@ -9,6 +9,7 @@ import products.ProductFragment;
 import products.ProduktListFragment;
 import teamlist.TeamListFragment;
 import login_register.Login;
+import login_register.LogoutTask;
 import login_register.Register;
 import galerie.GalerieFragment;
 import android.app.Activity;
@@ -66,32 +67,41 @@ public class Friseurstudio extends Activity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
-		/*Toast.makeText(
-				this,
-				"Hallo "
-						+ getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE)
-								.getString(Login.LOGIN_USERNAME, ""),
-				Toast.LENGTH_LONG).show();*/
+		/*
+		 * Toast.makeText( this, "Hallo " + getSharedPreferences(Login.PREF_TAG,
+		 * MODE_PRIVATE) .getString(Login.LOGIN_USERNAME, ""),
+		 * Toast.LENGTH_LONG).show();
+		 */
+
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
+				.findFragmentById(R.id.navigation_drawer);
+		mNavigationDrawerFragment.reloadImage();
 
 	}
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position, int childPosition) {
 		// update the main content by replacing fragments
-		
-		Boolean isFreigeschalten = getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE).getBoolean(Login.LOGIN_FREIGESCHALTEN,false);
-		List<Integer> integers = Arrays.asList(new Integer[]{2});
-		if(!isFreigeschalten && integers.contains(position)){
 
+		Boolean isFreigeschalten = getSharedPreferences(Login.PREF_TAG,
+				MODE_PRIVATE).getBoolean(Login.LOGIN_FREIGESCHALTEN, false);
+		List<Integer> integers = Arrays.asList(new Integer[] { 2 });
+		if (!isFreigeschalten && integers.contains(position)) {
 			return;
 		}
-		
+
 		FragmentManager fragmentManager = getFragmentManager();
 		switch (position) {
 
 		case 5:
 			fragmentManager.beginTransaction()
-					.replace(R.id.container, new GalerieFragment()).addToBackStack("1").commit();
+					.replace(R.id.container, new GalerieFragment())
+					.addToBackStack("1").commit();
 			break;
 		case 4:
 			switch (childPosition) {
@@ -99,25 +109,28 @@ public class Friseurstudio extends Activity implements
 				fragmentManager
 						.beginTransaction()
 						.replace(R.id.container,
-								new ProductFragment("Färben", 0)).addToBackStack("2").commit();
+								new ProductFragment("Färben", 0))
+						.addToBackStack("2").commit();
 				break;
 			case 1:
 				fragmentManager
 						.beginTransaction()
 						.replace(R.id.container,
-								new ProductFragment("Pflegen", 1)).addToBackStack("3").commit();
+								new ProductFragment("Pflegen", 1))
+						.addToBackStack("3").commit();
 				break;
 
 			}
 			break;
 		case 3:
 			fragmentManager.beginTransaction()
-					.replace(R.id.container, new AngebotFragment()).addToBackStack("4").commit();
+					.replace(R.id.container, new AngebotFragment())
+					.addToBackStack("4").commit();
 			break;
 		case 2:
 			fragmentManager.beginTransaction()
-					.replace(R.id.container, new TerminEintragenFragment()).addToBackStack("5")
-					.commit();
+					.replace(R.id.container, new TerminEintragenFragment())
+					.addToBackStack("5").commit();
 			break;
 		case 0:
 			fragmentManager.beginTransaction()
@@ -129,29 +142,29 @@ public class Friseurstudio extends Activity implements
 			switch (childPosition) {
 			case 4:
 				fragmentManager.beginTransaction()
-						.replace(R.id.container, new KontaktFragment()).addToBackStack("7")
-						.commit();
+						.replace(R.id.container, new KontaktFragment())
+						.addToBackStack("7").commit();
 				break;
 			case 3:
 				fragmentManager.beginTransaction()
-						.replace(R.id.container, new OpentimeFragment()).addToBackStack("8")
-						.commit();
+						.replace(R.id.container, new OpentimeFragment())
+						.addToBackStack("8").commit();
 				break;
 			case 2:
 				fragmentManager
 						.beginTransaction()
-						.replace(R.id.container, new DienstleistungenFragment()).addToBackStack("9")
-						.commit();
+						.replace(R.id.container, new DienstleistungenFragment())
+						.addToBackStack("9").commit();
 				break;
 			case 1:
 				fragmentManager.beginTransaction()
-						.replace(R.id.container, new TeamListFragment()).addToBackStack("10")
-						.commit();
+						.replace(R.id.container, new TeamListFragment())
+						.addToBackStack("10").commit();
 				break;
 			case 0:
 				fragmentManager.beginTransaction()
-						.replace(R.id.container, new DasStudioFragment()).addToBackStack("6")
-						.commit();
+						.replace(R.id.container, new DasStudioFragment())
+						.addToBackStack("6").commit();
 				break;
 
 			}
@@ -204,6 +217,10 @@ public class Friseurstudio extends Activity implements
 			SharedPreferences sharedPreferences = getSharedPreferences(
 					Login.PREF_TAG, Context.MODE_PRIVATE);
 			// Session id und Username löschen
+			LogoutTask logoutTask = new LogoutTask();
+			logoutTask.execute("http://www.pascals.at/v2/PHD_DBA/login.php",
+					sharedPreferences.getString(Login.LOGIN_SESSION_ID, ""));
+
 			sharedPreferences.edit().remove(Login.LOGIN_SESSION_ID)
 					.remove(Login.LOGIN_USERNAME).commit();
 			// auf Login Fragment weiterleiten
@@ -213,5 +230,4 @@ public class Friseurstudio extends Activity implements
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
 }

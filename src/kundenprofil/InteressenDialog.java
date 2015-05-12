@@ -33,6 +33,7 @@ public class InteressenDialog extends DialogFragment {
 				Login.PREF_TAG, Context.MODE_PRIVATE).getStringSet(
 				Login.LOGIN_INTERESSEN, new HashSet<String>());
 		((KundenProfil) getActivity()).setTempInteressen(myInteressen);
+		System.out.println(myInteressen);
 		// boolean array das die liste der Interessen durchgeht und kontrolliert
 		// ob das Feld schon angehackelt ist oder nicht wenn nicht dann macht
 		// die Schleife das

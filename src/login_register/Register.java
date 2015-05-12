@@ -90,7 +90,7 @@ public class Register extends Activity {
 							"http://www.pascals.at/v2/PHD_DBA/DBA.php?f=kundeEintragen",
 							vorname, nachname, passw, email, phoneNr);
 				} else {
-					Toast.makeText(Register.this, "No Internet connection", Toast.LENGTH_LONG).show();
+					Toast.makeText(Register.this, "Keine Internetverbindung", Toast.LENGTH_LONG).show();
 				}
 
 			}

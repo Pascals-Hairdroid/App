@@ -39,10 +39,8 @@ public class AngebotFragment extends Fragment {
 			if (Utils.isInternetAvailable(getActivity())) {
 				view.loadUrl("http://pascals.at/v2/Seiten/Angebote.php?web=1");
 			} else {
-				view.loadData("<html><head><style>body {background-color:lightgray;margin-top:25%;}h1   {color:blue;text-align:center;Font-Family:Calibri;}p    {color:green}</style><title></title></head><body><h1>Bitte &uuml;berpr&uuml;fen Sie die Verbindung zum Internet!</h1></body></html>", "text/html", "UTF-8");
+				view.loadData("<html><head><style>body{background-color:lightgray;margin-top:25%;}h2{color:orange;text-align:center;Font-Family:Calibri;}</style><title></title></head><body><h2>Es konnte keine Internetverbindung hergestellt werden!</h2></body></html>", "text/html", "UTF-8");
 			}
-			
-			
 			
 			return rootView;
 		}

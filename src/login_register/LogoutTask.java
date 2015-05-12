@@ -1,12 +1,9 @@
-package kundenprofil.async;
+package login_register;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kundenprofil.KundenProfil;
-
-import login_register.Login;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -22,31 +19,37 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import utils.Utils;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class DataSaver extends AsyncTask<List<NameValuePair>, Integer, JSONObject> {
-
-	private KundenProfil kundenProfil;
-
-	public DataSaver(KundenProfil kundenProfil) {
-		this.kundenProfil = kundenProfil;
+											// <generic typ arguments> 
+public class LogoutTask extends AsyncTask<String, Integer, JSONObject> {
+	
+	
+	public LogoutTask() {
+		super();
 	}
 
-	// run shit in background
+	// run shit in background 
 	@Override
-	protected JSONObject doInBackground(List<NameValuePair>... params)
+	protected JSONObject doInBackground(String... params) //String... = String array damit ich aufruf doinBackground("sfsdf","sdfd","sdfsd") 
 	{
 		HttpClient client = new DefaultHttpClient(); // Http Client erstellen
 		try {
-
-			HttpPost httpPost = new HttpPost("http://www.pascals.at/v2/PHD_DBA/DBA.php?f=kundeUpdaten"); // Url
-			httpPost.setEntity(new UrlEncodedFormEntity(params[0]));
-			HttpResponse httpResponse = client.execute(httpPost);
+			
+			HttpPost httpPost = new HttpPost(params[0]); // Url
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+	        nameValuePairs.add(new BasicNameValuePair("sessionId", params[1]));
+	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			String s = EntityUtils.toString(httpResponse.getEntity());
-			Log.d("test", s);
+			Log.d("test",s );
+//			Log.d("param1",params[1]);
+			//datei aus antwort von Server laden und in ein Json object umwandeln 
 			return new JSONObject(s);
-
+			//return EntityUtils.toString(httpResponse.getEntity()); 
+			
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -59,9 +62,8 @@ public class DataSaver extends AsyncTask<List<NameValuePair>, Integer, JSONObjec
 		return null;
 	}
 
+	// nach hintergrund arbeit im vordergrund do login von login
 	@Override
 	protected void onPostExecute(JSONObject result) {
-		kundenProfil.onHttpFin(KundenProfil.DATA_CHANGED, result);
-		kundenProfil.onHttpFin(KundenProfil.INTERESSEN_CHANGED, result);
 	}
 }
