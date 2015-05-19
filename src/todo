@@ -1,20 +1,5 @@
---> Foto Datenmenge einschränken 	  
---> Registriern download foto speichern intern und anzeigen
---> profilbild laden nach erst login (path speichern und wenn nötig profilbild nach login updaten)
---> naviDrawer sehr langsam bei big pictures
---> Interessen id werden nicht gespeichert (OLI)
 --> Notifications 
---> home Lösung (erste Stelle bei NavigationDrawer)finden
-
-
---> Bessere Html Seite für Offline
-	--> bei allen Fragmenten Webviews einbauen
-	--> Padding rausgeben
---> Kundenprofil überarbeiten 
-	-->Cycle profilbild
-	-->Message bei Save und close von Kundenprofil 
 --> DB Orginal MA eintragen
 --> Code kommentieren
---> Kundenprofil: Textfelder Keyboard weg
---> Kundenprofil: Textfelder TeleNr Weiter --> App down
---> Wenn von SD Karte geladen Zurück Taste --> App down
+--> Exception Handling
+

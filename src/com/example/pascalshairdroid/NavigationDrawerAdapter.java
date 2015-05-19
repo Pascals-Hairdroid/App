@@ -141,7 +141,7 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		if (s.equals("Zeichen")) {
 
 			ImageView i = new ImageView(context);
-			i.setImageResource(R.drawable.ic_launcher);
+			i.setImageResource(R.drawable.ic_launcher1);
 			convertView = i;
 
 		}

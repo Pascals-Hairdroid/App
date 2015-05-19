@@ -17,8 +17,10 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -47,15 +50,20 @@ public class Friseurstudio extends Activity implements
 	 * Used to store the last screen title. For use in
 	 * {@link #restoreActionBar()}.
 	 */
+	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			mNavigationDrawerFragment.reloadImage();
+		}
+	};
 	private CharSequence mTitle;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// if(true){
-		// startActivity(new Intent(this, Register.class));
-		// }
+		LocalBroadcastManager.getInstance(this).registerReceiver(
+				mMessageReceiver, new IntentFilter("reloadImage"));
 
 		setContentView(R.layout.activity_home);
 
@@ -229,5 +237,12 @@ public class Friseurstudio extends Activity implements
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onDestroy() {
+		LocalBroadcastManager.getInstance(this).unregisterReceiver(
+				mMessageReceiver);
+		super.onDestroy();
 	}
 }

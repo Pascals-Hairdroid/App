@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import kundenprofil.async.ImageDownloader;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,7 +41,10 @@ public class Login extends Activity {
 	public static final String LOGIN_NACHNAME = "gsdfg sdhi";
 	public static final String LOGIN_TELEFON = "shsasdf";
 	public static final String LOGIN_INTERESSEN = "5arhje 7e";
-	public static final String LOGIN_FREIGESCHALTEN = "hurenbär";
+	public static final String LOGIN_FREIGESCHALTEN = "abc";
+	public static final String LOGIN_LAST_IMAGE_UPDATE = "dsdf";
+	public static final String LOGIN_IMAGE_URL = "sdfdsfew";
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +156,7 @@ public class Login extends Activity {
 							PREF_TAG, MODE_PRIVATE); // lade shared pref db
 					// öffne db zum bearbeiten (edit()), speicher session id ,
 					// speichere username, sichere db
+					long lastImgUpdate = preferences.getLong(LOGIN_LAST_IMAGE_UPDATE, 0);
 					preferences
 							.edit()
 							.putString(LOGIN_SESSION_ID, sessionId)
@@ -160,10 +166,17 @@ public class Login extends Activity {
 							.putString(LOGIN_NACHNAME,
 									kunde.getString("nachname"))
 							.putString(LOGIN_TELEFON, kunde.getString("telNr"))
+							.putLong(LOGIN_LAST_IMAGE_UPDATE, j.getLong("picdate"))
+							.putString(LOGIN_IMAGE_URL, kunde.getString("foto"))
 							.putStringSet(LOGIN_INTERESSEN, interessen)
 							.putBoolean(LOGIN_FREIGESCHALTEN,
 									kunde.getBoolean("freischaltung")).commit();
 
+					if(lastImgUpdate <  preferences.getLong(LOGIN_LAST_IMAGE_UPDATE, 0)){
+						ImageDownloader downloader = new ImageDownloader(preferences.getString(LOGIN_IMAGE_URL, ""), this);
+						downloader.execute();
+					}
+					
 					startActivity(new Intent(Login.this, Friseurstudio.class));
 					// sofortiges finishen von dieser activity (beenden)
 					finish();

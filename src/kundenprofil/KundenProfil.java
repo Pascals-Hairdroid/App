@@ -202,7 +202,7 @@ public class KundenProfil extends Activity {
 					FileOutputStream fos = openFileOutput("myImage.jpg",
 							MODE_PRIVATE);
 					imageRaw.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-					ImageSaver imageSaver = new ImageSaver(this);
+					ImageSaver imageSaver = new ImageSaver(this,sessionId);
 					imageSaver.execute();
 
 					fos.close();
