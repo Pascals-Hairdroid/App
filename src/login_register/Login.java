@@ -133,8 +133,8 @@ public class Login extends Activity {
 
 				// wenn error gesetzt ist dann hol error aus json und zeig ihn
 				// an
-				if (j.has("error")) {
-					Toast.makeText(this, j.getString("error"),
+				if (j.has("errc")) {
+					Toast.makeText(this, j.getString("viewmsg"),
 							Toast.LENGTH_LONG).show();
 				} else {
 					// wenn alles ok dann

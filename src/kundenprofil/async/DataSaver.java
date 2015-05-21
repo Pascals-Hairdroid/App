@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import utils.Utils;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 public class DataSaver extends AsyncTask<List<NameValuePair>, Integer, JSONObject> {
 
@@ -61,7 +62,16 @@ public class DataSaver extends AsyncTask<List<NameValuePair>, Integer, JSONObjec
 
 	@Override
 	protected void onPostExecute(JSONObject result) {
-		kundenProfil.onHttpFin(KundenProfil.DATA_CHANGED, result);
-		kundenProfil.onHttpFin(KundenProfil.INTERESSEN_CHANGED, result);
+		if (result.has("errc")) {
+			try {
+				Toast.makeText(kundenProfil, result.getString("viewmsg"),Toast.LENGTH_LONG).show();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			kundenProfil.onHttpFin(KundenProfil.DATA_CHANGED, result);
+			kundenProfil.onHttpFin(KundenProfil.INTERESSEN_CHANGED, result);
+		}
 	}
 }
