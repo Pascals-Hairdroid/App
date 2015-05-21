@@ -13,7 +13,7 @@
     <string name="passwort">Passwort</string>
     <string name="email">Email</string>
     <string name="telenr">Telefonnummer</string>
-    <string name="registrierung">Registrierung</string>
+    <string name="registrierung">Registrieren</string>
     <string name="title_activity_register">Registerung</string>
     <string name="galerie">Galerie</string>
     <!-- Friseurstudio Fragment -->
@@ -40,7 +40,7 @@
     </string-array>
     <string-array name="child_navigation_items2">
         <item>Färben</item>
-        <item>Pflege</item>
+        <item>Pflegen</item>
     </string-array>
 
     <!-- Nur für Vorführung der App Hardcoded geschrieben -> nicht in App gebraucht -->
