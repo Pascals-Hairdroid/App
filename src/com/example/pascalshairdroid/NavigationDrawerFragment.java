@@ -146,7 +146,7 @@ public class NavigationDrawerFragment extends Fragment {
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					getActivity().startActivity(intent);
 					}else{
-						Toast.makeText(getActivity(), "Du kannst nicht vorbei!", Toast.LENGTH_LONG).show();
+						Toast.makeText(getActivity(), "Sie haben keine Freischaltung dafür!", Toast.LENGTH_LONG).show();
 					}
 				}
 			});

@@ -23,12 +23,13 @@ android:background="@color/white" >
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:layout_height="140dp"
         android:maxHeight="140dip"
         android:maxWidth="140dip"
         android:onClick="showImage"
         android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         android:src="@drawable/galerie8" />
 
     <EditText
