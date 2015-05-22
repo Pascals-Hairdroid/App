@@ -202,7 +202,7 @@ public class KundenProfil extends Activity {
 					FileOutputStream fos = openFileOutput("myImage.jpg",
 							MODE_PRIVATE);
 					imageRaw.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-					ImageSaver imageSaver = new ImageSaver(this,sessionId);
+					ImageSaver imageSaver = new ImageSaver(this, sessionId);
 					imageSaver.execute();
 
 					fos.close();
@@ -215,33 +215,60 @@ public class KundenProfil extends Activity {
 			}
 			if (changed[DATA_CHANGED] || changed[INTERESSEN_CHANGED]) {
 				DataSaver dataSaver = new DataSaver(this);
-				
-				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-				 nameValuePairs.add(new BasicNameValuePair("sessionId", sessionId));
-				 nameValuePairs.add(new BasicNameValuePair("vorname", vor.getText().toString()));
-				 nameValuePairs.add(new BasicNameValuePair("nachname", nach.getText().toString()));
-				 nameValuePairs.add(new BasicNameValuePair("telnr", tele.getText().toString()));
-				 if(!pw.getText().toString().equals("")){
-					 nameValuePairs.add(new BasicNameValuePair("passwort", Utils.MD5(pw.getText().toString())));
-				 }
-				 if(changed[INTERESSEN_CHANGED]){
-					 nameValuePairs.addAll(arrayAsNameValuePairs("interessen", interessenToIds(tempInteressen)));
-				 }
-				 
-				 dataSaver.execute(nameValuePairs);
+
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+						2);
+				nameValuePairs.add(new BasicNameValuePair("sessionId",
+						sessionId));
+				nameValuePairs.add(new BasicNameValuePair("vorname", vor
+						.getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("nachname", nach
+						.getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("telnr", tele
+						.getText().toString()));
+
+				if (!pw.getText().toString().equals("")) {
+					nameValuePairs.add(new BasicNameValuePair("passwort", Utils
+							.MD5(pw.getText().toString())));
+				}
+
+				SharedPreferences preferences = this.getSharedPreferences(
+						Login.PREF_TAG, MODE_PRIVATE);
+				preferences
+						.edit()
+						.putString(Login.LOGIN_VORNAME,
+								vor.getText().toString())
+						.putString(Login.LOGIN_NACHNAME,
+								nach.getText().toString())
+						.putString(Login.LOGIN_TELEFON,
+								tele.getText().toString()).commit();
+				if (changed[INTERESSEN_CHANGED]) {
+					preferences
+							.edit()
+							.putStringSet(Login.LOGIN_INTERESSEN,
+									tempInteressen).commit();
+
+					nameValuePairs.addAll(arrayAsNameValuePairs("interessen",
+							interessenToIds(tempInteressen)));
+				}
+				dataSaver.execute(nameValuePairs);
 			}
 		}
 
 		return super.onOptionsItemSelected(item);
 	}
-	private List<BasicNameValuePair> arrayAsNameValuePairs(String name, String[] values){
+
+	private List<BasicNameValuePair> arrayAsNameValuePairs(String name,
+			String[] values) {
 		List<BasicNameValuePair> basicNameValuePairs = new ArrayList<BasicNameValuePair>();
 		for (int i = 0; i < values.length; i++) {
-			basicNameValuePairs.add(new BasicNameValuePair("interessen["+i+"]", values[i]));
+			basicNameValuePairs.add(new BasicNameValuePair("interessen[" + i
+					+ "]", values[i]));
 		}
 		return basicNameValuePairs;
 	}
-	private String[] interessenToIds(Set<String> values){
+
+	private String[] interessenToIds(Set<String> values) {
 		String[] allId = getResources().getStringArray(R.array.interessen_ids);
 		for (Iterator iterator = values.iterator(); iterator.hasNext();) {
 			String string = (String) iterator.next();
@@ -251,15 +278,15 @@ public class KundenProfil extends Activity {
 		String[] all = getResources().getStringArray(R.array.interessen);
 		int idIndex = 0;
 		for (int i = 0; i < allId.length; i++) {
-			if(values.contains(all[i])){
-				System.out.println(i+"");
+			if (values.contains(all[i])) {
+				System.out.println(i + "");
 				ids[idIndex++] = allId[i];
 			}
 		}
 		return ids;
 	}
-	
-	public void setChanged(int type){
+
+	public void setChanged(int type) {
 		changed[type] = true;
 	}
 
@@ -291,26 +318,29 @@ public class KundenProfil extends Activity {
 		}
 
 	}
-	private Bitmap resize(Bitmap b){
-		int originalWidth = b.getWidth();
-        int originalHeight = b.getHeight();
-        int newWidth = 500; 
-        int newHeight = 500; 
 
-        if(newWidth < newHeight){
-            newHeight = Math.round(newWidth * ((float)originalHeight/originalWidth));
-        }
-        else if(newHeight< newWidth){            
-            newWidth = Math.round(newHeight * ((float)originalWidth/originalHeight));
-        }
-        return Bitmap.createScaledBitmap(b, newWidth, newHeight, true);
+	// Resize von Image
+	private Bitmap resize(Bitmap b) {
+		int originalWidth = b.getWidth();
+		int originalHeight = b.getHeight();
+		int newWidth = 500;
+		int newHeight = 500;
+
+		if (newWidth < newHeight) {
+			newHeight = Math.round(newWidth
+					* ((float) originalHeight / originalWidth));
+		} else {
+			newWidth = Math.round(newHeight
+					* ((float) originalWidth / originalHeight));
+		}
+		return Bitmap.createScaledBitmap(b, newWidth, newHeight, true);
 	}
 
 	public void onHttpFin(int type, JSONObject j) {
 		changed[type] = false;
 		boolean waiting = false;
 		for (int i = 0; i < changed.length; i++) {
-			if(changed[i]){
+			if (changed[i]) {
 				waiting = true;
 			}
 		}
@@ -327,6 +357,5 @@ public class KundenProfil extends Activity {
 	public void setTempInteressen(Set<String> tempInteressen) {
 		this.tempInteressen = tempInteressen;
 	}
-	
 
 }

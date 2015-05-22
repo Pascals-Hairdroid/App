@@ -1,5 +1,6 @@
 package login_register;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -157,6 +158,7 @@ public class Login extends Activity {
 					// öffne db zum bearbeiten (edit()), speicher session id ,
 					// speichere username, sichere db
 					long lastImgUpdate = preferences.getLong(LOGIN_LAST_IMAGE_UPDATE, 0);
+					String lastImagePath = preferences.getString(LOGIN_IMAGE_URL, "abc");
 					preferences
 							.edit()
 							.putString(LOGIN_SESSION_ID, sessionId)
@@ -171,9 +173,16 @@ public class Login extends Activity {
 							.putStringSet(LOGIN_INTERESSEN, interessen)
 							.putBoolean(LOGIN_FREIGESCHALTEN,
 									kunde.getBoolean("freischaltung")).commit();
-
-					if(lastImgUpdate <  preferences.getLong(LOGIN_LAST_IMAGE_UPDATE, 0)){
-						ImageDownloader downloader = new ImageDownloader(preferences.getString(LOGIN_IMAGE_URL, ""), this);
+					
+					// Bei Gleichen User neuerstes Bild anzeigen
+					boolean sameUser = lastImagePath.equals(preferences.getString(LOGIN_IMAGE_URL, "abc")) ;
+					if(lastImgUpdate <  preferences.getLong(LOGIN_LAST_IMAGE_UPDATE, 0) || !sameUser){
+						if(!sameUser){
+							File f = new File(getFilesDir() + "/myImage.jpg");
+							f.delete();
+						}
+						
+						ImageDownloader downloader = new ImageDownloader(preferences.getString(LOGIN_IMAGE_URL, "abc"), this);
 						downloader.execute();
 					}
 					

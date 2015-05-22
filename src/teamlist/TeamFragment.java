@@ -29,6 +29,9 @@ public class TeamFragment extends Fragment {
 		this.id = id;
 
 	}
+	public TeamFragment() {
+
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

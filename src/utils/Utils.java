@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +15,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 
 // Zum MD5 verschlüsseln von PWD
 public class Utils {
@@ -145,5 +147,11 @@ public class Utils {
 			}
 
 		}
+	}
+	public static float convertDpToPixel(float dp, Context context){
+	    Resources resources = context.getResources();
+	    DisplayMetrics metrics = resources.getDisplayMetrics();
+	    float px = dp * (metrics.densityDpi / 160f);
+	    return px;
 	}
 }

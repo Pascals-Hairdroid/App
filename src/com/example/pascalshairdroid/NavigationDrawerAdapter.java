@@ -4,16 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.zip.Inflater;
 
+import utils.Utils;
+
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.HeterogeneousExpandableList;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
@@ -112,8 +116,7 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 			View convertView, ViewGroup parent) {
 		String s = groupItem.get(groupPosition);
 
-		if (convertView == null ||
-				convertView.getId() != R.id.drawer_bitch) {
+		if (convertView == null || convertView.getId() != R.id.drawer) {
 			convertView = minflater.inflate(R.layout.drawer_row, parent, false);
 		}
 
@@ -137,13 +140,21 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 						.setImageResource(android.R.drawable.arrow_down_float);
 			}
 		}
+		
+		// Home Register von NaviDrawer
 
 		if (s.equals("Zeichen")) {
-
-			ImageView i = new ImageView(context);
-			i.setImageResource(R.drawable.ic_launcher1);
-			convertView = i;
-
+			ImageView i = (ImageView) convertView.findViewById(R.id.indecator);
+			i.setVisibility(View.VISIBLE);
+			i.getLayoutParams().height = (int) Utils.convertDpToPixel(48,
+					context);
+			i.getLayoutParams().width = (int) Utils.convertDpToPixel(48,
+					context);
+			i.setPadding(0, 0, 0, 0);
+			i.invalidate();
+			i.requestLayout();
+			i.setImageResource(R.drawable.ic_launcher2);
+			text.setText("Home");
 		}
 
 		return convertView;

@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/kundenbild"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="140dp"
         android:scaleType="centerCrop" />
 
     <ExpandableListView
