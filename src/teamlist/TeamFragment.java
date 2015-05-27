@@ -49,15 +49,15 @@ public class TeamFragment extends Fragment {
 
 		if (Utils.isInternetAvailable(getActivity())) {
 			if (id == 0) {
-				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=1713270187"
+				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=1713270187&web=1"
 						+ this.id);
 			}
 			if (id == 1) {
-				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=1662120287"
+				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=1662120287&web=1"
 						+ this.id);
 			}
 			if (id == 2) {
-				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=3071240769"
+				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=3071240769&web=1"
 						+ this.id);
 			}
 		} else {
