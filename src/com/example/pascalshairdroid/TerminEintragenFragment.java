@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -36,6 +37,10 @@ public class TerminEintragenFragment extends Fragment {
 			View rootView = inflater.inflate(R.layout.fragment_termin_eintragen, container,
 					false);
 			WebView view = (WebView)rootView.findViewById(R.id.termin_webview);
+			
+			WebSettings webSettings = view.getSettings();
+			webSettings.setJavaScriptEnabled(true);
+			
 			if (Utils.isInternetAvailable(getActivity())) {
 				view.loadUrl("http://pascals.at/v2/Seiten/terminvergabe.php?web=1");
 			} else {

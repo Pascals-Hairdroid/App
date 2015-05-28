@@ -18,8 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import utils.Utils;
-import android.util.Log;
-import android.widget.Toast;
 
 
 import android.os.AsyncTask;

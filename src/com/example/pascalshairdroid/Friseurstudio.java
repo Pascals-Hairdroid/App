@@ -1,10 +1,15 @@
 package com.example.pascalshairdroid;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import kundenprofil.KundenProfil;
+import kundenprofil.async.DataReloader;
 import products.ProductFragment;
 import products.ProduktListFragment;
 import teamlist.TeamListFragment;
@@ -80,7 +85,15 @@ public class Friseurstudio extends Activity implements
 		 * MODE_PRIVATE) .getString(Login.LOGIN_USERNAME, ""),
 		 * Toast.LENGTH_LONG).show();
 		 */
-
+		
+		// Damit bei Internetverbindung die Daten immer aktualsiert werden
+			String sessionId = getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE)
+					.getString(Login.LOGIN_SESSION_ID, "");
+			DataReloader dataReloader = new DataReloader(this,sessionId);
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+			nameValuePairs.add(new BasicNameValuePair("sessionId",
+					sessionId));
+			dataReloader.execute(nameValuePairs);
 	}
 
 	@Override

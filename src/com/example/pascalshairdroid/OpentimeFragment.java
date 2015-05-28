@@ -34,12 +34,4 @@ public class OpentimeFragment extends Fragment {
 			return rootView;
 		}
 		
-		
-		
-		
-		
-		
-
-		
-
 }

@@ -146,7 +146,7 @@ public class NavigationDrawerFragment extends Fragment {
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					getActivity().startActivity(intent);
 					}else{
-						Toast.makeText(getActivity(), "Du kannst nicht vorbei!", Toast.LENGTH_LONG).show();
+						Toast.makeText(getActivity(), "Sie sind nicht freigeschaltet!", Toast.LENGTH_LONG).show();
 					}
 				}
 			});
@@ -419,6 +419,8 @@ public class NavigationDrawerFragment extends Fragment {
 		void onNavigationDrawerItemSelected(int groupePosition,
 				int childPosition);
 	}
+	
+	// nach Login wird aktuelles ProfilImage geladen
 
 	public void reloadImage() {
 		

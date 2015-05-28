@@ -34,7 +34,7 @@ public class DataSaver extends AsyncTask<List<NameValuePair>, Integer, JSONObjec
 		this.kundenProfil = kundenProfil;
 	}
 
-	// run shit in background
+	// run in background
 	@Override
 	protected JSONObject doInBackground(List<NameValuePair>... params)
 	{
@@ -45,7 +45,7 @@ public class DataSaver extends AsyncTask<List<NameValuePair>, Integer, JSONObjec
 			httpPost.setEntity(new UrlEncodedFormEntity(params[0]));
 			HttpResponse httpResponse = client.execute(httpPost);
 			String s = EntityUtils.toString(httpResponse.getEntity());
-			Log.d("test", s);
+			//Log.d("test", s);
 			return new JSONObject(s);
 
 		} catch (ClientProtocolException e) {

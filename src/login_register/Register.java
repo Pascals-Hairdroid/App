@@ -153,7 +153,7 @@ public class Register extends Activity {
 										kunde.getBoolean("freischaltung"))
 
 								.commit();
-						Toast.makeText(this, "Regist", Toast.LENGTH_LONG)
+						Toast.makeText(this, "Registriert", Toast.LENGTH_LONG)
 								.show();
 						startActivity(new Intent(Register.this,
 								Friseurstudio.class));

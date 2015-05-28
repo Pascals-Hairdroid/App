@@ -28,10 +28,11 @@
         android:inputType="textEmailAddress" 
         android:singleLine="true"
     	android:lines="1"
-    	android:maxLines="1"
-    	android:text="kesi@gmail.at">
+    	android:maxLines="1">
+    	<requestFocus />
+    	<!--  /!>android:text="kesi@gmail.at"-->
 
-        <requestFocus />
+        
     </EditText>
 
     <Button
@@ -56,6 +57,7 @@
         android:inputType="textPassword"
         android:singleLine="true"
     	android:lines="1"
-    	android:maxLines="1" 
-    	android:text="test"/>
+    	android:maxLines="1" />
+    	
+    	<!--android:text="test"-->
 </RelativeLayout>
