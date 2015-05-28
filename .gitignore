@@ -84,3 +84,5 @@ $RECYCLE.BIN/
 
 # KDE directory preferences
 .directory
+
+.classpath
