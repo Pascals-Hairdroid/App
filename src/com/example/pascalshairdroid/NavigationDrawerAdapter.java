@@ -144,6 +144,7 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		// Home Register von NaviDrawer
 
 		if (s.equals("Zeichen")) {
+			convertView.setId(-80085);
 			ImageView i = (ImageView) convertView.findViewById(R.id.indecator);
 			i.setVisibility(View.VISIBLE);
 			i.getLayoutParams().height = (int) Utils.convertDpToPixel(48,

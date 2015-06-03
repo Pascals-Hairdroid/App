@@ -112,7 +112,8 @@ public class Friseurstudio extends Activity implements
 		Boolean isFreigeschalten = getSharedPreferences(Login.PREF_TAG,
 				MODE_PRIVATE).getBoolean(Login.LOGIN_FREIGESCHALTEN, false);
 		List<Integer> integers = Arrays.asList(new Integer[] { 2 });
-		if (!isFreigeschalten && integers.contains(position)) {
+		if (!isFreigeschalten && integers.contains(Integer.valueOf(position))) {
+			Toast.makeText(this, "Sie sind nicht freigeschaltet!", Toast.LENGTH_LONG).show();
 			return;
 		}
 
