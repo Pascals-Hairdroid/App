@@ -22,7 +22,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class TerminEintragenFragment extends Fragment {
-
+	private ValueCallback mUploadMessage;
 		public TerminEintragenFragment() {
 
 		}
@@ -44,8 +44,8 @@ public class TerminEintragenFragment extends Fragment {
 			
 			WebSettings webSettings = view.getSettings();
 			webSettings.setJavaScriptEnabled(true);
-			
-//			web.setWebChromeClient(new WebChromeClient()  
+//			
+//			view.setWebChromeClient(new WebChromeClient()  
 //			    {  
 //			           //The undocumented magic method override  
 //			           //Eclipse will swear at you if you try to put @Override here  
@@ -56,7 +56,7 @@ public class TerminEintragenFragment extends Fragment {
 //			            Intent i = new Intent(Intent.ACTION_GET_CONTENT);  
 //			            i.addCategory(Intent.CATEGORY_OPENABLE);  
 //			            i.setType("image/*");  
-//			            MyWb.this.startActivityForResult(Intent.createChooser(i,"File Chooser"), FILECHOOSER_RESULTCODE);  
+//			            TerminEintragenFragment.this.getActivity().startActivityForResult(Intent.createChooser(i,"File Chooser"), 1);  
 //
 //			           }
 //
@@ -66,9 +66,9 @@ public class TerminEintragenFragment extends Fragment {
 //			           Intent i = new Intent(Intent.ACTION_GET_CONTENT);
 //			           i.addCategory(Intent.CATEGORY_OPENABLE);
 //			           i.setType("*/*");
-//			           MyWb.this.startActivityForResult(
+//			           TerminEintragenFragment.this.getActivity().startActivityForResult(
 //			           Intent.createChooser(i, "File Browser"),
-//			           FILECHOOSER_RESULTCODE);
+//			           1);
 //			           }
 //
 //			        //For Android 4.1
@@ -77,7 +77,7 @@ public class TerminEintragenFragment extends Fragment {
 //			               Intent i = new Intent(Intent.ACTION_GET_CONTENT);  
 //			               i.addCategory(Intent.CATEGORY_OPENABLE);  
 //			               i.setType("image/*");  
-//			               MyWb.this.startActivityForResult(Intent.createChooser( i, "File Chooser" ), MyWb.FILECHOOSER_RESULTCODE );
+//			               TerminEintragenFragment.this.getActivity().startActivityForResult(Intent.createChooser( i, "File Chooser" ), 1 );
 //
 //			           }
 //

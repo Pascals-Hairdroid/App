@@ -272,14 +272,12 @@ public class KundenProfil extends Activity {
 		String[] allId = getResources().getStringArray(R.array.interessen_ids);
 		for (Iterator iterator = values.iterator(); iterator.hasNext();) {
 			String string = (String) iterator.next();
-			System.out.println(string);
 		}
 		String[] ids = new String[values.size()];
 		String[] all = getResources().getStringArray(R.array.interessen);
 		int idIndex = 0;
 		for (int i = 0; i < allId.length; i++) {
 			if (values.contains(all[i])) {
-				System.out.println(i + "");
 				ids[idIndex++] = allId[i];
 			}
 		}
@@ -310,7 +308,6 @@ public class KundenProfil extends Activity {
 		// wenn von SD Karte das Foto
 		case PICK_FROM_FILE:
 			Uri mImageCaptureUri = data.getData();
-			System.out.println(mImageCaptureUri.toString());
 			imageRaw = resize(Utils.getRealPathFromURI(this, mImageCaptureUri));
 			image.setImageBitmap(imageRaw);
 			changed[IMAGE_CHANGED] = true;
