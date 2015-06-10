@@ -48,7 +48,6 @@ public class ImageSaver extends AsyncTask<String, Integer, JSONObject> {
 	@Override
 	protected JSONObject doInBackground(String... params) {
 		try {
-
 			HttpParams httpParams = new BasicHttpParams();
 			httpParams.setParameter(CoreProtocolPNames.PROTOCOL_VERSION,
 					HttpVersion.HTTP_1_1);

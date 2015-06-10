@@ -33,8 +33,6 @@ public class TeamListFragment extends Fragment {
 		// auf listview den Adapter setzen 
 		listView.setAdapter(new TeamListAdapter(getActivity(), R.layout.listview_teamlist_layout, getActivity().getResources().getStringArray(R.array.teamlist)));
 		
-		
-		
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -45,5 +43,4 @@ public class TeamListFragment extends Fragment {
 		});
 		return rootView;
 	}
-
 }

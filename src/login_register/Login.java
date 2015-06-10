@@ -71,7 +71,6 @@ public class Login extends Activity {
 		getMenuInflater().inflate(R.menu.login, menu);
 
 		return true;
-
 	}
 
 	// Sign up aufruf
@@ -148,7 +147,6 @@ public class Login extends Activity {
 							.getJSONArray("interessen").length(); index++) {
 						interessen.add(kunde.getJSONArray("interessen")
 								.getJSONObject(index).getString("bezeichnung"));
-
 					}
 
 					// für Kundenprofil die gespeicherten Daten in die
@@ -194,7 +192,5 @@ public class Login extends Activity {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

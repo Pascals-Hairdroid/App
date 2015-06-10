@@ -120,20 +120,17 @@ public class KundenProfil extends Activity {
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
 				// TODO Auto-generated method stub
-
 			}
 		};
 		vor.addTextChangedListener(textWatcher);
 		nach.addTextChangedListener(textWatcher);
 		pw.addTextChangedListener(textWatcher);
 		tele.addTextChangedListener(textWatcher);
-
 	}
 
 	// Dialog öffnen und Bild auswählen
@@ -313,7 +310,6 @@ public class KundenProfil extends Activity {
 			changed[IMAGE_CHANGED] = true;
 			break;
 		}
-
 	}
 
 	// Resize von Image
@@ -344,7 +340,6 @@ public class KundenProfil extends Activity {
 		if (!waiting) {
 			finish();
 		}
-
 	}
 
 	public Set<String> getTempInteressen() {
@@ -354,5 +349,4 @@ public class KundenProfil extends Activity {
 	public void setTempInteressen(Set<String> tempInteressen) {
 		this.tempInteressen = tempInteressen;
 	}
-
 }

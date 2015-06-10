@@ -59,7 +59,6 @@ public class Register extends Activity {
 			this.startActivity(intent);
 			break;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -92,7 +91,6 @@ public class Register extends Activity {
 				} else {
 					Toast.makeText(Register.this, "Keine Internetverbindung", Toast.LENGTH_LONG).show();
 				}
-
 			}
 		});
 	}
@@ -103,7 +101,6 @@ public class Register extends Activity {
 			if (j == null) {
 				Toast.makeText(this, "Regist faild", Toast.LENGTH_LONG).show();
 			} else {
-
 				// wenn error gesetzt ist dann hol error aus json und zeig ihn
 				// an
 				if (j.has("errc")) {
@@ -161,7 +158,6 @@ public class Register extends Activity {
 						finish();
 					}
 				}
-
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

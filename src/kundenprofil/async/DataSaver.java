@@ -40,7 +40,6 @@ public class DataSaver extends AsyncTask<List<NameValuePair>, Integer, JSONObjec
 	{
 		HttpClient client = new DefaultHttpClient(); // Http Client erstellen
 		try {
-
 			HttpPost httpPost = new HttpPost("http://www.pascals.at/v2/PHD_DBA/DBA.php?f=kundeUpdaten"); // Url
 			httpPost.setEntity(new UrlEncodedFormEntity(params[0]));
 			HttpResponse httpResponse = client.execute(httpPost);

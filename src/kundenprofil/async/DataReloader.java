@@ -30,9 +30,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-public class DataReloader extends
-		AsyncTask<List<NameValuePair>, Integer, JSONObject> {
-
+public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONObject> 
+{
 	private Context context;
 	private String sessionId;
 

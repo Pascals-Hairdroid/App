@@ -10,7 +10,6 @@ android:background="@color/white" >
    		 android:layout_height="match_parent"
     	android:layout_alignParentTop="true"
     	android:layout_centerHorizontal="true"
-    	
     	 />
 
 <LinearLayout
@@ -82,8 +81,6 @@ android:background="@color/white" >
         android:singleLine="true"
     	android:lines="1"
    		android:maxLines="1"/>
-
-
 
     <EditText
         android:id="@+id/phoneNr"

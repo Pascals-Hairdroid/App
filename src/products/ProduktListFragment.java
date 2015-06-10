@@ -23,7 +23,6 @@ public class ProduktListFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_productslist, container,
 				false);
 		
-		
 		ListView listView = (ListView)rootView.findViewById(R.id.listView2);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -36,5 +35,4 @@ public class ProduktListFragment extends Fragment {
 		});
 		return rootView;
 	}
-
 }

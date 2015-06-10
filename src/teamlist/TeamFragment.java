@@ -20,14 +20,12 @@ import android.widget.TextView;
 public class TeamFragment extends Fragment {
 	private String name;
 	private int id;
-
 	private static final String ARG_SECTION_NUMBER = "section_number";
 
-	public TeamFragment(String name, int id) {
-
+	public TeamFragment(String name, int id) 
+	{
 		this.name = name;
 		this.id = id;
-
 	}
 	public TeamFragment() {
 
@@ -65,5 +63,4 @@ public class TeamFragment extends Fragment {
 		}
 		return rootView;
 	}
-
 }

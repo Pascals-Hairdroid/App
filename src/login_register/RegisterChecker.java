@@ -28,8 +28,6 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 	private Register regi;
 	private String username;
 	
-	
-	
 	public RegisterChecker(Register reg) {
 		super();
 		this.regi = reg;

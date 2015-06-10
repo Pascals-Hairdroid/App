@@ -102,7 +102,6 @@ public class Friseurstudio extends Activity implements
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
 		mNavigationDrawerFragment.reloadImage();
-
 	}
 
 	@Override
@@ -119,7 +118,6 @@ public class Friseurstudio extends Activity implements
 
 		FragmentManager fragmentManager = getFragmentManager();
 		switch (position) {
-
 		case 5:
 			fragmentManager.beginTransaction()
 					.replace(R.id.container, new GalerieFragment())
@@ -188,11 +186,8 @@ public class Friseurstudio extends Activity implements
 						.replace(R.id.container, new DasStudioFragment())
 						.addToBackStack("6").commit();
 				break;
-
 			}
-
 		}
-
 	}
 
 	/*

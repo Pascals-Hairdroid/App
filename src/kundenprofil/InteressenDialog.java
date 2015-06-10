@@ -64,7 +64,6 @@ public class InteressenDialog extends DialogFragment {
 									.getStringArray(R.array.interessen)[which]);
 						}
 						((KundenProfil) getActivity()).setChanged(KundenProfil.INTERESSEN_CHANGED);
-						
 					}
 				});
 

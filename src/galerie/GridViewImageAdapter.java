@@ -87,7 +87,6 @@ public class GridViewImageAdapter extends BaseAdapter {
             i.putExtra("position", _postion);
             context.startActivity(i);
         }
- 
     }
  
     /*
@@ -117,5 +116,4 @@ public class GridViewImageAdapter extends BaseAdapter {
         }
         return null;
     }
- 
 }

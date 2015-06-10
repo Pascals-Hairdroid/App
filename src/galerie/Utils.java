@@ -15,18 +15,13 @@ import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
 public class Utils {
-
-	 
 	
 	    private Context _context;
 	 
 // constructor
 	    public Utils(Context context) {
 	        this._context = context;
-	        	
 	    }
-	 
-	
 	 
 	    /*
 	     * getting screen width

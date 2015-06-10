@@ -81,7 +81,6 @@ public class Utils {
 					e2.printStackTrace();
 				}
 			}
-
 		}
 		return BitmapFactory.decodeFile(filePath);
 	}
@@ -145,7 +144,6 @@ public class Utils {
 			} else {
 				return true;
 			}
-
 		}
 	}
 	public static float convertDpToPixel(float dp, Context context){

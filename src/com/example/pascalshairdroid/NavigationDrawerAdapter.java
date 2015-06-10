@@ -142,7 +142,6 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		}
 		
 		// Home Register von NaviDrawer
-
 		if (s.equals("Zeichen")) {
 			convertView.setId(-80085);
 			ImageView i = (ImageView) convertView.findViewById(R.id.indecator);
@@ -157,7 +156,6 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 			i.setImageResource(R.drawable.ic_launcher2);
 			text.setText("Home");
 		}
-
 		return convertView;
 	}
 

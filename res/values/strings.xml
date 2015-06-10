@@ -6,8 +6,8 @@
     <string name="pascals_hairdroid">Pascals Hairdroid</string>
     <string name="action_example"></string>
     <string name="action_settings"></string>
-
-    <!-- Registrierung Fragment -->
+   
+    <!-- Registrierung Activity -->
     <string name="vorname">Vorname</string>
     <string name="nachname">Nachname</string>
     <string name="passwort">Passwort</string>
@@ -16,12 +16,15 @@
     <string name="registrierung">Registrieren</string>
     <string name="title_activity_register">Registerung</string>
     <string name="galerie">Galerie</string>
-    <!-- Friseurstudio Fragment -->
+    
+    <!-- Friseurstudio Activity -->
     <string name="title_activity_home">Friseurstudio</string>
-    <!-- NavigationDrawer Fragment -->
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="logout">Log Out</string>
+    <string name="Ok">OK</string>
+    <string name="Abbrechen">Abbrechen</string>
+    <string name="back">zurück</string>
+    
+    <!-- Navidrawer Hauptmenü -->
     <string-array name="navigation_items">
         <item>Zeichen</item>
         <item>Friseurstudio</item>
@@ -29,8 +32,9 @@
         <item>Angebote</item>
         <item>Produkte</item>
         <item>Galerie</item>
-        
     </string-array>
+
+    <!-- Navidrawer 1st Submenü -->
     <string-array name="child_navigation_items">
         <item>Das Studio</item>
         <item>Unser Team</item>
@@ -38,42 +42,52 @@
         <item>Öffnungszeiten</item>
         <item>Kontakt</item>
     </string-array>
+    
+    <!-- Navidrawer 2nd Submenü -->
     <string-array name="child_navigation_items2">
         <item>Färben</item>
         <item>Pflegen</item>
     </string-array>
+    
+     <string-array name="produkte">
+        <item>Haarspray </item>
+        <item>Haargel</item>
+        <item>Shampoo</item>
+    </string-array>
 
-    <!-- Nur für Vorführung der App Hardcoded geschrieben -> nicht in App gebraucht -->
+    <!-- Kontakt Fragment  -->
     <string name="pascal_petritsch">Pascal Petritsch</string>
     <string name="adresse">Wagramer Straße 154a</string>
     <string name="mobil">Mobil: 0676 92 38 217</string>
-    <string name="mofr">Montag - Freitag : 	11:00 -19:00 Uhr</string>
-    <string name="sa">Samstag : 	09:00 -15:00 Uhr</string>
     <string name="ort">1220 Wien</string>
     <string name="homepage">www.pascals.at</string>
 
-    <!-- Button Termin reservieren in fragment_termin_eintragen -->
-    <string name="termin_resevieren">Termin eintragen</string>
-
     <!-- Auswahl der Teammitglieder -->
-
     <string-array name="teamlist">
         <item>Pascal </item>
         <item>Mathias</item>
         <item>Boris</item>
     </string-array>
+    
+    <!-- Subinfo Teammitglieder -->
     <string-array name="teamsubinfo">
         <item>Geschäftsführer</item>
         <item>Mitarbeiter</item>
         <item>Mitarbeiter</item>
     </string-array>
-    <string-array name="produkte">
-        <item>Haarspray </item>
-        <item>Haargel</item>
-        <item>Shampoo</item>
-    </string-array>
     
-     <string-array name="interessen">
+	<!-- Login -->
+    <string name="title_activity_login">Login</string>
+    <string name="login_bt">Login</string>
+    <string name="SignUp_bt">Sign up</string>
+ 
+    <!-- Kundenprofil -->
+    <string name="title_activity_kunden_profil">Kunden Profil</string>
+    <string name="interessenBt">Interessen wählen</string>
+    <string name="cancel">Zurück</string>
+    <string name="save">Speichern</string>
+    
+    <string-array name="interessen">
         <item>Färben</item>
         <item>Tönen</item>
         <item>Strähnen</item>
@@ -82,9 +96,9 @@
         <item>Lang Frauen</item>
         <item>Glättung</item>
         <item>Augenbraun/Wimpern färben</item>
-        
     </string-array>
-     <string-array name="interessen_ids">
+
+    <string-array name="interessen_ids">
         <item>0</item>
         <item>2</item>
         <item>3</item>
@@ -93,25 +107,15 @@
         <item>6</item>
         <item>7</item>
         <item>8</item>
-        </string-array>
-
-    <string name="login_bt">Login</string>
-    <string name="SignUp_bt">Sign up</string>
-    <string name="back">zurück</string>
-    <string name="logout">Log Out</string>
-    <string name="Ok">OK</string>
-    <string name="Abbrechen">Abbrechen</string>
-    <string name="title_activity_splash_screen">SplashScreen</string>
-    
-    <string name="title_activity_login">Login</string>
-    <string name="title_activity_kunden_profil">KundenProfil</string>
+    </string-array>
     
     
+    <!-- nicht gebraucht -->
     <string name="tv_label">Type your Text: </string>
-    <string name="interessenBt">Interessen wählen</string>
-    
-     <string name="cancel">Zurück</string>
-    <string name="save">Speichern</string>
-    
-
+    <string name="title_activity_splash_screen">SplashScreen</string>
+	<string name="termin_resevieren">Termin eintragen</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+	<string name="mofr">Montag - Freitag : 	11:00 -19:00 Uhr</string>
+    <string name="sa">Samstag : 	09:00 -15:00 Uhr</string>	
 </resources>

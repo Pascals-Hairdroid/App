@@ -37,7 +37,6 @@ public class TerminEintragenFragment extends Fragment {
 			cookieManager.setCookie("pascals.at", "PHPSESSID="+sessionID+";Version=1");
 		    CookieSyncManager.getInstance().sync();
 
-			
 			View rootView = inflater.inflate(R.layout.fragment_termin_eintragen, container,
 					false);
 			WebView view = (WebView)rootView.findViewById(R.id.termin_webview);
@@ -91,7 +90,4 @@ public class TerminEintragenFragment extends Fragment {
 			
 			return rootView;
 		}
-
-		
-
 }

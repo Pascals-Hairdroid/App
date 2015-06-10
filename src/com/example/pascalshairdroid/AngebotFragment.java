@@ -18,8 +18,6 @@ public class AngebotFragment extends Fragment {
 	
 		private static final String ARG_SECTION_NUMBER = "section_number";
 
-		
-
 		public AngebotFragment() {
 			// TODO Auto-generated constructor stub
 		}

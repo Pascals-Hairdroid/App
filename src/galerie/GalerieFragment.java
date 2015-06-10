@@ -29,7 +29,6 @@ public class GalerieFragment extends Fragment {
 	private GridViewImageAdapter adapter;
 	private GridView gridView;
 	private int columnWidth;
-
 	private RelativeLayout relativeLayout;
 
 	@Override
@@ -45,8 +44,6 @@ public class GalerieFragment extends Fragment {
 
 		// Initilizing Grid View
 		InitilizeGridLayout();
-
-		// loading all image paths from SD card
 
 		// Gridview adapter
 		adapter = new GridViewImageAdapter(getActivity(), AppConstantGalerie.images,
@@ -73,5 +70,4 @@ public class GalerieFragment extends Fragment {
 		gridView.setHorizontalSpacing((int) padding);
 		gridView.setVerticalSpacing((int) padding);
 	}
-
 }

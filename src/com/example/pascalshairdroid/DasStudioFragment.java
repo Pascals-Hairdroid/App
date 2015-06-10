@@ -16,8 +16,6 @@ public class DasStudioFragment extends Fragment {
 	
 		private static final String ARG_SECTION_NUMBER = "section_number";
 
-		
-
 		public DasStudioFragment() {
 			// TODO Auto-generated constructor stub
 		}
