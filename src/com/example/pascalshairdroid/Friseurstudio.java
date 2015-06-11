@@ -11,7 +11,6 @@ import org.apache.http.message.BasicNameValuePair;
 import kundenprofil.KundenProfil;
 import kundenprofil.async.DataReloader;
 import products.ProductFragment;
-import products.ProduktListFragment;
 import teamlist.TeamListFragment;
 import login_register.Login;
 import login_register.LogoutTask;

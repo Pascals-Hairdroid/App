@@ -49,11 +49,7 @@
         <item>Pflegen</item>
     </string-array>
     
-     <string-array name="produkte">
-        <item>Haarspray </item>
-        <item>Haargel</item>
-        <item>Shampoo</item>
-    </string-array>
+     
 
     <!-- Kontakt Fragment  -->
     <string name="pascal_petritsch">Pascal Petritsch</string>
