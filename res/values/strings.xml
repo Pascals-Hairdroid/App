@@ -23,6 +23,7 @@
     <string name="Ok">OK</string>
     <string name="Abbrechen">Abbrechen</string>
     <string name="back">zurück</string>
+    <string name="title_angebote">Angebote</string>
     
     <!-- Navidrawer Hauptmenü -->
     <string-array name="navigation_items">

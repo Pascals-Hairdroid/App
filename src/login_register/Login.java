@@ -74,7 +74,7 @@ public class Login extends Activity {
 		// wenn die Session in der DB gespeichert dann überspringe login vorgang
 		// und wechsle sofort in friseurstudio class
 		
-		if (preferences.contains(LOGIN_SESSION_ID)) {
+		if (preferences.contains(LOGIN_SESSION_ID) && !getIntent().hasExtra("logout")) {
 			startActivity(new Intent(Login.this, Friseurstudio.class));
 			finish();
 		} else {

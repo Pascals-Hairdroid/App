@@ -12,19 +12,19 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <!-- client (vl. unnötig))-->
-    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <!-- client (vl. unnötig)) -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 
     <!-- Authenticator -->
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
 
     <!-- Sync Adapter -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ph1"
@@ -36,8 +36,8 @@
         </activity>
         <activity
             android:name=".Friseurstudio"
-            android:screenOrientation="portrait"
-            android:label="@string/pascals_hairdroid" >
+            android:label="@string/pascals_hairdroid"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="galerie.GalerieFragment"
@@ -45,7 +45,7 @@
         </activity>
         <activity
             android:name=".SplashScreen"
-       		android:label="@string/pascals_hairdroid"
+            android:label="@string/pascals_hairdroid"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -64,57 +64,60 @@
         <activity
             android:name="kundenprofil.KundenProfil"
             android:configChanges="orientation|keyboard"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_kunden_profil">
+            android:label="@string/title_activity_kunden_profil"
+            android:screenOrientation="portrait" >
         </activity>
-        
-        
+        <activity
+            android:name="notificationSync.NotificationActivity"
+            android:label="@string/title_angebote"
+            android:parentActivityName="login_register.Login" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="login_register.Login" />
+        </activity>
+
         <provider
-        android:name="notificationSync.provider.StubProvider"
-        android:authorities="notificationSync.provider"
-        android:exported="false"
-        android:syncable="true"/>
-        
-        <!-- 
+            android:name="notificationSync.provider.StubProvider"
+            android:authorities="notificationSync.provider"
+            android:exported="false"
+            android:syncable="true" />
+
+        <!--
         <activity
             android:name="notificationSync.UpdateNotificationStatusActivity"
             android:launchMode="singleTop">
         </activity>
-         -->
-        
-        <receiver 
-            android:name="notificationSync.UpdateNotificationStatus" 
-            android:exported="true">
+        -->
+
+        <receiver
+            android:name="notificationSync.UpdateNotificationStatus"
+            android:exported="true" >
         </receiver>
-        
-        
-        <service
-            android:name="notificationSync.AuthenticatorService">
-	        <intent-filter>
-	            <action 
-	                android:name="android.accounts.AccountAuthenticator"/>
-	        </intent-filter>
-        	<meta-data
-            	android:name="android.accounts.AccountAuthenticator"
-            	android:resource="@xml/authenticator" />
-    	</service>
-         
-        <service
-                android:name="notificationSync.SyncAdapterService"
-                android:exported="true"
-                android:process=":sync">
+
+        <service android:name="notificationSync.AuthenticatorService" >
             <intent-filter>
-                <action android:name="android.content.SyncAdapter"/>
+                <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
-            <meta-data android:name="android.content.SyncAdapter"
-                    android:resource="@xml/syncadapter" />
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
         </service>
-        
-        
-        
-        
-        
-       <!-- ALT:
+        <service
+            android:name="notificationSync.SyncAdapterService"
+            android:exported="true"
+            android:process=":sync" >
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+
+        <!--
+       ALT:
        
        <provider android:name="simplesync.SimpleContentProvider" android:exported="true" android:syncable="true"
             android:authorities="">
@@ -141,13 +144,8 @@
             <meta-data android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator" />
         </service> 
-         -->
-        
-        
-        
-        
-        
-        
+        -->
+
     </application>
 
 </manifest>

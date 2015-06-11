@@ -3,6 +3,7 @@ package notificationSync;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -49,7 +50,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 	public static final String LASTSYNC = "lastSync";
 	public static final String NOTIFICATION_ID = "nid";
 	public static final String WERBUNG_URL_BEGINN = "http://pascals.at/v2/Seiten/werbung.php?nummer=";
-	public static final String SHOW_WEB = "show_web";
+	public static final String SHOW_WEB = "show_werbung";
 	public static final String BROWSER_URL = "browser_url";
 	private static final String URL = "http://www.pascals.at/v2/PHD_DBA/Notification_Service.php";
 
@@ -99,6 +100,26 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 		Set<String> myInteressen = cw.getSharedPreferences(Login.PREF_TAG,
 				Context.MODE_PRIVATE)
 				.getStringSet(Login.LOGIN_INTERESSEN, null);
+		String[] allInteressen = getContext().getResources().getStringArray(R.array.interessen);
+		String[] allInteressenIds = getContext().getResources().getStringArray(R.array.interessen_ids);
+		String[] interessen = null;
+		String[] ints = null;
+		if(myInteressen != null){
+			interessen = new String[myInteressen.size()];
+			ints = new String[myInteressen.size()];
+			myInteressen.toArray(ints);
+		}
+		int a = 0;
+		if(myInteressen != null){
+			for (int j = 0; j < ints.length; j++) {
+				for (int i = 0; i < allInteressen.length; i++) {
+					if(allInteressen[i].equals(ints[j])){
+						interessen[a]=allInteressenIds[i];
+						a++;
+					}
+				}
+			}
+		}
 		// // Testen:
 		// //---
 		// Date date = new Date(0);
@@ -109,15 +130,14 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 		// myInteressen.add("4");
 		// myInteressen.add("6");
 		// //---
-
-		String[] interessen = myInteressen == null ? null
-				: (String[]) myInteressen.toArray();
+		
 
 		Log.d(TAG, "date:" + date);
-		Log.d(TAG,
-				"interessen"
-						+ (interessen == null ? "NULL" : interessen.toString()));
-
+		Log.d(TAG,"Interessen: ");
+		for (int i = 0; i < interessen.length; i++)
+			if(interessen[i]!=null)
+				Log.d(TAG,interessen[i]);
+		
 		return doRequest(URL, date, interessen);
 	}
 
@@ -132,16 +152,9 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 				nameValuePairs.addAll(arrayAsNameValuePairs("interessen",
 						interessen));
 			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			HttpResponse httpResponse = client.execute(httpPost); // ausführen
-																	// von
-																	// httpreqeuest
-																	// return
-																	// HttpResponse
-																	// (antwort
-																	// von
-																	// Server)
-			// datei aus antwort von Server laden und in ein Json object
-			// umwandeln
+			Log.d(TAG, "Execute HttpPost...");
+			HttpResponse httpResponse = client.execute(httpPost); 
+			
 			String s = EntityUtils.toString(httpResponse.getEntity());
 			Log.d(TAG, "Response: " + s);
 			return new JSONObject(s);
@@ -211,7 +224,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 	private ArrayList<Notification> doNotifications() {
 		ArrayList<Notification> notifications = new ArrayList<Notification>();
 		Cursor werbungen = dbh.getNewNotifications();
-		Log.d(TAG, "Werbungen aus DB: " + werbungen.toString());
 		if (werbungen.moveToFirst()) {
 			do {
 				Log.d(TAG, "Adding Notification...");

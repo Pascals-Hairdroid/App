@@ -16,6 +16,7 @@ import login_register.Login;
 import login_register.LogoutTask;
 import login_register.Register;
 import galerie.GalerieFragment;
+import android.R.integer;
 import android.app.Activity;
 
 import android.app.ActionBar;
@@ -240,7 +241,9 @@ public class Friseurstudio extends Activity implements
 			sharedPreferences.edit().remove(Login.LOGIN_SESSION_ID)
 					.remove(Login.LOGIN_USERNAME).commit();
 			// auf Login Fragment weiterleiten
-			startActivity(new Intent(Friseurstudio.this, Login.class));
+			Intent i = new Intent(Friseurstudio.this, Login.class);
+			i.putExtra("logout", "abcder");
+			startActivity(i);
 			finish();
 			break;
 		}
