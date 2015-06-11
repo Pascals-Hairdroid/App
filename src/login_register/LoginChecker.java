@@ -29,9 +29,6 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 	private Login login;
 	private String email;
 	
-	
-	
-	
 	public LoginChecker(Login login) {
 		super();
 		this.login = login;
@@ -45,7 +42,6 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 		try {
 			
 			HttpPost httpPost = new HttpPost(params[0]); // Url
-			
 			
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	        nameValuePairs.add(new BasicNameValuePair("email", params[1]));

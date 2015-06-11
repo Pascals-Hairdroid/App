@@ -23,8 +23,6 @@ public class TeamListAdapter extends ArrayAdapter<String>{
 		super(context, resource, objects);
 	}
 	
-	
-	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if(convertView == null){
@@ -53,7 +51,4 @@ public class TeamListAdapter extends ArrayAdapter<String>{
 		return convertView;
 		
 	}
-	
-	
-
 }

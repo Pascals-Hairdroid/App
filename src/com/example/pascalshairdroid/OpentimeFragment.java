@@ -16,8 +16,6 @@ public class OpentimeFragment extends Fragment {
 	
 		private static final String ARG_SECTION_NUMBER = "section_number";
 
-		
-
 		public OpentimeFragment() {
 			// TODO Auto-generated constructor stub
 		}
@@ -29,9 +27,6 @@ public class OpentimeFragment extends Fragment {
 			
 			ImageView view = (ImageView)rootView.findViewById(R.id.imageView1);
 			
-			
-			
 			return rootView;
 		}
-		
 }

@@ -11,7 +11,6 @@ import org.apache.http.message.BasicNameValuePair;
 import kundenprofil.KundenProfil;
 import kundenprofil.async.DataReloader;
 import products.ProductFragment;
-import products.ProduktListFragment;
 import teamlist.TeamListFragment;
 import login_register.Login;
 import login_register.LogoutTask;
@@ -102,7 +101,6 @@ public class Friseurstudio extends Activity implements
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
 		mNavigationDrawerFragment.reloadImage();
-
 	}
 
 	@Override
@@ -112,13 +110,13 @@ public class Friseurstudio extends Activity implements
 		Boolean isFreigeschalten = getSharedPreferences(Login.PREF_TAG,
 				MODE_PRIVATE).getBoolean(Login.LOGIN_FREIGESCHALTEN, false);
 		List<Integer> integers = Arrays.asList(new Integer[] { 2 });
-		if (!isFreigeschalten && integers.contains(position)) {
+		if (!isFreigeschalten && integers.contains(Integer.valueOf(position))) {
+			Toast.makeText(this, "Sie sind nicht freigeschaltet!", Toast.LENGTH_LONG).show();
 			return;
 		}
 
 		FragmentManager fragmentManager = getFragmentManager();
 		switch (position) {
-
 		case 5:
 			fragmentManager.beginTransaction()
 					.replace(R.id.container, new GalerieFragment())
@@ -187,11 +185,8 @@ public class Friseurstudio extends Activity implements
 						.replace(R.id.container, new DasStudioFragment())
 						.addToBackStack("6").commit();
 				break;
-
 			}
-
 		}
-
 	}
 
 	/*

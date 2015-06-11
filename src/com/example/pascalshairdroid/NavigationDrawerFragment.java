@@ -70,11 +70,9 @@ public class NavigationDrawerFragment extends Fragment {
 	 * Helper component that ties the action bar to the navigation drawer.
 	 */
 	private ActionBarDrawerToggle mDrawerToggle;
-
 	private DrawerLayout mDrawerLayout;
 	private ExpandableListView mDrawerListView;
 	private View mFragmentContainerView;
-
 	private int mCurrentSelectedPosition = 0;
 	private boolean mFromSavedInstanceState;
 	private boolean mUserLearnedDrawer;
@@ -98,7 +96,6 @@ public class NavigationDrawerFragment extends Fragment {
 					.getInt(STATE_SELECTED_POSITION);
 			mFromSavedInstanceState = true;
 		}
-
 		// Select either the default item (0) or the last selected item.
 		selectItem(mCurrentSelectedPosition, -1);
 	}
@@ -113,8 +110,8 @@ public class NavigationDrawerFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-
+			Bundle savedInstanceState)
+	{
 		LinearLayout layout = (LinearLayout) inflater.inflate(
 				R.layout.fragment_navigation_drawer, null, false);
 
@@ -133,8 +130,7 @@ public class NavigationDrawerFragment extends Fragment {
 			imageView.setImageResource(R.drawable.nobody_no);
 		}
 
-
-			imageView.setOnClickListener(new OnClickListener() {
+		imageView.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
@@ -165,7 +161,7 @@ public class NavigationDrawerFragment extends Fragment {
 						R.array.navigation_items)));
 		// HashMap in der die einzelnen Submenus hängen
 		final HashMap<Integer, ArrayList<String>> level2 = new HashMap<Integer, ArrayList<String>>();
-		// zur hashmap and er 0 stelle = Friseurstudio eine neues Array anhängen
+		// zur hashmap and der 0 stelle = Friseurstudio eine neues Array anhängen
 		// und die submenus reinhängen
 		level2.put(
 				1,
@@ -388,7 +384,6 @@ public class NavigationDrawerFragment extends Fragment {
 		if (item.getItemId() == R.id.logout) {
 			return false;
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -421,9 +416,8 @@ public class NavigationDrawerFragment extends Fragment {
 	}
 	
 	// nach Login wird aktuelles ProfilImage geladen
-
-	public void reloadImage() {
-		
+	public void reloadImage() 
+	{
 		ImageView imageView = (ImageView) getView().findViewById(R.id.kundenbild);
 		File myImage = new File(getActivity().getFilesDir(), "myImage.jpg");
 

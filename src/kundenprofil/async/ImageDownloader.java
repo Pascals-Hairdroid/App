@@ -64,6 +64,5 @@ public class ImageDownloader extends AsyncTask<String, Integer, Boolean> {
 		Intent intent = new Intent("reloadImage");
 		LocalBroadcastManager.getInstance(c).sendBroadcast(intent);
 		Toast.makeText(c, "done", Toast.LENGTH_LONG).show();
-
 	}
 }

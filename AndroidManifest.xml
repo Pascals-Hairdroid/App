@@ -36,6 +36,7 @@
         </activity>
         <activity
             android:name=".Friseurstudio"
+            android:screenOrientation="portrait"
             android:label="@string/pascals_hairdroid" >
         </activity>
         <activity
@@ -44,7 +45,7 @@
         </activity>
         <activity
             android:name=".SplashScreen"
-            android:label="@string/pascals_hairdroid"
+       		android:label="@string/pascals_hairdroid"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -63,7 +64,8 @@
         <activity
             android:name="kundenprofil.KundenProfil"
             android:configChanges="orientation|keyboard"
-            android:label="@string/title_activity_kunden_profil" >
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_kunden_profil">
         </activity>
         
         

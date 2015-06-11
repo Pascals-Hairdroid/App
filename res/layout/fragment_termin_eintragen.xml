@@ -19,7 +19,6 @@
         android:layout_marginLeft="14dp"
         android:layout_toRightOf="@+id/section_label"
         android:text="@string/termin_resevieren" /> 
-        
     -->
     
       <WebView

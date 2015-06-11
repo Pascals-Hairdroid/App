@@ -13,10 +13,7 @@ import android.webkit.WebViewClient;
 
 public class KontaktFragment extends Fragment {
 	
-	
 		private static final String ARG_SECTION_NUMBER = "section_number";
-
-		
 
 		public KontaktFragment() {
 			// TODO Auto-generated constructor stub
@@ -29,7 +26,4 @@ public class KontaktFragment extends Fragment {
 			
 			return rootView;
 		}
-
-		
-
 }
