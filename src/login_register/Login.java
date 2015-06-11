@@ -7,6 +7,8 @@ import java.util.Iterator;
 
 import kundenprofil.async.ImageDownloader;
 
+import notificationSync.SyncConstants;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,7 +20,11 @@ import com.example.pascalshairdroid.R.id;
 import com.example.pascalshairdroid.R.layout;
 import com.example.pascalshairdroid.R.menu;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -46,16 +52,28 @@ public class Login extends Activity {
 	public static final String LOGIN_LAST_IMAGE_UPDATE = "dsdf";
 	public static final String LOGIN_IMAGE_URL = "sdfdsfew";
 
+	Account syncAcc;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		// notificationSync Account anlegen:
+		Log.i("notificationSync", "Lege Sync Account an...");
+		syncAcc = CreateSyncAccount(this);
+		Log.i("notificationSync", syncAcc==null?"FAIL (Existiert Bereits?)":"OK");
+		if(syncAcc!=null){
+			Log.i("notificationSync", "Registriere Service...");
+			ContentResolver.addPeriodicSync(syncAcc, SyncConstants.AUTHORITY, Bundle.EMPTY, SyncConstants.FREQ);
+			Log.i("notificationSync", "Aktiviere AutoSync...");
+			ContentResolver.setSyncAutomatically(syncAcc, SyncConstants.AUTHORITY, true);
+		}
+		Log.i("notificationSync", "Fertig.");
+		
 		SharedPreferences preferences = this.getSharedPreferences(PREF_TAG,
 				MODE_PRIVATE); // lade shared pref db
 		// wenn die Session in der DB gespeichert dann überspringe login vorgang
-		// unnd wechsle sofort in friseurstudio class
-
+		// und wechsle sofort in friseurstudio class
+		
 		if (preferences.contains(LOGIN_SESSION_ID)) {
 			startActivity(new Intent(Login.this, Friseurstudio.class));
 			finish();
@@ -196,5 +214,21 @@ public class Login extends Activity {
 		}
 
 	}
+	
+	public static Account CreateSyncAccount(Context context) {
+        // Create the account type and default account
+        Account newAccount = new Account(
+                SyncConstants.ACCOUNT, SyncConstants.ACCOUNT_TYPE);
+        // Get an instance of the Android account manager
+        AccountManager accountManager =
+                (AccountManager) context.getSystemService(
+                        ACCOUNT_SERVICE);
+        
+        if (accountManager.addAccountExplicitly(newAccount, null, null)){
+        	return newAccount;
+        }
+        else
+            return null;
+    }
 
 }

@@ -12,7 +12,19 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
+    <!-- client (vl. unnötig))-->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+
+    <!-- Authenticator -->
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+
+    <!-- Sync Adapter -->
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ph1"
@@ -53,6 +65,87 @@
             android:configChanges="orientation|keyboard"
             android:label="@string/title_activity_kunden_profil" >
         </activity>
+        
+        
+        <provider
+        android:name="notificationSync.provider.StubProvider"
+        android:authorities="notificationSync.provider"
+        android:exported="false"
+        android:syncable="true"/>
+        
+        <!-- 
+        <activity
+            android:name="notificationSync.UpdateNotificationStatusActivity"
+            android:launchMode="singleTop">
+        </activity>
+         -->
+        
+        <receiver 
+            android:name="notificationSync.UpdateNotificationStatus" 
+            android:exported="true">
+        </receiver>
+        
+        
+        <service
+            android:name="notificationSync.AuthenticatorService">
+	        <intent-filter>
+	            <action 
+	                android:name="android.accounts.AccountAuthenticator"/>
+	        </intent-filter>
+        	<meta-data
+            	android:name="android.accounts.AccountAuthenticator"
+            	android:resource="@xml/authenticator" />
+    	</service>
+         
+        <service
+                android:name="notificationSync.SyncAdapterService"
+                android:exported="true"
+                android:process=":sync">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdapter"
+                    android:resource="@xml/syncadapter" />
+        </service>
+        
+        
+        
+        
+        
+       <!-- ALT:
+       
+       <provider android:name="simplesync.SimpleContentProvider" android:exported="true" android:syncable="true"
+            android:authorities="">
+        </provider>
+        
+        
+         <service
+            android:name="com.example.pascalshairdroid.simplesync.SimpleSyncAdapterService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/sync_adapter" />
+        </service>
+        
+        
+        <service 
+            android:name="com.example.pascalshairdroid.simplesync.SimpleAuthenticatorService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service> 
+         -->
+        
+        
+        
+        
+        
+        
     </application>
 
 </manifest>

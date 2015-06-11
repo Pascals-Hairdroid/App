@@ -1,21 +1,11 @@
-package SimpleSync;
+package notificationSync;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -33,8 +23,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Routes Table - column names
     public static final String KEY_TITEL = "titel";
     public static final String KEY_TEXT = "text";
-    public static final String KEY_DATUM = "datum";
-    public static final String KEY_FOTO = "foto";
+    //public static final String KEY_DATUM = "datum";
+    public static final String KEY_FOTO = "fotos";
     public static final String KEY_STATUS = "status";
     
     public static final int V_STATUS_NEU = 0;
@@ -46,8 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_ROUTE = "CREATE TABLE "
             + TABLE_WERBUNG + "(" + KEY_NUMMER + " INTEGER PRIMARY KEY,"
             + KEY_TITEL + " TEXT,"
-            + KEY_TEXT + " TEXT,"
-            + KEY_DATUM + " INTEGER,"
+            + KEY_TEXT + " TEXT," 
+//            + KEY_DATUM + " INTEGER,"
             + KEY_STATUS + " INTEGER,"
             + KEY_FOTO + " TEXT" + ")";
 
@@ -68,6 +58,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean setStatus(long nummer, int status){
+    	if(status!=V_STATUS_NEU && status!=V_STATUS_GEZEIGT && status!=V_STATUS_FERTIG)
+    		return false;
+    	ContentValues values = new ContentValues();
+    	values.put(KEY_STATUS, status);
+    	Log.i(TAG, "Statuschange für " + nummer + " auf Status=" + status + "...");
+    	boolean ret = getWritableDatabase().update(TABLE_WERBUNG, values, KEY_NUMMER+"="+nummer, null)>0?true:false;
+    	if(ret)
+    		Log.i(TAG, "Statuschange für " + nummer + " auf Status=" + status + " fertig.");
+    	return ret;
+    }
+    
     public Cursor getNewNotifications(){
     	SQLiteDatabase db = getReadableDatabase();
     	Cursor c = db.rawQuery("SELECT * FROM " + TABLE_WERBUNG + " WHERE " + KEY_STATUS + "<" + V_STATUS_FERTIG, null);
