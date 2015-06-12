@@ -3,7 +3,6 @@ package notificationSync;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -130,14 +129,12 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 		// myInteressen.add("4");
 		// myInteressen.add("6");
 		// //---
-		
 
 		Log.d(TAG, "date:" + date);
 		Log.d(TAG,"Interessen: ");
 		for (int i = 0; i < interessen.length; i++)
 			if(interessen[i]!=null)
 				Log.d(TAG,interessen[i]);
-		
 		return doRequest(URL, date, interessen);
 	}
 
@@ -154,7 +151,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			Log.d(TAG, "Execute HttpPost...");
 			HttpResponse httpResponse = client.execute(httpPost); 
-			
 			String s = EntityUtils.toString(httpResponse.getEntity());
 			Log.d(TAG, "Response: " + s);
 			return new JSONObject(s);

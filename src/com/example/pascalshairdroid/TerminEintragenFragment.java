@@ -20,6 +20,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.webkit.WebSettings.ZoomDensity;
 
 public class TerminEintragenFragment extends Fragment {
 	private ValueCallback mUploadMessage;
@@ -43,6 +44,14 @@ public class TerminEintragenFragment extends Fragment {
 			
 			WebSettings webSettings = view.getSettings();
 			webSettings.setJavaScriptEnabled(true);
+//			view.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+//			view.getSettings().setBuiltInZoomControls(true);
+			
+			view.setInitialScale(165);
+			view.getSettings().setLoadWithOverviewMode(true);
+			view.getSettings().setUseWideViewPort(true);
+			view.getSettings().setBuiltInZoomControls(true);
+			view.getSettings().setSupportZoom(true);
 //			
 //			view.setWebChromeClient(new WebChromeClient()  
 //			    {  
