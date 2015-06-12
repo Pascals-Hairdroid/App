@@ -54,7 +54,6 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 	private static final String URL = "http://www.pascals.at/v2/PHD_DBA/Notification_Service.php";
 
 	private String TAG = "SyncAdapter";
-	private ContextWrapper cw;
 	private DatabaseHelper dbh;
 
 	public SyncAdapter(Context context, boolean autoInitialize) {
@@ -71,15 +70,13 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 	public void onPerformSync(Account account, Bundle extras, String authority,
 			ContentProviderClient provider, SyncResult syncResult) {
 		Log.i(TAG, "performing sync...");
-
-		cw = new ContextWrapper(getContext());
 		dbh = new DatabaseHelper(getContext());
 		try {
 			JSONObject j = doSync();
 			boolean success = insert(j.getJSONArray("werbungen"));
 			Log.i(TAG, "insertion: " + (success ? "OK" : "FAIL"));
 			Log.d(TAG, "LastSync: " + j.getLong(LASTSYNC));
-			cw.getSharedPreferences(Login.PREF_TAG, Context.MODE_PRIVATE)
+			getContext().getSharedPreferences(Login.PREF_TAG, Context.MODE_PRIVATE)
 					.edit().putLong(LASTSYNC, j.getLong(LASTSYNC)).commit();
 			ArrayList<Notification> notifications = doNotifications();
 			Log.i(TAG, (notifications!=null?notifications.size():0) + " new Notifications.");
@@ -93,10 +90,10 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 	private JSONObject doSync() {
 
 		// Daten aus shared Preferences holen, aber wie???
-		long date = cw.getSharedPreferences(Login.PREF_TAG,
+		long date = getContext().getSharedPreferences(Login.PREF_TAG,
 				Context.MODE_PRIVATE).getLong(LASTSYNC, 0);
 
-		Set<String> myInteressen = cw.getSharedPreferences(Login.PREF_TAG,
+		Set<String> myInteressen = getContext().getSharedPreferences(Login.PREF_TAG,
 				Context.MODE_PRIVATE)
 				.getStringSet(Login.LOGIN_INTERESSEN, null);
 		String[] allInteressen = getContext().getResources().getStringArray(R.array.interessen);
@@ -220,19 +217,27 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 	private ArrayList<Notification> doNotifications() {
 		ArrayList<Notification> notifications = new ArrayList<Notification>();
 		Cursor werbungen = dbh.getNewNotifications();
+		NotificationManager nm = (NotificationManager) getContext()
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		Notification notification = null;
+		long nummer = 0;
 		if (werbungen.moveToFirst()) {
 			do {
-				Log.d(TAG, "Adding Notification...");
-				notifications.add(werbungToNotification(werbungen
-						.getLong(werbungen
-								.getColumnIndex(DatabaseHelper.KEY_NUMMER)),
+				nummer = werbungen.getLong(werbungen.getColumnIndex(DatabaseHelper.KEY_NUMMER));
+				notification = werbungToNotification(nummer,
 						werbungen.getString(werbungen
 								.getColumnIndex(DatabaseHelper.KEY_TITEL)),
 						werbungen.getString(werbungen
 								.getColumnIndex(DatabaseHelper.KEY_TEXT)),
 						werbungen.getString(werbungen
-								.getColumnIndex(DatabaseHelper.KEY_FOTO))));
-				Log.d(TAG, "Notification added.");
+								.getColumnIndex(DatabaseHelper.KEY_FOTO)));
+				Log.i(TAG, "Notifying Notification:" + (int) nummer);
+				nm.notify((int) nummer, notification);
+				Log.i(TAG, "Notified.");
+				notifications.add(notification);
+				dbh.setStatus(
+						nummer,
+						DatabaseHelper.V_STATUS_GEZEIGT);
 			} while (werbungen.moveToNext());
 		}
 
@@ -240,41 +245,24 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 			return null;
 
 		}
-		Log.d(TAG, "Notifying Notifications...");
-		NotificationManager nm = (NotificationManager) getContext()
-				.getSystemService(Context.NOTIFICATION_SERVICE);
-		//Log.d(TAG, "TESTEN...");
-		//nm.notify(213, new NotificationCompat.Builder(getContext()).setSmallIcon(R.drawable.ic_launcher).setContentTitle("test").setContentText("texttext").setExtras(Bundle.EMPTY).build());
-		for (Notification notification : notifications) {
-			Log.i(TAG, "Notifying Notification:" + notification.extras.getInt(NOTIFICATION_ID));
-			nm.notify(notification.extras.getInt(NOTIFICATION_ID), notification);
-			Log.i(TAG, "Notified.");
-			dbh.setStatus(
-					notification.extras.getLong(DatabaseHelper.KEY_NUMMER),
-					DatabaseHelper.V_STATUS_GEZEIGT);
-		}
 		return notifications;
 	}
 
 	private Notification werbungToNotification(long nummer, String titel,
 			String text, String foto) {
-		Bundle x = new Bundle();
-		x.putLong(DatabaseHelper.KEY_NUMMER, nummer);
-		x.putInt(NOTIFICATION_ID, (int) (nummer > Integer.MAX_VALUE ? nummer
-				- Integer.MAX_VALUE : nummer));
+		
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(
 				getContext())
 				.setSmallIcon(R.drawable.ic_launcher)
 				.setContentTitle(titel)
 				.setContentText(text)
-				.addExtras(x)
 				.setContentIntent(
 						PendingIntent.getBroadcast(
 								getContext(), 
-								x.getInt(NOTIFICATION_ID),
+								(int) nummer,
 								new Intent(getContext(),
 										UpdateNotificationStatus.class)
-										.putExtra(DatabaseHelper.KEY_NUMMER, nummer).putExtra(NOTIFICATION_ID, x.getInt(NOTIFICATION_ID))
+										.putExtra(DatabaseHelper.KEY_NUMMER, nummer).putExtra(NOTIFICATION_ID, (int) nummer)
 										.setAction(SHOW_WEB)
 										,PendingIntent.FLAG_UPDATE_CURRENT))
 						
@@ -303,10 +291,10 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 //									.setAction(SHOW_WEB),
 //								PendingIntent.FLAG_UPDATE_CURRENT))
 				.setDeleteIntent(
-						PendingIntent.getBroadcast(getContext(), x.getInt(NOTIFICATION_ID), 
+						PendingIntent.getBroadcast(getContext(),(int) nummer, 
 								new Intent(getContext(), UpdateNotificationStatus.class)
 									.putExtra(DatabaseHelper.KEY_NUMMER, nummer)
-									.putExtra(NOTIFICATION_ID, x.getInt(NOTIFICATION_ID))
+									.putExtra(NOTIFICATION_ID, (int) nummer)
 									,PendingIntent.FLAG_UPDATE_CURRENT));
 		Log.d(TAG, "Notification build. Nr: "+nummer);
 		return builder.build();

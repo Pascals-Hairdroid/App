@@ -96,6 +96,7 @@ public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONOb
 					Login.LOGIN_LAST_IMAGE_UPDATE, 0);
 			String lastImagePath = preferences.getString(Login.LOGIN_IMAGE_URL,
 					"");
+			Log.d("asdf", "jkl");
 			preferences
 					.edit()
 					.putString(Login.LOGIN_SESSION_ID, sessionId)
