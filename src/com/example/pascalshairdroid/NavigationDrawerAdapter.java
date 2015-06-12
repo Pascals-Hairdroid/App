@@ -2,22 +2,15 @@ package com.example.pascalshairdroid;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.zip.Inflater;
-
 import utils.Utils;
-
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.HeterogeneousExpandableList;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class NavigationDrawerAdapter extends BaseExpandableListAdapter {

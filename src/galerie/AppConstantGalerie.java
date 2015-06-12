@@ -19,5 +19,5 @@ public class AppConstantGalerie {
 					R.drawable.galerie2,R.drawable.galerie3,R.drawable.galerie4,R.drawable.galerie5,R.drawable.galerie6,R.drawable.galerie7,
 					R.drawable.galerie8,R.drawable.galerie10,R.drawable.galerie11,R.drawable.galerie12,R.drawable.galerie13,
 					R.drawable.galerie14,R.drawable.galerie15,R.drawable.galerie16,R.drawable.galerie17, R.drawable.galerie18,
-					R.drawable.galerie19,}));
+					R.drawable.galerie19,R.drawable.galerie20,R.drawable.galerie21, R.drawable.galerie22, R.drawable.galerie23, R.drawable.galerie24}));
 }

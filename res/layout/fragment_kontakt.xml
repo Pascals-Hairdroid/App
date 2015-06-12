@@ -9,14 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" /> -->
         
-        
     <ImageView
-    	style="@style/BackGroundImageView2"
-    	android:layout_width="match_parent"
-   		android:layout_height="match_parent"
-    	android:layout_alignParentTop="true"
-    	android:layout_centerHorizontal="true" />
-         
+        style="@style/BackGroundImageView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/galerie1" />
          
  	<LinearLayout
 	    android:layout_width="fill_parent"
@@ -32,7 +31,7 @@
         android:layout_height="wrap_content" 
         android:textSize="18pt"
         android:textColor="@color/orange"
-        android:text="@string/pascals_hairdroid" />
+        android:text="@string/company" />
     
     <TextView
             android:id="@+id/petritsch"

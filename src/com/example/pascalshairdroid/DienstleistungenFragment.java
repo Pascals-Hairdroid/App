@@ -2,7 +2,6 @@ package com.example.pascalshairdroid;
 
 
 import utils.Utils;
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +13,7 @@ import android.webkit.WebViewClient;
 public class DienstleistungenFragment extends Fragment {
 	
 	
-		private static final String ARG_SECTION_NUMBER = "section_number";
+//		private static final String ARG_SECTION_NUMBER = "section_number";
 
 		public DienstleistungenFragment() {
 			// TODO Auto-generated constructor stub

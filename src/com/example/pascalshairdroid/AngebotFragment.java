@@ -1,10 +1,6 @@
 package com.example.pascalshairdroid;
 
-
-import java.io.FileOutputStream;
-
 import utils.Utils;
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,11 +12,13 @@ import android.webkit.WebViewClient;
 public class AngebotFragment extends Fragment {
 	
 	
-		private static final String ARG_SECTION_NUMBER = "section_number";
+//		private static final String ARG_SECTION_NUMBER = "section_number";
 
 		public AngebotFragment() {
 			// TODO Auto-generated constructor stub
 		}
+		
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {

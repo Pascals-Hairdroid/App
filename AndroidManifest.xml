@@ -32,7 +32,8 @@
         android:theme="@style/CustomActionBarTheme" >
         <activity
             android:name="login_register.Register"
-            android:label="@string/title_activity_register" >
+            android:label="@string/title_activity_register"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Friseurstudio"
@@ -50,7 +51,8 @@
         </activity>
         <activity
             android:name="login_register.Login"
-            android:label="@string/pascals_hairdroid" >
+            android:label="@string/pascals_hairdroid"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
