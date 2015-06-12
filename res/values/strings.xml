@@ -92,11 +92,11 @@
         <item>Kurz Frauen</item>
         <item>Lang Frauen</item>
         <item>Glättung</item>
-        <item>Augenbraun/Wimpern färben</item>
+        <item>Augenbrauen/Wimpern färben</item>
     </string-array>
 
     <string-array name="interessen_ids">
-        <item>0</item>
+        <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>

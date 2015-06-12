@@ -39,7 +39,8 @@ public class InteressenDialog extends DialogFragment {
 		// die Schleife das
 		boolean[] checked = new boolean[interessen.length];
 		for (int i = 0; i < interessen.length; i++) {
-			// System.out.println(interessen[i]);
+			 System.out.println(interessen[i]);
+			 
 			// System.out.println(
 			// Boolean.toString(myInteressen.contains(interessen[i])));
 			checked[i] = myInteressen.contains(interessen[i]);
