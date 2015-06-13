@@ -127,11 +127,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 		// myInteressen.add("6");
 		// //---
 
-		Log.d(TAG, "date:" + date);
-		Log.d(TAG,"Interessen: ");
-		for (int i = 0; i < interessen.length; i++)
-			if(interessen[i]!=null)
-				Log.d(TAG,interessen[i]);
+		
 		return doRequest(URL, date, interessen);
 	}
 
@@ -141,10 +137,17 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 		try {
 			HttpPost httpPost = new HttpPost(url); // Url
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
-			nameValuePairs.add(new BasicNameValuePair("date", date + ""));
-			if (interessen != null)
-				nameValuePairs.addAll(arrayAsNameValuePairs("interessen",
-						interessen));
+			if(date!=0){
+				Log.d(TAG, "date:" + date);
+				nameValuePairs.add(new BasicNameValuePair("date", date + ""));
+			}
+			if (interessen != null){
+				Log.d(TAG,"Interessen: ");
+				for (int i = 0; i < interessen.length; i++)
+					if(interessen[i]!=null)
+						Log.d(TAG,interessen[i]);
+				nameValuePairs.addAll(arrayAsNameValuePairs("interessen",interessen));
+			}
 			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			Log.d(TAG, "Execute HttpPost...");
 			HttpResponse httpResponse = client.execute(httpPost); 
@@ -201,17 +204,19 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 				values.put(DatabaseHelper.KEY_FOTO,
 						werbung.getString(DatabaseHelper.KEY_FOTO));
 				values.put(DatabaseHelper.KEY_STATUS, 0);
-				r = db.insert(DatabaseHelper.TABLE_WERBUNG, "", values);
-				if (r != -1)
-					rows.add(r + "");
+				if (db.insert(DatabaseHelper.TABLE_WERBUNG, "", values) == -1){
+					values.remove(DatabaseHelper.KEY_NUMMER);
+					values.remove(DatabaseHelper.KEY_STATUS);
+					db.update(DatabaseHelper.TABLE_WERBUNG, values, DatabaseHelper.KEY_NUMMER + " = " + werbung.getLong(DatabaseHelper.KEY_NUMMER) + " AND " + DatabaseHelper.KEY_STATUS + " < 2", null);
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return false;
 			}
 		}
-		if (rows.size() == werbungen.length())
-			return true;
-		return false;
+		return true;
+		
 	}
 
 	private ArrayList<Notification> doNotifications() {
