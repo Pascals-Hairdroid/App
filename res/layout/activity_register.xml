@@ -22,7 +22,7 @@
             android:hint="@string/vorname" 
             android:singleLine="true"
     		android:lines="1"
-   			 android:maxLines="1"/>
+   			android:maxLines="1"/>
         <requestFocus />
         
         <EditText

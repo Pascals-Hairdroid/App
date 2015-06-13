@@ -6,9 +6,11 @@
     android:background="#f0f0f0"
     tools:context="com.example.pascalshairdroid.Home$PlaceholderFragment" >
 
-    <GridView 
-    android:id="@+id/grid_view"
-    android:layout_width="fill_parent"
+    
+    <!--layout verwendet bei galerie/GalerieFragment-->
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -19,7 +21,6 @@
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
         android:verticalSpacing="5dp" >
-    
 </GridView>
 
 </RelativeLayout>

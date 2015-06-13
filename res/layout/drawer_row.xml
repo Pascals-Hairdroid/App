@@ -4,6 +4,8 @@
     android:layout_height="48dp"
     android:id="@+id/drawer" >
 
+    
+    <!-- for drawer one line -->
     <ImageView
         android:id="@+id/indecator"
         android:layout_width="wrap_content"
