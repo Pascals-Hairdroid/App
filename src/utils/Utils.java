@@ -36,7 +36,6 @@ public class Utils {
 	}
 
 	// weil ab Android 4.4 gibt es andere Aufrufe des Verzeichnisses
-
 	@SuppressLint("NewApi")
 	public static Bitmap getRealPathFromURI_API19(Context context, Uri uri) {
 		String filePath = "";
@@ -85,6 +84,7 @@ public class Utils {
 		return BitmapFactory.decodeFile(filePath);
 	}
 
+	// API 11 bis 18 Storage Path bekommen
 	public static Bitmap getRealPathFromURI_API11to18(Context context,
 			Uri contentUri) {
 		String[] proj = { MediaStore.Images.Media.DATA };
@@ -103,6 +103,7 @@ public class Utils {
 		return BitmapFactory.decodeFile(result);
 	}
 
+	//API unter 11 Storage Path bekommen
 	public static Bitmap getRealPathFromURI_BelowAPI11(Context context,
 			Uri contentUri) {
 		String[] proj = { MediaStore.Images.Media.DATA };
@@ -114,6 +115,7 @@ public class Utils {
 		return BitmapFactory.decodeFile(cursor.getString(column_index));
 	}
 
+	//
 	public static Bitmap getRealPathFromURI(Context context, Uri contentUri) {
 		Bitmap realPath;
 		if (Build.VERSION.SDK_INT < 11) {
@@ -146,6 +148,8 @@ public class Utils {
 			}
 		}
 	}
+	
+	//convertiert dp in pixel --> nötig für Logos im NaviDrawer
 	public static float convertDpToPixel(float dp, Context context){
 	    Resources resources = context.getResources();
 	    DisplayMetrics metrics = resources.getDisplayMetrics();

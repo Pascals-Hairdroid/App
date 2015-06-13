@@ -24,10 +24,17 @@ public class TerminEintragenFragment extends Fragment {
 		public TerminEintragenFragment() {
 
 		}
+		
+		// layout Fragment finden
+		// Webview finden
+		// neuen view initialisieren
+		
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			
+			// Cookies merken damit nicht neu einloggen bei Termineintragen	
 			SharedPreferences preferences = getActivity().getSharedPreferences(Login.PREF_TAG, Context.MODE_PRIVATE);
 			String sessionID = preferences.getString(Login.LOGIN_SESSION_ID, null);
 			CookieManager cookieManager = CookieManager.getInstance();
@@ -39,16 +46,21 @@ public class TerminEintragenFragment extends Fragment {
 					false);
 			WebView view = (WebView)rootView.findViewById(R.id.termin_webview);
 			
+			// enabler Javasricpt im Webview
 			WebSettings webSettings = view.getSettings();
 			webSettings.setJavaScriptEnabled(true);
-//			view.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
-//			view.getSettings().setBuiltInZoomControls(true);
+
 			
+			// Zoomen des Webviews
 			view.setInitialScale(165);
 			view.getSettings().setLoadWithOverviewMode(true);
 			view.getSettings().setUseWideViewPort(true);
 			view.getSettings().setBuiltInZoomControls(true);
 			view.getSettings().setSupportZoom(true);
+//			view.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+//			view.getSettings().setBuiltInZoomControls(true);
+			
+//			Damit bei Webview Datei hochgeladen werden kann --> wurde aber nicht realisiert
 //			
 //			view.setWebChromeClient(new WebChromeClient()  
 //			    {  
@@ -88,6 +100,9 @@ public class TerminEintragenFragment extends Fragment {
 //
 //			    });  
 
+			
+			// Überprüfung ob Internet vorhanden 
+			// Wenn keine Internet verbindung HTML Seite no Internet Connection anzeigen 
 			if (Utils.isInternetAvailable(getActivity())) {
 				view.loadUrl("http://pascals.at/v2/Seiten/terminvergabe.php?web=1");
 			} else {

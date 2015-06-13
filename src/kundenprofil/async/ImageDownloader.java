@@ -39,13 +39,11 @@ public class ImageDownloader extends AsyncTask<String, Integer, Boolean> {
 			 */
 			InputStream is = ucon.getInputStream();
 			/* Convert the Bytes read to a String. */
-			FileOutputStream fos = c.openFileOutput("myImage.jpg",
-					Context.MODE_PRIVATE);
+			FileOutputStream fos = c.openFileOutput("myImage.jpg",Context.MODE_PRIVATE);
 			int current = 0;
 			while ((current = is.read()) != -1) {
 				fos.write(current);
 			}
-
 			fos.flush();
 			fos.close();
 			return true;

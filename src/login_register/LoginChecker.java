@@ -34,7 +34,7 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 		this.login = login;
 	}
 
-	// run shit in background 
+	// run in background 
 	@Override
 	protected JSONObject doInBackground(String... params) //String... = String array damit ich aufruf doinBackground("sfsdf","sdfd","sdfsd") 
 	{
@@ -42,17 +42,16 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 		try {
 			
 			HttpPost httpPost = new HttpPost(params[0]); // Url
-			
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	        nameValuePairs.add(new BasicNameValuePair("email", params[1]));
 	        nameValuePairs.add(new BasicNameValuePair("passwort", Utils.MD5(params[2])));
 	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			String s = EntityUtils.toString(httpResponse.getEntity());
 			email= params[1];
-		Log.d("test",s );
+//			Log.d("test",s );
 //			Log.d("param1",params[1]);
+			
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
 			return new JSONObject(s);
 			//return EntityUtils.toString(httpResponse.getEntity()); 

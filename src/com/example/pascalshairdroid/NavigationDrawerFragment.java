@@ -43,23 +43,19 @@ import android.widget.Toast;
  * implemented here.
  */
 public class NavigationDrawerFragment extends Fragment {
-
 	/**
 	 * Remember the position of the selected item.
 	 */
 	private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
-
 	/**
 	 * Per the design guidelines, you should show the drawer on launch until the
 	 * user manually expands it. This shared preference tracks this.
 	 */
 	private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
-
 	/**
 	 * A pointer to the current callbacks instance (the Activity).
 	 */
 	private NavigationDrawerCallbacks mCallbacks;
-
 	/**
 	 * Helper component that ties the action bar to the navigation drawer.
 	 */
@@ -106,9 +102,7 @@ public class NavigationDrawerFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState)
 	{
-		LinearLayout layout = (LinearLayout) inflater.inflate(
-				R.layout.fragment_navigation_drawer, null, false);
-
+		LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.fragment_navigation_drawer, null, false);
 		ImageView imageView = (ImageView) layout.findViewById(R.id.kundenbild);
 		File myImage = new File(getActivity().getFilesDir(), "myImage.jpg");
 
@@ -124,10 +118,12 @@ public class NavigationDrawerFragment extends Fragment {
 			imageView.setImageResource(R.drawable.nobody_no);
 		}
 
+		// On klick Listener damit Kundenprofil geöffnet wird
 		imageView.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
+					// wenn Freischaltung dann öffnen 
 					Boolean isFreigeschalten = getActivity().getSharedPreferences(Login.PREF_TAG,
 							Context.MODE_PRIVATE).getBoolean(Login.LOGIN_FREIGESCHALTEN, false);
 					if (isFreigeschalten) {
@@ -140,8 +136,7 @@ public class NavigationDrawerFragment extends Fragment {
 					}
 				}
 			});
-		mDrawerListView = (ExpandableListView) layout
-				.findViewById(R.id.nav_list);
+		mDrawerListView = (ExpandableListView) layout.findViewById(R.id.nav_list);
 		/*
 		 * mDrawerListView .setOnItemClickListener(new
 		 * AdapterView.OnItemClickListener() {
@@ -374,7 +369,6 @@ public class NavigationDrawerFragment extends Fragment {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return false;
 		}
-
 		if (item.getItemId() == R.id.logout) {
 			return false;
 		}

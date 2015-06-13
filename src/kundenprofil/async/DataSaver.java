@@ -3,11 +3,8 @@ package kundenprofil.async;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import kundenprofil.KundenProfil;
-
 import login_register.Login;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
@@ -20,7 +17,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import utils.Utils;
 import android.os.AsyncTask;
 import android.util.Log;

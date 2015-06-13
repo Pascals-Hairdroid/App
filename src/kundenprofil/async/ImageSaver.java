@@ -44,30 +44,25 @@ public class ImageSaver extends AsyncTask<String, Integer, JSONObject> {
 		this.sessionId = sessionId;
 	}
 
-	// run shit in background
+	// run in background
 	@Override
 	protected JSONObject doInBackground(String... params) {
 		try {
 			HttpParams httpParams = new BasicHttpParams();
-			httpParams.setParameter(CoreProtocolPNames.PROTOCOL_VERSION,
-					HttpVersion.HTTP_1_1);
+			httpParams.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 			HttpClient mHttpClient = new DefaultHttpClient(httpParams);
 
-			HttpPost httppost = new HttpPost(
-					"http://www.pascals.at/v2/PHD_DBA/DBA.php?f=kundeUpdaten");
+			HttpPost httppost = new HttpPost("http://www.pascals.at/v2/PHD_DBA/DBA.php?f=kundeUpdaten");
 			// HttpPost httppost = new
 			// HttpPost("http://www.pascals.at/v2/PHD_DBA/logout.php");
 
-			MultipartEntity multipartEntity = new MultipartEntity(
-					HttpMultipartMode.BROWSER_COMPATIBLE);
+			MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
 			multipartEntity.addPart("sessionId", new StringBody(sessionId));
-			multipartEntity.addPart("foto",
-					new FileBody(new File(kundenProfil.getFilesDir()
-							+ "/myImage.jpg")));
+			multipartEntity.addPart("foto",new FileBody(new File(kundenProfil.getFilesDir()+ "/myImage.jpg")));
 			httppost.setEntity(multipartEntity);
 			HttpResponse httpResponse = mHttpClient.execute(httppost);
 			String s = EntityUtils.toString(httpResponse.getEntity());
-			Log.d("test", s);
+//			Log.d("test", s);
 			return new JSONObject(s);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();

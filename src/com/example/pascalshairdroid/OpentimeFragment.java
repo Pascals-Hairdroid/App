@@ -16,6 +16,8 @@ public class OpentimeFragment extends Fragment {
 		public OpentimeFragment() {
 			// TODO Auto-generated constructor stub
 		}
+		// layout Fragment finden
+		// neuen view initialisieren
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {

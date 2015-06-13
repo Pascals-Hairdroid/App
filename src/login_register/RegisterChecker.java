@@ -33,7 +33,7 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 		this.regi = reg;
 	}
 
-	// run shit in background 
+	// run in background 
 	@Override
 	protected JSONObject doInBackground(String... params) //String... = String array damit ich aufruf doinBackground("sfsdf","sdfd","sdfsd") 
 	{
@@ -49,7 +49,6 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 			nameValuePairs.add(new BasicNameValuePair("telnr", params[5]));
 			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
-			
 			username = params[4];
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
 			String s =EntityUtils.toString(httpResponse.getEntity());

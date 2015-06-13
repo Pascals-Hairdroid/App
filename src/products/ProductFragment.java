@@ -22,7 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class ProductFragment extends Fragment {
 	private String name;
 	private int id;
-	private static final String ARG_SECTION_NUMBER = "section_number";
+//	private static final String ARG_SECTION_NUMBER = "section_number";
 
 	public ProductFragment(String name, int id) 
 	{
@@ -30,6 +30,9 @@ public class ProductFragment extends Fragment {
 		this.id = id;
 	}
 
+	// layout Fragment finden
+	// Webview finden
+	// neuen view initialisieren
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -43,7 +46,9 @@ public class ProductFragment extends Fragment {
 				return false;
 			}
 		});
-
+		
+		// Überprüfung ob Internet vorhanden 
+		// Wenn keine Internet verbindung HTML Seite no Internet Connection anzeigen 
 		if (Utils.isInternetAvailable(getActivity())) {
 			if (id == 0) {
 				view.loadUrl("http://pascals.at/v2/Seiten/Produkte.php?web=1&Kat=farbe");

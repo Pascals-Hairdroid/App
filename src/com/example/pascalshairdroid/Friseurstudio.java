@@ -29,13 +29,11 @@ import android.widget.Toast;
 
 public class Friseurstudio extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
-
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
 	 * navigation drawer.
 	 */
 	private NavigationDrawerFragment mNavigationDrawerFragment;
-
 	/**
 	 * Used to store the last screen title. For use in
 	 * {@link #restoreActionBar()}.
@@ -89,10 +87,11 @@ public class Friseurstudio extends Activity implements
 		mNavigationDrawerFragment.reloadImage();
 	}
 
+	// wechselt die einzelnen Fragmente 
 	@Override
 	public void onNavigationDrawerItemSelected(int position, int childPosition) {
 		// update the main content by replacing fragments
-
+		// Überprüft ob Freischaltung gegenben für Termineintragen
 		Boolean isFreigeschalten = getSharedPreferences(Login.PREF_TAG,
 				MODE_PRIVATE).getBoolean(Login.LOGIN_FREIGESCHALTEN, false);
 		List<Integer> integers = Arrays.asList(new Integer[] { 2 });
@@ -100,7 +99,7 @@ public class Friseurstudio extends Activity implements
 			Toast.makeText(this, "Sie sind nicht freigeschaltet!", Toast.LENGTH_LONG).show();
 			return;
 		}
-
+		// addToBackStack ist reihenfolge für Zurück Taste
 		FragmentManager fragmentManager = getFragmentManager();
 		switch (position) {
 		case 5:
@@ -124,7 +123,6 @@ public class Friseurstudio extends Activity implements
 								new ProductFragment("Pflegen", 1))
 						.addToBackStack("3").commit();
 				break;
-
 			}
 			break;
 		case 3:

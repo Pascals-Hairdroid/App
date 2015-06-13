@@ -28,11 +28,12 @@ public class TeamListFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_teamlist, container,
 				false);
 		
-		// listview befüllen
+		// listview finden
 		ListView listView = (ListView)rootView.findViewById(R.id.listView1);
 		// auf listview den Adapter setzen 
 		listView.setAdapter(new TeamListAdapter(getActivity(), R.layout.listview_teamlist_layout, getActivity().getResources().getStringArray(R.array.teamlist)));
 		
+		// on click auf listview anwenden
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,

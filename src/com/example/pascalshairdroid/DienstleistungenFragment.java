@@ -18,6 +18,11 @@ public class DienstleistungenFragment extends Fragment {
 		public DienstleistungenFragment() {
 			// TODO Auto-generated constructor stub
 		}
+		// layout Fragment finden
+		// Webview finden
+		// neuen view initialisieren
+		
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -31,6 +36,8 @@ public class DienstleistungenFragment extends Fragment {
 					return false;
 				}
 			});
+			// Überprüfung ob Internet vorhanden 
+			// Wenn keine Internet verbindung HTML Seite no Internet Connection anzeigen 
 			if (Utils.isInternetAvailable(getActivity())) {
 				view.loadUrl("http://pascals.at/v2/Seiten/dienstleistung.php?web=1");
 			} else {

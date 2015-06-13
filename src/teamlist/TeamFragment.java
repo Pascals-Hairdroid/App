@@ -5,7 +5,6 @@ import utils.Utils;
 import com.example.pascalshairdroid.R;
 import com.example.pascalshairdroid.R.id;
 import com.example.pascalshairdroid.R.layout;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -14,13 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class TeamFragment extends Fragment {
 	private String name;
 	private int id;
-	private static final String ARG_SECTION_NUMBER = "section_number";
+//	private static final String ARG_SECTION_NUMBER = "section_number";
 
 	public TeamFragment(String name, int id) 
 	{
@@ -34,9 +31,13 @@ public class TeamFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		// layout Fragment finden
 		View rootView = inflater.inflate(R.layout.fragment_team, container,
 				false);
+		// Webview finden
 		WebView view = (WebView) rootView.findViewById(R.id.team_webview);
+		// neuen view initialisieren
 		view.setWebViewClient(new WebViewClient() {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -45,7 +46,9 @@ public class TeamFragment extends Fragment {
 			}
 		});
 
+		// Überprüfung ob Internet vorhanden 
 		if (Utils.isInternetAvailable(getActivity())) {
+			// aufzählung im Listview
 			if (id == 0) {
 				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=1713270187&web=1"
 						+ this.id);
@@ -58,6 +61,7 @@ public class TeamFragment extends Fragment {
 				view.loadUrl("http://www.pascals.at/v2/Seiten/Profil.php?SVNr=3071240769&web=1"
 						+ this.id);
 			}
+			// Wenn keine Internet verbindung HTML Seite no Internet Connection anzeigen 
 		} else {
 			view.loadData("<html><head><style>body{background-color:lightgray;margin-top:25%;}h2{color:orange;text-align:center;Font-Family:Calibri;}</style><title></title></head><body><h2>Es konnte keine Internetverbindung hergestellt werden!</h2></body></html>", "text/html", "UTF-8");
 		}

@@ -16,11 +16,7 @@ import android.widget.TextView;
 public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 
 	public ArrayList<String> groupItem, tempChild;
-	public HashMap<Integer, ArrayList<String>> childItem = new HashMap<Integer, ArrayList<String>>(); // in
-																										// hashmap
-																										// ist
-																										// eine
-																										// Arraylist
+	public HashMap<Integer, ArrayList<String>> childItem = new HashMap<Integer, ArrayList<String>>(); // in hashmpa ist eine Arraylist
 	public LayoutInflater minflater;
 	public ExpandableListView expandableListView;
 	private final Context context;

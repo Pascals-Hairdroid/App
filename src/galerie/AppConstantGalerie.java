@@ -10,10 +10,11 @@ public class AppConstantGalerie {
 
 	// Number of columns of Grid View
 	public static final int NUM_OF_COLUMNS = 2;
-
+	
 	// Gridview image padding
 	public static final int GRID_PADDING = 8; // in dp
 
+	//ArrayList an bilder die in der Galerie angezeigt werden
 	public static final ArrayList<Integer> images = new ArrayList<Integer>(
 			Arrays.asList(new Integer[] { R.drawable.galerie1,
 					R.drawable.galerie2,R.drawable.galerie3,R.drawable.galerie4,R.drawable.galerie5,R.drawable.galerie6,R.drawable.galerie7,

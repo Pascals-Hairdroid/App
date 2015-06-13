@@ -54,7 +54,7 @@ public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONOb
 			httpPost.setEntity(new UrlEncodedFormEntity(params[0]));
 			HttpResponse httpResponse = client.execute(httpPost);
 			String s = EntityUtils.toString(httpResponse.getEntity());
-			Log.d("test", s);
+//			Log.d("test", s);
 			return new JSONObject(s);
 
 		} catch (ClientProtocolException e) {

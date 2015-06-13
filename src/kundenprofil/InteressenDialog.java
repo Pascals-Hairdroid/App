@@ -26,8 +26,7 @@ public class InteressenDialog extends DialogFragment {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle("Interessen wählen");
 		// String Array mit den Interessen befüllen die im String.xml stehen
-		String[] interessen = getActivity().getResources().getStringArray(
-				R.array.interessen);
+		String[] interessen = getActivity().getResources().getStringArray(R.array.interessen);
 		// Die Interessen auswählen die der Kunde bereits hat aus Preferences
 		Set<String> myInteressen = getActivity().getSharedPreferences(
 				Login.PREF_TAG, Context.MODE_PRIVATE).getStringSet(
@@ -40,7 +39,6 @@ public class InteressenDialog extends DialogFragment {
 		boolean[] checked = new boolean[interessen.length];
 		for (int i = 0; i < interessen.length; i++) {
 			 System.out.println(interessen[i]);
-			 
 			// System.out.println(
 			// Boolean.toString(myInteressen.contains(interessen[i])));
 			checked[i] = myInteressen.contains(interessen[i]);
@@ -68,6 +66,7 @@ public class InteressenDialog extends DialogFragment {
 					}
 				});
 
+		// ok und Abbrechen Button mit ClickListener
 		builder.setPositiveButton(R.string.Ok,
 				new DialogInterface.OnClickListener() {
 

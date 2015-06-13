@@ -71,9 +71,9 @@ public class Login extends Activity {
 		
 		SharedPreferences preferences = this.getSharedPreferences(PREF_TAG,
 				MODE_PRIVATE); // lade shared pref db
+		
 		// wenn die Session in der DB gespeichert dann überspringe login vorgang
 		// und wechsle sofort in friseurstudio class
-		
 		if (preferences.contains(LOGIN_SESSION_ID) && !getIntent().hasExtra("logout")) {
 			startActivity(new Intent(Login.this, Friseurstudio.class));
 			finish();
@@ -87,7 +87,6 @@ public class Login extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.login, menu);
-
 		return true;
 	}
 
@@ -124,8 +123,7 @@ public class Login extends Activity {
 					String password = ((EditText) findViewById(R.id.password))
 							.getText().toString();
 
-					// hintergrund prozess starten, url ersetzten durch (König)
-
+					// hintergrund prozess starten
 					checker.execute(
 							"http://www.pascals.at/v2/PHD_DBA/login.php",
 							email, password);
@@ -149,17 +147,15 @@ public class Login extends Activity {
 
 			} else {
 
-				// wenn error gesetzt ist dann hol error aus json und zeig ihn
-				// an
+				// wenn error gesetzt ist dann hol error aus json und zeig ihn an
 				if (j.has("errc")) {
 					Toast.makeText(this, j.getString("viewmsg"),
 							Toast.LENGTH_LONG).show();
 				} else {
 					// wenn alles ok dann
-					String sessionId = j.getString("sessionId"); // session id
-																	// aus Json
-																	// holen
-					JSONObject kunde = j.getJSONObject("kunde");
+					String sessionId = j.getString("sessionId"); // session id aus JSON holen
+					JSONObject kunde = j.getJSONObject("kunde"); // Kunde aus JSOn holen
+					
 					HashSet<String> interessen = new HashSet<String>();
 					for (int index = 0; index < kunde
 							.getJSONArray("interessen").length(); index++) {
@@ -167,10 +163,10 @@ public class Login extends Activity {
 								.getJSONObject(index).getString("bezeichnung"));
 					}
 
-					// für Kundenprofil die gespeicherten Daten in die
-					// Preferences schreiben
+					// für Kundenprofil die gespeicherten Daten in die Preferences schreiben
 					SharedPreferences preferences = this.getSharedPreferences(
 							PREF_TAG, MODE_PRIVATE); // lade shared pref db
+					
 					// öffne db zum bearbeiten (edit()), speicher session id ,
 					// speichere username, sichere db
 					long lastImgUpdate = preferences.getLong(LOGIN_LAST_IMAGE_UPDATE, 0);
@@ -197,7 +193,6 @@ public class Login extends Activity {
 							File f = new File(getFilesDir() + "/myImage.jpg");
 							f.delete();
 						}
-						
 						ImageDownloader downloader = new ImageDownloader(preferences.getString(LOGIN_IMAGE_URL, "abc"), this);
 						downloader.execute();
 					}

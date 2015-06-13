@@ -17,6 +17,12 @@ public class DasStudioFragment extends Fragment {
 		public DasStudioFragment() {
 			// TODO Auto-generated constructor stub
 		}
+		
+		// layout Fragment finden
+		// Webview finden
+		// neuen view initialisieren
+		
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -31,6 +37,8 @@ public class DasStudioFragment extends Fragment {
 				}
 			});
 			
+			// Überprüfung ob Internet vorhanden 
+			// Wenn keine Internet verbindung HTML Seite no Internet Connection anzeigen 
 			if (Utils.isInternetAvailable(getActivity())) {
 				view.loadUrl("http://pascals.at/v2/Seiten/studio.php?web=1");
 			} else {

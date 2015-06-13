@@ -35,9 +35,11 @@ public class GalerieFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+		// Layout finden
 		relativeLayout = (RelativeLayout) inflater.inflate(
 				R.layout.activity_grid_view, container, false);
 
+		// passenden Gridview 
 		gridView = (GridView) relativeLayout.findViewById(R.id.grid_view);
 
 		utils = new Utils(getActivity());

@@ -18,7 +18,7 @@ public class Utils {
 	
 	    private Context _context;
 	 
-// constructor
+	    // constructor
 	    public Utils(Context context) {
 	        this._context = context;
 	    }

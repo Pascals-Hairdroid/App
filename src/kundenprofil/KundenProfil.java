@@ -74,7 +74,8 @@ public class KundenProfil extends Activity {
 	public static final int PICK_FROM_CAMERA = 1;
 	public static final int PICK_FROM_FILE = 2;
 
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_kunden_profil);
@@ -165,7 +166,6 @@ public class KundenProfil extends Activity {
 						}
 					}
 				});
-
 		Dialog dialog = builder.create();
 		dialog.show();
 
@@ -183,6 +183,7 @@ public class KundenProfil extends Activity {
 		return true;
 	}
 
+	// Zurück und Speichern Button
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -251,7 +252,6 @@ public class KundenProfil extends Activity {
 				dataSaver.execute(nameValuePairs);
 			}
 		}
-
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -289,7 +289,7 @@ public class KundenProfil extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode != RESULT_OK) {
-			System.out.println("not returning RESULT_OK");
+//			System.out.println("not returning RESULT_OK");
 			return;
 		}
 		switch (requestCode) {
