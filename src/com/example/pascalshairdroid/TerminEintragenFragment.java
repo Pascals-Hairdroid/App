@@ -52,7 +52,7 @@ public class TerminEintragenFragment extends Fragment {
 
 			
 			// Zoomen des Webviews
-			view.setInitialScale(165);
+//			view.setInitialScale(175);
 			view.getSettings().setLoadWithOverviewMode(true);
 			view.getSettings().setUseWideViewPort(true);
 			view.getSettings().setBuiltInZoomControls(true);
