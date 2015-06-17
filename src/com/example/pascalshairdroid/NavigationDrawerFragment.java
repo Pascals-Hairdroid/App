@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import utils.PrefUtils;
 import kundenprofil.KundenProfil;
 import login_register.Login;
 import android.app.Activity;
@@ -124,8 +126,7 @@ public class NavigationDrawerFragment extends Fragment {
 				@Override
 				public void onClick(View v) {
 					// wenn Freischaltung dann öffnen 
-					Boolean isFreigeschalten = getActivity().getSharedPreferences(Login.PREF_TAG,
-							Context.MODE_PRIVATE).getBoolean(Login.LOGIN_FREIGESCHALTEN, false);
+					Boolean isFreigeschalten =  PrefUtils.getPreferences(getActivity(), Login.PREF_TAG).getBoolean(Login.LOGIN_FREIGESCHALTEN, false);
 					if (isFreigeschalten) {
 					Intent intent = new Intent(getActivity(),
 							KundenProfil.class);

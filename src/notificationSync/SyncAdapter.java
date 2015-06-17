@@ -23,6 +23,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import utils.PrefUtils;
+
 import com.example.pascalshairdroid.R;
 
 import android.accounts.Account;
@@ -36,6 +38,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.SyncResult;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -76,7 +79,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 			boolean success = insert(j.getJSONArray("werbungen"));
 			Log.i(TAG, "insertion: " + (success ? "OK" : "FAIL"));
 			Log.d(TAG, "LastSync: " + j.getLong(LASTSYNC));
-			getContext().getSharedPreferences(Login.PREF_TAG, Context.MODE_PRIVATE)
+			PrefUtils.getPreferences(getContext(), Login.PREF_TAG)
 					.edit().putLong(LASTSYNC, j.getLong(LASTSYNC)).commit();
 			ArrayList<Notification> notifications = doNotifications();
 			Log.i(TAG, (notifications!=null?notifications.size():0) + " new Notifications.");
@@ -89,13 +92,12 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
 	private JSONObject doSync() {
 
+		
+		SharedPreferences sp = PrefUtils.getPreferences(getContext(), Login.PREF_TAG);
 		// Daten aus shared Preferences holen, aber wie???
-		long date = getContext().getSharedPreferences(Login.PREF_TAG,
-				Context.MODE_PRIVATE).getLong(LASTSYNC, 0);
+		long date = sp.getLong(LASTSYNC, 0);
 
-		Set<String> myInteressen = getContext().getSharedPreferences(Login.PREF_TAG,
-				Context.MODE_PRIVATE)
-				.getStringSet(Login.LOGIN_INTERESSEN, null);
+		Set<String> myInteressen = sp.getStringSet(Login.LOGIN_INTERESSEN, null);
 		String[] allInteressen = getContext().getResources().getStringArray(R.array.interessen);
 		String[] allInteressenIds = getContext().getResources().getStringArray(R.array.interessen_ids);
 		String[] interessen = null;

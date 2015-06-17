@@ -8,6 +8,7 @@ import org.apache.http.message.BasicNameValuePair;
 import kundenprofil.async.DataReloader;
 import products.ProductFragment;
 import teamlist.TeamListFragment;
+import utils.PrefUtils;
 import login_register.Login;
 import login_register.LogoutTask;
 import galerie.GalerieFragment;
@@ -70,7 +71,7 @@ public class Friseurstudio extends Activity implements
 		 */
 		
 		// Damit bei Internetverbindung die Daten immer aktualsiert werden
-			String sessionId = getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE)
+			String sessionId = PrefUtils.getPreferences(this, Login.PREF_TAG)
 					.getString(Login.LOGIN_SESSION_ID, "");
 			DataReloader dataReloader = new DataReloader(this,sessionId);
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -92,8 +93,7 @@ public class Friseurstudio extends Activity implements
 	public void onNavigationDrawerItemSelected(int position, int childPosition) {
 		// update the main content by replacing fragments
 		// Überprüft ob Freischaltung gegenben für Termineintragen
-		Boolean isFreigeschalten = getSharedPreferences(Login.PREF_TAG,
-				MODE_PRIVATE).getBoolean(Login.LOGIN_FREIGESCHALTEN, false);
+		Boolean isFreigeschalten =  PrefUtils.getPreferences(this, Login.PREF_TAG).getBoolean(Login.LOGIN_FREIGESCHALTEN, false);
 		List<Integer> integers = Arrays.asList(new Integer[] { 2 });
 		if (!isFreigeschalten && integers.contains(Integer.valueOf(position))) {
 			Toast.makeText(this, "Sie sind nicht freigeschaltet!", Toast.LENGTH_LONG).show();
@@ -214,8 +214,7 @@ public class Friseurstudio extends Activity implements
 		switch (id) {
 		case R.id.logout:
 			// Shared Preferences holen
-			SharedPreferences sharedPreferences = getSharedPreferences(
-					Login.PREF_TAG, Context.MODE_PRIVATE);
+			SharedPreferences sharedPreferences =  PrefUtils.getPreferences(this, Login.PREF_TAG);
 			// Session id und Username löschen
 			LogoutTask logoutTask = new LogoutTask();
 			logoutTask.execute("http://www.pascals.at/v2/PHD_DBA/login.php",

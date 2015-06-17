@@ -12,6 +12,7 @@ import notificationSync.SyncConstants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import utils.PrefUtils;
 import utils.Utils;
 
 import com.example.pascalshairdroid.Friseurstudio;
@@ -69,8 +70,7 @@ public class Login extends Activity {
 		}
 		Log.i("notificationSync", "Fertig.");
 		
-		SharedPreferences preferences = this.getSharedPreferences(PREF_TAG,
-				MODE_PRIVATE); // lade shared pref db
+		SharedPreferences preferences = PrefUtils.getPreferences(this, Login.PREF_TAG); // lade shared pref db
 		
 		// wenn die Session in der DB gespeichert dann überspringe login vorgang
 		// und wechsle sofort in friseurstudio class
@@ -164,8 +164,7 @@ public class Login extends Activity {
 					}
 
 					// für Kundenprofil die gespeicherten Daten in die Preferences schreiben
-					SharedPreferences preferences = this.getSharedPreferences(
-							PREF_TAG, MODE_PRIVATE); // lade shared pref db
+					SharedPreferences preferences = PrefUtils.getPreferences(this, Login.PREF_TAG); // lade shared pref db
 					
 					// öffne db zum bearbeiten (edit()), speicher session id ,
 					// speichere username, sichere db
