@@ -23,6 +23,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import utils.PrefUtils;
 import utils.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -87,8 +88,7 @@ public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONOb
 
 			// für Kundenprofil die gespeicherten Daten in die
 			// Preferences schreiben
-			SharedPreferences preferences = context.getSharedPreferences(
-					Login.PREF_TAG, Context.MODE_PRIVATE); // lade shared pref
+			SharedPreferences preferences =  PrefUtils.getPreferences(context, Login.PREF_TAG); // lade shared pref
 															// db
 			// öffne db zum bearbeiten (edit()), speicher session id ,
 			// speichere username, sichere db

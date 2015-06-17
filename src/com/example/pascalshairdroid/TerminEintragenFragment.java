@@ -1,6 +1,7 @@
 package com.example.pascalshairdroid;
 
 
+import utils.PrefUtils;
 import utils.Utils;
 import login_register.Login;
 import android.app.Fragment;
@@ -35,7 +36,7 @@ public class TerminEintragenFragment extends Fragment {
 				Bundle savedInstanceState) {
 			
 			// Cookies merken damit nicht neu einloggen bei Termineintragen	
-			SharedPreferences preferences = getActivity().getSharedPreferences(Login.PREF_TAG, Context.MODE_PRIVATE);
+			SharedPreferences preferences = PrefUtils.getPreferences(getActivity(), Login.PREF_TAG);
 			String sessionID = preferences.getString(Login.LOGIN_SESSION_ID, null);
 			CookieManager cookieManager = CookieManager.getInstance();
 			cookieManager.removeAllCookie();

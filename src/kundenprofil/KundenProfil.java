@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import kundenprofil.async.DataSaver;
 import kundenprofil.async.ImageSaver;
 
+import utils.PrefUtils;
 import utils.Utils;
 
 import login_register.Login;
@@ -80,7 +81,7 @@ public class KundenProfil extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_kunden_profil);
 
-		sessionId = getSharedPreferences(Login.PREF_TAG, MODE_PRIVATE)
+		sessionId = PrefUtils.getPreferences(this, Login.PREF_TAG)
 				.getString(Login.LOGIN_SESSION_ID, "");
 		// Textfelder finden
 		vor = (EditText) findViewById(R.id.vorname);
@@ -102,8 +103,7 @@ public class KundenProfil extends Activity {
 		}
 
 		// SharedPreferences instanzieren und von Login die Prev Tags bekommen
-		SharedPreferences sharedPreferences = getSharedPreferences(
-				Login.PREF_TAG, Context.MODE_PRIVATE);
+		SharedPreferences sharedPreferences =PrefUtils.getPreferences(this, Login.PREF_TAG);
 
 		// text von den Preferences in die Textfelder schreiben
 		vor.setText(sharedPreferences.getString(Login.LOGIN_VORNAME, ""));
@@ -230,8 +230,7 @@ public class KundenProfil extends Activity {
 							.MD5(pw.getText().toString())));
 				}
 
-				SharedPreferences preferences = this.getSharedPreferences(
-						Login.PREF_TAG, MODE_PRIVATE);
+				SharedPreferences preferences = PrefUtils.getPreferences(this, Login.PREF_TAG);
 				preferences
 						.edit()
 						.putString(Login.LOGIN_VORNAME,

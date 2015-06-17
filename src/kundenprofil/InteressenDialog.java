@@ -3,6 +3,8 @@ package kundenprofil;
 import java.util.HashSet;
 import java.util.Set;
 
+import utils.PrefUtils;
+
 import login_register.Login;
 
 import com.example.pascalshairdroid.R;
@@ -28,8 +30,7 @@ public class InteressenDialog extends DialogFragment {
 		// String Array mit den Interessen befüllen die im String.xml stehen
 		String[] interessen = getActivity().getResources().getStringArray(R.array.interessen);
 		// Die Interessen auswählen die der Kunde bereits hat aus Preferences
-		Set<String> myInteressen = getActivity().getSharedPreferences(
-				Login.PREF_TAG, Context.MODE_PRIVATE).getStringSet(
+		Set<String> myInteressen = PrefUtils.getPreferences(getActivity(), Login.PREF_TAG).getStringSet(
 				Login.LOGIN_INTERESSEN, new HashSet<String>());
 		((KundenProfil) getActivity()).setTempInteressen(myInteressen);
 		System.out.println(myInteressen);

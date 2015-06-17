@@ -27,6 +27,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import utils.PrefUtils;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -84,9 +86,7 @@ public class ImageSaver extends AsyncTask<String, Integer, JSONObject> {
 				if (result.has("errc")) {
 					Toast.makeText(kundenProfil, result.getString("viewmsg"),Toast.LENGTH_LONG).show();
 				} else {
-					SharedPreferences preferences = kundenProfil
-							.getSharedPreferences(Login.PREF_TAG,
-									Context.MODE_PRIVATE);
+					SharedPreferences preferences = PrefUtils.getPreferences(kundenProfil, Login.PREF_TAG);
 					preferences
 							.edit()
 							.putLong(Login.LOGIN_LAST_IMAGE_UPDATE,

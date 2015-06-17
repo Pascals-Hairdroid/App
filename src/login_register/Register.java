@@ -4,6 +4,8 @@ import java.util.HashSet;
 import kundenprofil.KundenProfil;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import utils.PrefUtils;
 import utils.Utils;
 import com.example.pascalshairdroid.Friseurstudio;
 import com.example.pascalshairdroid.R;
@@ -121,9 +123,7 @@ public class Register extends Activity {
 									.getJSONObject(index)
 									.getString("bezeichnung"));
 						}
-						SharedPreferences preferences = this
-								.getSharedPreferences(Login.PREF_TAG,
-										MODE_PRIVATE); // lade shared pref db
+						SharedPreferences preferences = PrefUtils.getPreferences(this, Login.PREF_TAG); // lade shared pref db
 						// öffne db zum bearbeiten (edit()), speicher session id
 						// , speichere username, sichere db
 						preferences
