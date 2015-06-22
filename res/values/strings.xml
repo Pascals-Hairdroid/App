@@ -62,7 +62,7 @@
 
     <!-- Auswahl der Teammitglieder -->
     <string-array name="teamlist">
-        <item>Pascal </item>
+        <item>Pascal</item>
         <item>Mathias</item>
         <item>Boris</item>
     </string-array>

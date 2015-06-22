@@ -40,8 +40,6 @@ public class InteressenDialog extends DialogFragment {
 		boolean[] checked = new boolean[interessen.length];
 		for (int i = 0; i < interessen.length; i++) {
 			 System.out.println(interessen[i]);
-			// System.out.println(
-			// Boolean.toString(myInteressen.contains(interessen[i])));
 			checked[i] = myInteressen.contains(interessen[i]);
 		}
 
@@ -52,37 +50,21 @@ public class InteressenDialog extends DialogFragment {
 					public void onClick(DialogInterface dialog, int which,
 							boolean isChecked) {
 						if (isChecked) {
+							//wenn das element auf gecheckt gesetzt wird soll es in der getTempInteressen() ArrayList eintragen
 							((KundenProfil) getActivity())
 									.getTempInteressen()
 									.add(getActivity().getResources()
 											.getStringArray(R.array.interessen)[which]);
 
-						} else {
+						} else {							
+							//wenn das element auf nicht gecheckt gesetzt wird soll es aus der getTempInteressen() ArrayList gelöscht werden
 							((KundenProfil) getActivity())
 							.getTempInteressen()
 							.remove(getActivity().getResources()
 									.getStringArray(R.array.interessen)[which]);
 						}
+						//INTERESSEN_CHANGED setzen damit bei der save aktion die interessen mit geschickt werden
 						((KundenProfil) getActivity()).setChanged(KundenProfil.INTERESSEN_CHANGED);
-					}
-				});
-
-		// ok und Abbrechen Button mit ClickListener
-		builder.setPositiveButton(R.string.Ok,
-				new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-
-					}
-				});
-
-		builder.setNegativeButton(R.string.Abbrechen,
-				new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-
 					}
 				});
 

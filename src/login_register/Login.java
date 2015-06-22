@@ -156,9 +156,11 @@ public class Login extends Activity {
 					String sessionId = j.getString("sessionId"); // session id aus JSON holen
 					JSONObject kunde = j.getJSONObject("kunde"); // Kunde aus JSOn holen
 					
+					//die interessen sollen in ein HashSet geladen werden weil ein HashSet in den Sp gespeichert werden kann
 					HashSet<String> interessen = new HashSet<String>();
 					for (int index = 0; index < kunde
 							.getJSONArray("interessen").length(); index++) {
+						//jedes element in den json array interessen in das hashSet übertragen
 						interessen.add(kunde.getJSONArray("interessen")
 								.getJSONObject(index).getString("bezeichnung"));
 					}
@@ -189,9 +191,11 @@ public class Login extends Activity {
 					boolean sameUser = lastImagePath.equals(preferences.getString(LOGIN_IMAGE_URL, "abc")) ;
 					if(lastImgUpdate <  preferences.getLong(LOGIN_LAST_IMAGE_UPDATE, 0) || !sameUser){
 						if(!sameUser){
+							//falls neuer user altes bild löschen
 							File f = new File(getFilesDir() + "/myImage.jpg");
 							f.delete();
 						}
+						//neues bild downloaden
 						ImageDownloader downloader = new ImageDownloader(preferences.getString(LOGIN_IMAGE_URL, "abc"), this);
 						downloader.execute();
 					}
@@ -206,6 +210,11 @@ public class Login extends Activity {
 		}
 	}
 	
+	/**
+	 * Olis schit
+	 * @param context
+	 * @return
+	 */
 	public static Account CreateSyncAccount(Context context) {
         // Create the account type and default account
         Account newAccount = new Account(

@@ -1,12 +1,8 @@
 package kundenprofil.async;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-
-import kundenprofil.KundenProfil;
 
 import login_register.Login;
 
@@ -18,18 +14,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import utils.PrefUtils;
-import utils.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 
 public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONObject> 
 {
@@ -94,9 +86,6 @@ public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONOb
 			// speichere username, sichere db
 			long lastImgUpdate = preferences.getLong(
 					Login.LOGIN_LAST_IMAGE_UPDATE, 0);
-			String lastImagePath = preferences.getString(Login.LOGIN_IMAGE_URL,
-					"");
-			Log.d("asdf", "jkl");
 			preferences
 					.edit()
 					.putString(Login.LOGIN_SESSION_ID, sessionId)

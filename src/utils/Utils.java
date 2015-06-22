@@ -115,7 +115,12 @@ public class Utils {
 		return BitmapFactory.decodeFile(cursor.getString(column_index));
 	}
 
-	//
+	/**
+	 * datei path aus einer URI extrahieren. ruft methoden auf je nach api level von derzeitugem gerät
+	 * @param context
+	 * @param contentUri
+	 * @return
+	 */
 	public static Bitmap getRealPathFromURI(Context context, Uri contentUri) {
 		Bitmap realPath;
 		if (Build.VERSION.SDK_INT < 11) {
@@ -134,17 +139,21 @@ public class Utils {
 
 	// prüft ob Internet connection vorhanden ist 
 	public static boolean isInternetAvailable(Context context) {
+		//NetworkInfo ist eine klasse die funktionenen bereit stellt die aussagen über zB Konnektivität über internet verbingungen beinhalten
 		NetworkInfo info = (NetworkInfo) ((ConnectivityManager) context
 				.getSystemService(Context.CONNECTIVITY_SERVICE))
 				.getActiveNetworkInfo();
 
 		if (info == null) {
+			//wenn info ist null dann sagen es gibt nix internetz
 			return false;
 		} else {
 			if (info.isConnected()) {
+				//wenn info nicht null und info.isConnected() dann sagen es gibt internetz
 				return true;
 			} else {
-				return true;
+				//wenn info nicht null aber nicht isConnected() dann sagen nix internetz
+				return false;
 			}
 		}
 	}

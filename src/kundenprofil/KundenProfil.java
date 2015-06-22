@@ -6,13 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.Stack;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
@@ -25,7 +22,6 @@ import utils.Utils;
 
 import login_register.Login;
 
-import com.example.pascalshairdroid.Friseurstudio;
 import com.example.pascalshairdroid.R;
 
 import android.app.Activity;
@@ -36,32 +32,24 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.MediaStore.Images;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.view.View.OnClickListener;
 
 public class KundenProfil extends Activity {
 
-	private int id;
 	private EditText vor;
 	private EditText nach;
 	private EditText pw;
-	private EditText mail;
 	private EditText tele;
 	private ImageView image;
 	final Context context = this;
@@ -89,6 +77,7 @@ public class KundenProfil extends Activity {
 		pw = (EditText) findViewById(R.id.passwort);
 		tele = (EditText) findViewById(R.id.phoneNr);
 		image = (ImageView) findViewById(R.id.imageView1);
+		//lade kundenprofilbild oder nobody_no bild falls kein profilbild
 		File myImage = new File(getFilesDir(), "myImage.jpg");
 		if (myImage.exists()) {
 			try {
@@ -114,20 +103,20 @@ public class KundenProfil extends Activity {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
+				//wenn der text sich ändert DATA_CHANGED in dem changed Array auf true setzen damit es bei der save aktion auch die textfelder überträgt
 				changed[DATA_CHANGED] = true;
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
 			}
 		};
+		//textWatcher zu den TextViews hinzufügen
 		vor.addTextChangedListener(textWatcher);
 		nach.addTextChangedListener(textWatcher);
 		pw.addTextChangedListener(textWatcher);
@@ -167,10 +156,14 @@ public class KundenProfil extends Activity {
 					}
 				});
 		Dialog dialog = builder.create();
+		//dialog anzeigen
 		dialog.show();
 
 	}
-
+	/**
+	 * setze das InteressenDialog um die auflistung der interessen anzuzeigen
+	 * @param v
+	 */
 	public void showInteressen(View v) {
 		FragmentManager manager = getFragmentManager();
 		InteressenDialog id = new InteressenDialog();
@@ -195,12 +188,15 @@ public class KundenProfil extends Activity {
 			finish();
 			break;
 		case R.id.save:
+			
 			if (changed[IMAGE_CHANGED]) {
+				//wenn IMAGE_CHANGED auf true gesetzt ist dann image an server schicken und lokal speichern
 				try {
 					FileOutputStream fos = openFileOutput("myImage.jpg",
 							MODE_PRIVATE);
 					imageRaw.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 					ImageSaver imageSaver = new ImageSaver(this, sessionId);
+					//Speichertask ausführen
 					imageSaver.execute();
 
 					fos.close();
@@ -212,6 +208,7 @@ public class KundenProfil extends Activity {
 
 			}
 			if (changed[DATA_CHANGED] || changed[INTERESSEN_CHANGED]) {
+				//wenn DATA_CHANGED oder  INTERESSEN_CHANGED auf true gesetzt sind den DataSaver task erstelleun aud aufrufen
 				DataSaver dataSaver = new DataSaver(this);
 
 				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
@@ -224,12 +221,12 @@ public class KundenProfil extends Activity {
 						.getText().toString()));
 				nameValuePairs.add(new BasicNameValuePair("telnr", tele
 						.getText().toString()));
-
+				//wenn das passwort geänder wurde soll auch das neue passwort übertragen werden
 				if (!pw.getText().toString().equals("")) {
 					nameValuePairs.add(new BasicNameValuePair("passwort", Utils
 							.MD5(pw.getText().toString())));
 				}
-
+				//Alle übertagenen daten auch lokal speichern
 				SharedPreferences preferences = PrefUtils.getPreferences(this, Login.PREF_TAG);
 				preferences
 						.edit()
@@ -240,6 +237,7 @@ public class KundenProfil extends Activity {
 						.putString(Login.LOGIN_TELEFON,
 								tele.getText().toString()).commit();
 				if (changed[INTERESSEN_CHANGED]) {
+					//wenn die interessen geändert wurden sollen die interessen mit geschickt werden
 					preferences
 							.edit()
 							.putStringSet(Login.LOGIN_INTERESSEN,
@@ -248,12 +246,18 @@ public class KundenProfil extends Activity {
 					nameValuePairs.addAll(arrayAsNameValuePairs("interessen",
 							interessenToIds(tempInteressen)));
 				}
+				//datasaver task ausführen
 				dataSaver.execute(nameValuePairs);
 			}
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	/**
+	 * konvertiert ein array zu einem http array namevalue pair 
+	 * @param name
+	 * @param values
+	 * @return
+	 */
 	private List<BasicNameValuePair> arrayAsNameValuePairs(String name,
 			String[] values) {
 		List<BasicNameValuePair> basicNameValuePairs = new ArrayList<BasicNameValuePair>();
@@ -263,11 +267,15 @@ public class KundenProfil extends Activity {
 		}
 		return basicNameValuePairs;
 	}
-
+	/**
+	 * interessen von strings (name [text]) zu einem string array mit ids übersetzen
+	 * @param values
+	 * @return
+	 */
 	private String[] interessenToIds(Set<String> values) {
 		String[] allId = getResources().getStringArray(R.array.interessen_ids);
 		for (Iterator iterator = values.iterator(); iterator.hasNext();) {
-			String string = (String) iterator.next();
+			iterator.next();
 		}
 		String[] ids = new String[values.size()];
 		String[] all = getResources().getStringArray(R.array.interessen);
@@ -279,7 +287,10 @@ public class KundenProfil extends Activity {
 		}
 		return ids;
 	}
-
+	/**
+	 * eintrag in dem boolean array changed auf true setzen
+	 * @param type
+	 */
 	public void setChanged(int type) {
 		changed[type] = true;
 	}
@@ -327,7 +338,11 @@ public class KundenProfil extends Activity {
 		}
 		return Bitmap.createScaledBitmap(b, newWidth, newHeight, true);
 	}
-
+	/**
+	 * wird von dem ImageSaver und dem Datasaver aufgerufen. wenn alle einträge in dem changed array wieder auf false gesetzt sind soll die AC beendet werden.
+	 * @param type der index des changed arrays der wieder auf false gesetzt werden soll. siehe: DATA_CHANGED, INTERESSEN_CHANGED, IMAGE_CHANGED 
+	 * @param j
+	 */
 	public void onHttpFin(int type, JSONObject j) {
 		changed[type] = false;
 		boolean waiting = false;
@@ -337,6 +352,7 @@ public class KundenProfil extends Activity {
 			}
 		}
 		if (!waiting) {
+			//exit AC
 			finish();
 		}
 	}

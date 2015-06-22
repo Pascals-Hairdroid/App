@@ -44,7 +44,7 @@ public class TeamListAdapter extends ArrayAdapter<String>{
 
 		// foto an der Postion setzen 
 		foto.setImageResource(images.getResourceId(position, R.drawable.ph1));
-		// 
+		// speicher des TypedArrays wieder freigeben.
 		images.recycle();
 		
 		return convertView;

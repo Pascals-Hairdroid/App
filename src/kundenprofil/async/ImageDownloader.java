@@ -60,7 +60,8 @@ public class ImageDownloader extends AsyncTask<String, Integer, Boolean> {
 	@Override
 	protected void onPostExecute(Boolean result) {
 		Intent intent = new Intent("reloadImage");
+		// informiere alle BC-Listeners das sich das bild geändert hat
 		LocalBroadcastManager.getInstance(c).sendBroadcast(intent);
-		Toast.makeText(c, "done", Toast.LENGTH_LONG).show();
+		//Toast.makeText(c, "done", Toast.LENGTH_LONG).show();
 	}
 }

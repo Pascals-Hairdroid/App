@@ -130,6 +130,7 @@ public class NavigationDrawerFragment extends Fragment {
 					if (isFreigeschalten) {
 					Intent intent = new Intent(getActivity(),
 							KundenProfil.class);
+					//cleared Window History 
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					getActivity().startActivity(intent);
 					}else{
@@ -201,18 +202,21 @@ public class NavigationDrawerFragment extends Fragment {
 		 * getActivity().getResources().getStringArray(R.array
 		 * .navigation_items)));
 		 */
-
+		// Anweisungen an den Adapter 
 		NavigationDrawerAdapter adapter = new NavigationDrawerAdapter(
 				getActivity(), level1, level2);
 		adapter.setInflater(getActivity().getLayoutInflater());
 		adapter.setExpandableListView(mDrawerListView);
 		mDrawerListView.setAdapter(adapter);
+		// indekator auf null setzen um keinen anzuzeigen. indikator wird im Adapter gemanaged
 		mDrawerListView.setGroupIndicator(null);
+		//selektiere die erste position um das home fragment zu laden
 		mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 		return layout;
 	}
 
 	public boolean isDrawerOpen() {
+		// true zurückgeben wenn der  Navigationdrawer geöffnet ist.
 		return mDrawerLayout != null
 				&& mDrawerLayout.isDrawerOpen(mFragmentContainerView);
 	}
@@ -305,17 +309,21 @@ public class NavigationDrawerFragment extends Fragment {
 
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 	}
-
+	/**
+	 *  item auswählen, Navigationdrawer schließen und callback aufrufen (fragment änderen [in FSAC])
+	 * @param goupeposition
+	 * @param childPosition
+	 */
 	private void selectItem(int goupeposition, int childPosition) {
-		// Log.d("adesf", "g:"+goupeposition);
-		// Log.d("sfdf", "c:"+childPosition);
 		mCurrentSelectedPosition = goupeposition;
 		if (mDrawerListView != null) {
 			mDrawerListView.setItemChecked(goupeposition, true);
 		}
+		//drawer schließen
 		if (mDrawerLayout != null && childPosition != -1) {
 			mDrawerLayout.closeDrawer(mFragmentContainerView);
 		}
+		//callback aufrufen
 		if (mCallbacks != null) {
 			mCallbacks.onNavigationDrawerItemSelected(goupeposition,
 					childPosition);
@@ -326,6 +334,7 @@ public class NavigationDrawerFragment extends Fragment {
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		try {
+			//activity in mCallbacks speichern (mit cast zu )
 			mCallbacks = (NavigationDrawerCallbacks) activity;
 		} catch (ClassCastException e) {
 			throw new ClassCastException(
@@ -370,6 +379,7 @@ public class NavigationDrawerFragment extends Fragment {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return false;
 		}
+		//wenn logout angeklickt wird return false
 		if (item.getItemId() == R.id.logout) {
 			return false;
 		}
@@ -393,8 +403,9 @@ public class NavigationDrawerFragment extends Fragment {
 	}
 
 	/**
-	 * Callbacks interface that all activities using this fragment must
-	 * implement.
+	 *Interface welches von allen AC's implementiert werden muss die dieses Fragment verwenden. 
+	 * Die Methode onNavigationDrawerItemSelected wird aufgerufen wenn 
+	 * ein element aus dem ListView/ExpandableListView angeklickt wird
 	 */
 	public static interface NavigationDrawerCallbacks {
 		/**
@@ -404,18 +415,23 @@ public class NavigationDrawerFragment extends Fragment {
 				int childPosition);
 	}
 	
-	// nach Login wird aktuelles ProfilImage geladen
+	/**
+	 * Kundenprofilbild laden und im drawer anzeigen.
+	 */
 	public void reloadImage() 
 	{
+		
 		ImageView imageView = (ImageView) getView().findViewById(R.id.kundenbild);
+		//Kundenprofilbild initialisieren 
 		File myImage = new File(getActivity().getFilesDir(), "myImage.jpg");
 
-		// setze das kunden bild
+		// wenn das bild exestiert bild laden und anzeigen | falls nicht nobody_no Bild anzeigen
 		if (myImage.exists()) {
 			try {
 				imageView.setImageBitmap(BitmapFactory
 						.decodeStream(new FileInputStream(myImage)));
 			} catch (FileNotFoundException e) {
+				//im fehlerfall nobody_no anzeigen
 				imageView.setImageResource(R.drawable.nobody_no);
 			}
 		} else {

@@ -16,8 +16,9 @@ import android.widget.TextView;
 public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 
 	public ArrayList<String> groupItem, tempChild;
-	public HashMap<Integer, ArrayList<String>> childItem = new HashMap<Integer, ArrayList<String>>(); // in hashmpa ist eine Arraylist
-	public LayoutInflater minflater;
+	public HashMap<Integer, ArrayList<String>> childItem = new HashMap<Integer, ArrayList<String>>(); // in hashmap ist eine Arraylist
+	// lädt aus xml ein view object 
+	public LayoutInflater minflater; 
 	public ExpandableListView expandableListView;
 	private final Context context;
 
@@ -48,11 +49,12 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 
 	// diese Methode wird von den ExpandableListView
 	// (fragmen_navigation_drawer.xml) für jedes Submenu (Childmenu) aufgerufen
-	// und sagt ihm die Position und die Anordnung
+	// und sagt ihm die Position und die Anordnung an
 	@Override
 	public View getChildView(int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		tempChild = (ArrayList<String>) childItem.get(groupPosition);
+		// Optimierung für Listview falls ein View geladen ist diesen weiterverwenden, falls nicht neuen laden
 		if (convertView == null) {
 			convertView = minflater.inflate(
 					android.R.layout.simple_list_item_1, parent, false);
@@ -62,7 +64,8 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		convertView.setTag(tempChild.get(childPosition));
 		return convertView;
 	}
-
+	
+	// return wieviele untermenüs für hauptmenü position (groupPosition) 
 	@Override
 	public int getChildrenCount(int groupPosition) {
 		if (childItem.get(groupPosition) != null) {
@@ -77,6 +80,7 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		return null;
 	}
 
+	//Anzahl der Hauptmenüs returnen
 	@Override
 	public int getGroupCount() {
 		return groupItem.size();
@@ -99,12 +103,13 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 
 	// diese Methode wird von den ExpandableListView
 	// (fragmen_navigation_drawer.xml) für jedes Hauptmenu aufgerufen
-	// und sagt ihm die Position und die Anordnung
+	// und sagt ihm die Position und die Anordnung 
+	// Return View des Hauptmenüs
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded,
 			View convertView, ViewGroup parent) {
 		String s = groupItem.get(groupPosition);
-
+		// wenn nicht instanz von R.id.drawer dann neue instanz
 		if (convertView == null || convertView.getId() != R.id.drawer) {
 			convertView = minflater.inflate(R.layout.drawer_row, parent, false);
 		}
@@ -113,7 +118,7 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		// text.setPadding(200, text.getPaddingTop(),
 		// text.getPaddingRight(), text.getPaddingBottom());
 		text.setText(s);
-
+		// wenn das Hauptmenüitem keine submenüs hat das indicator bild auf unsichtbar setzen 
 		if (!childItem.containsKey(groupPosition)) {
 			convertView.findViewById(R.id.indecator).setVisibility(
 					View.INVISIBLE);
@@ -131,6 +136,7 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		}
 		
 		// Home Register von NaviDrawer
+		// Wenn Hauptmenüpunkt den Text Zeichen hat dann setzt indecator bild visible und an bestimmte Pos
 		if (s.equals("Zeichen")) {
 			convertView.setId(-80085);
 			ImageView i = (ImageView) convertView.findViewById(R.id.indecator);
@@ -158,10 +164,11 @@ public class NavigationDrawerAdapter extends BaseExpandableListAdapter {
 		return true;
 	}
 
+	// Getter
 	public ArrayList<String> getGroupItem() {
 		return groupItem;
 	}
-
+	// Getter
 	public HashMap<Integer, ArrayList<String>> getChildtem() {
 		return childItem;
 	}

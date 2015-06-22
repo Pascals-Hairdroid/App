@@ -116,6 +116,7 @@ public class Register extends Activity {
 						// für automatischen Login nach Registrierung
 						String sessionId = j.getString("sessionId"); // session id aus JSOn holen
 						JSONObject kunde = j.getJSONObject("kunde");
+						//siehe -> Login.java
 						HashSet<String> interessen = new HashSet<String>();
 						for (int index = 0; index < kunde.getJSONArray(
 								"interessen").length(); index++) {

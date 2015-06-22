@@ -22,8 +22,11 @@ import utils.Utils;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
-											// <generic typ arguments> 
+/**
+ * Führt einen logout durch/server informieren das user sich ausgelogt hat und die session gelöscht werden kann
+ * @author Thomas
+ *
+ */
 public class LogoutTask extends AsyncTask<String, Integer, JSONObject> {
 	
 	public LogoutTask() {
@@ -42,8 +45,6 @@ public class LogoutTask extends AsyncTask<String, Integer, JSONObject> {
 	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			String s = EntityUtils.toString(httpResponse.getEntity());
-//			Log.d("test",s );
-//			Log.d("param1",params[1]);
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
 			return new JSONObject(s);
 			//return EntityUtils.toString(httpResponse.getEntity()); 

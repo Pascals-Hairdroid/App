@@ -35,10 +35,6 @@ public class Friseurstudio extends Activity implements
 	 * navigation drawer.
 	 */
 	private NavigationDrawerFragment mNavigationDrawerFragment;
-	/**
-	 * Used to store the last screen title. For use in
-	 * {@link #restoreActionBar()}.
-	 */
 	private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -47,18 +43,20 @@ public class Friseurstudio extends Activity implements
 	};
 	private CharSequence mTitle;
 
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		// Broadcast receiver registrieren auf alle BC die "reloadimage" als action haben
 		LocalBroadcastManager.getInstance(this).registerReceiver(
 				mMessageReceiver, new IntentFilter("reloadImage"));
-
+		
 		setContentView(R.layout.activity_home);
-
+		//Fragment Manager initalisieren
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
 
+		// getTitle für ActionBar, damit Fragment Titel angezeigt wird
 		mTitle = getTitle();
 
 		// Set up the drawer.
@@ -74,15 +72,18 @@ public class Friseurstudio extends Activity implements
 			String sessionId = PrefUtils.getPreferences(this, Login.PREF_TAG)
 					.getString(Login.LOGIN_SESSION_ID, "");
 			DataReloader dataReloader = new DataReloader(this,sessionId);
+			// damit SessionID mit Post mitgeschickt werden kann
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 			nameValuePairs.add(new BasicNameValuePair("sessionId",
 					sessionId));
+			//PostRequest schicken
 			dataReloader.execute(nameValuePairs);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+		// Damit FragmentStatus wieder hergestellt wird (damit wenn Activity im Background ist wieder in den Vordergrund kommt )
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
 		mNavigationDrawerFragment.reloadImage();
@@ -184,6 +185,7 @@ public class Friseurstudio extends Activity implements
 	 * 
 	 * } }
 	 */
+	// Titel des Fragments anzeigen 
 	public void restoreActionBar() {
 		ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -217,15 +219,19 @@ public class Friseurstudio extends Activity implements
 			SharedPreferences sharedPreferences =  PrefUtils.getPreferences(this, Login.PREF_TAG);
 			// Session id und Username löschen
 			LogoutTask logoutTask = new LogoutTask();
+			// Logout Task ausführen
 			logoutTask.execute("http://www.pascals.at/v2/PHD_DBA/login.php",
 					sharedPreferences.getString(Login.LOGIN_SESSION_ID, ""));
-
+			//Daten aus SP löschen
 			sharedPreferences.edit().remove(Login.LOGIN_SESSION_ID)
 					.remove(Login.LOGIN_USERNAME).commit();
 			// auf Login Fragment weiterleiten
 			Intent i = new Intent(Friseurstudio.this, Login.class);
-			i.putExtra("logout", "abcder");
+			// Extra Logout setzen damit die Login AC einen Logout ausführt
+			i.putExtra("logout", "false");
+			// Intent starten 
 			startActivity(i);
+			//FSAC beenden
 			finish();
 			break;
 		}
@@ -234,6 +240,7 @@ public class Friseurstudio extends Activity implements
 
 	@Override
 	protected void onDestroy() {
+		// BroadcastManager abmelden
 		LocalBroadcastManager.getInstance(this).unregisterReceiver(
 				mMessageReceiver);
 		super.onDestroy();

@@ -1,31 +1,20 @@
 package galerie;
 
-import galerie.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import com.example.pascalshairdroid.R;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public class GalerieFragment extends Fragment {
 
 	private Utils utils;
-	private ArrayList<String> imagePaths = new ArrayList<String>();
 	private GridViewImageAdapter adapter;
 	private GridView gridView;
 	private int columnWidth;
@@ -58,13 +47,16 @@ public class GalerieFragment extends Fragment {
 	}
 
 	private void InitilizeGridLayout() {
+		
 		Resources r = getResources();
+		//padding berechnen
 		float padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 				AppConstantGalerie.GRID_PADDING, r.getDisplayMetrics());
-
+		//anzahl der spalten berechnen
 		columnWidth = (int) ((utils.getScreenWidth() - ((AppConstantGalerie.NUM_OF_COLUMNS + 1) * padding)) / AppConstantGalerie.NUM_OF_COLUMNS);
-
+		//anzahl dre splaten setzen
 		gridView.setNumColumns(AppConstantGalerie.NUM_OF_COLUMNS);
+		//breite der spalten setzen
 		gridView.setColumnWidth(columnWidth);
 		gridView.setStretchMode(GridView.NO_STRETCH);
 		gridView.setPadding((int) padding, (int) padding, (int) padding,

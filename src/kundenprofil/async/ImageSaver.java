@@ -50,19 +50,22 @@ public class ImageSaver extends AsyncTask<String, Integer, JSONObject> {
 	@Override
 	protected JSONObject doInBackground(String... params) {
 		try {
+			// http parameter setzten (HTTP-version, ..)
 			HttpParams httpParams = new BasicHttpParams();
 			httpParams.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 			HttpClient mHttpClient = new DefaultHttpClient(httpParams);
 
 			HttpPost httppost = new HttpPost("http://www.pascals.at/v2/PHD_DBA/DBA.php?f=kundeUpdaten");
-			// HttpPost httppost = new
-			// HttpPost("http://www.pascals.at/v2/PHD_DBA/logout.php");
-
+			//zu PHP ($_FILES) übertragen der body oder content des post requestes (übergabespeicher)
 			MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+			//session id mit übertragen
 			multipartEntity.addPart("sessionId", new StringBody(sessionId));
+			//neues bild an den server schicken
 			multipartEntity.addPart("foto",new FileBody(new File(kundenProfil.getFilesDir()+ "/myImage.jpg")));
 			httppost.setEntity(multipartEntity);
+			//http post abschicken
 			HttpResponse httpResponse = mHttpClient.execute(httppost);
+			//antwort json laden
 			String s = EntityUtils.toString(httpResponse.getEntity());
 //			Log.d("test", s);
 			return new JSONObject(s);
@@ -84,9 +87,11 @@ public class ImageSaver extends AsyncTask<String, Integer, JSONObject> {
 			try {
 				result = result.getJSONObject("res");
 				if (result.has("errc")) {
+					//wenn die antwort ein error feld beinhaltet ist etwas schief gegangen und es wird ein toast angezeigt
 					Toast.makeText(kundenProfil, result.getString("viewmsg"),Toast.LENGTH_LONG).show();
 				} else {
 					SharedPreferences preferences = PrefUtils.getPreferences(kundenProfil, Login.PREF_TAG);
+					//das neue last-update datum speichern und die neue image url speichern in den SP
 					preferences
 							.edit()
 							.putLong(Login.LOGIN_LAST_IMAGE_UPDATE,
@@ -99,6 +104,7 @@ public class ImageSaver extends AsyncTask<String, Integer, JSONObject> {
 				e.printStackTrace();
 			}
 		}
+		//kundenprofil AC informieren das der Imagesaver fertig ist.
 		kundenProfil.onHttpFin(KundenProfil.IMAGE_CHANGED, result);
 	}
 }

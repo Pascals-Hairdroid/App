@@ -1,16 +1,10 @@
 package galerie;
 
-
-
-import galerie.*;
- 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
  
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -34,7 +28,9 @@ public class GridViewImageAdapter extends BaseAdapter {
         this.images = images;
         this.imageWidth = imageWidth;
     }
- 
+ /**
+  * gibt die anzahl der bilder in der ArrayList images zurück
+  */
     @Override		
     public int getCount() {
         return this.images.size();
@@ -52,13 +48,16 @@ public class GridViewImageAdapter extends BaseAdapter {
  
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+    	//adapter shizzle
+    	//convert recycle entweder alten view verwenden oder neuen View erstellen
         ImageView imageView;
         if (convertView == null) {
             imageView = new ImageView(context);
         } else {
             imageView = (ImageView) convertView;
         }
- 
+        
+        //Bild scalieren 
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setLayoutParams(new GridView.LayoutParams(imageWidth,
                 imageWidth));
@@ -80,8 +79,7 @@ public class GridViewImageAdapter extends BaseAdapter {
  
         @Override
         public void onClick(View v) {
-            // on selecting grid view image
-            // launch full screen activity
+            // on selecting grid view image launch full screen activity
             Intent i = new Intent(context.getApplicationContext(), FullScreenViewActivity.class);
             i.putExtra("position", _postion);
             context.startActivity(i);
@@ -92,23 +90,27 @@ public class GridViewImageAdapter extends BaseAdapter {
      * Resizing image size
      */
     public static Bitmap decodeFile(String filePath, int WIDTH, int HIGHT) {
-        try {
- 
+        try { 
+        	//file objekt laden, mit dem pfad zu dem bild
             File f = new File(filePath);
- 
+            //setze bild lade optionen
             BitmapFactory.Options o = new BitmapFactory.Options();
+            //lade nu meta daten von dem bild
             o.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(new FileInputStream(f), null, o);
  
             final int REQUIRED_WIDTH = WIDTH;
             final int REQUIRED_HIGHT = HIGHT;
             int scale = 1;
+            //bild skalieren
             while (o.outWidth / scale / 2 >= REQUIRED_WIDTH
-                    && o.outHeight / scale / 2 >= REQUIRED_HIGHT)
+                    && o.outHeight / scale / 2 >= REQUIRED_HIGHT){
                 scale *= 2;
- 
+            }
             BitmapFactory.Options o2 = new BitmapFactory.Options();
+            //das neue verhältnis in den optionen für das bildladeverfahrn setzen
             o2.inSampleSize = scale;
+            //resized bild laden und zurückgeben
             return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

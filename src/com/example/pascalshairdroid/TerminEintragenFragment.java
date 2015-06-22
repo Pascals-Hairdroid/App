@@ -21,7 +21,6 @@ import android.webkit.WebViewClient;
 import android.webkit.WebSettings.ZoomDensity;
 
 public class TerminEintragenFragment extends Fragment {
-	private ValueCallback mUploadMessage;
 		public TerminEintragenFragment() {
 
 		}
@@ -35,13 +34,13 @@ public class TerminEintragenFragment extends Fragment {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			
-			// Cookies merken damit nicht neu einloggen bei Termineintragen	
+			// Cookies setzen damit im webview die selbe php session verwendet wird wie im app
 			SharedPreferences preferences = PrefUtils.getPreferences(getActivity(), Login.PREF_TAG);
 			String sessionID = preferences.getString(Login.LOGIN_SESSION_ID, null);
 			CookieManager cookieManager = CookieManager.getInstance();
 			cookieManager.removeAllCookie();
 			cookieManager.setCookie("pascals.at", "PHPSESSID="+sessionID+";Version=1");
-		    CookieSyncManager.getInstance().sync();
+			CookieSyncManager.createInstance(getActivity()).getInstance().sync();
 
 			View rootView = inflater.inflate(R.layout.fragment_termin_eintragen, container,
 					false);
@@ -53,60 +52,17 @@ public class TerminEintragenFragment extends Fragment {
 
 			
 			// Zoomen des Webviews
-//			view.setInitialScale(175);
 			view.getSettings().setLoadWithOverviewMode(true);
 			view.getSettings().setUseWideViewPort(true);
 			view.getSettings().setBuiltInZoomControls(true);
 			view.getSettings().setSupportZoom(true);
-//			view.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
-//			view.getSettings().setBuiltInZoomControls(true);
-			
-//			Damit bei Webview Datei hochgeladen werden kann --> wurde aber nicht realisiert
-//			
-//			view.setWebChromeClient(new WebChromeClient()  
-//			    {  
-//			           //The undocumented magic method override  
-//			           //Eclipse will swear at you if you try to put @Override here  
-//			        // For Android 3.0+
-//			        public void openFileChooser(ValueCallback<Uri> uploadMsg) {  
-//
-//			            mUploadMessage = uploadMsg;  
-//			            Intent i = new Intent(Intent.ACTION_GET_CONTENT);  
-//			            i.addCategory(Intent.CATEGORY_OPENABLE);  
-//			            i.setType("image/*");  
-//			            TerminEintragenFragment.this.getActivity().startActivityForResult(Intent.createChooser(i,"File Chooser"), 1);  
-//
-//			           }
-//
-//			        // For Android 3.0+
-//			           public void openFileChooser( ValueCallback uploadMsg, String acceptType ) {
-//			           mUploadMessage = uploadMsg;
-//			           Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-//			           i.addCategory(Intent.CATEGORY_OPENABLE);
-//			           i.setType("*/*");
-//			           TerminEintragenFragment.this.getActivity().startActivityForResult(
-//			           Intent.createChooser(i, "File Browser"),
-//			           1);
-//			           }
-//
-//			        //For Android 4.1
-//			           public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture){
-//			               mUploadMessage = uploadMsg;  
-//			               Intent i = new Intent(Intent.ACTION_GET_CONTENT);  
-//			               i.addCategory(Intent.CATEGORY_OPENABLE);  
-//			               i.setType("image/*");  
-//			               TerminEintragenFragment.this.getActivity().startActivityForResult(Intent.createChooser( i, "File Chooser" ), 1 );
-//
-//			           }
-//
-//			    });  
 
-			
 			// Überprüfung ob Internet vorhanden 
 			// Wenn keine Internet verbindung HTML Seite no Internet Connection anzeigen 
 			if (Utils.isInternetAvailable(getActivity())) {
 				view.loadUrl("http://pascals.at/v2/Seiten/terminvergabe.php?web=1");
 			} else {
+				//fallback seite anzeigen falls offline
 				view.loadData("<html><head><style>body{background-color:lightgray;margin-top:25%;}h2{color:orange;text-align:center;Font-Family:Calibri;}</style><title></title></head><body><h2>Es konnte keine Internetverbindung hergestellt werden!</h2></body></html>", "text/html", "UTF-8");
 			}
 			

@@ -38,8 +38,13 @@ public class TeamListFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				//team mitglied namen aus array laden
+				String mitgliedName = getActivity().getResources().getStringArray(R.array.teamlist)[position];
+				//neues team fragment erstellen
+					TeamFragment t = new TeamFragment(mitgliedName,position);
 					FragmentManager f = getActivity().getFragmentManager();
-					f.beginTransaction().replace(R.id.container, new TeamFragment(getActivity().getResources().getStringArray(R.array.teamlist)[position],position)).commit();
+					//teamfragment setzen
+					f.beginTransaction().replace(R.id.container, t).commit();
 			}
 		});
 		return rootView;
