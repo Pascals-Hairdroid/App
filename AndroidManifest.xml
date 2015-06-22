@@ -56,11 +56,13 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="galerie.FullScreenViewActivity"
+            android:launchMode="singleTop"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
         </activity>
         <activity
@@ -72,8 +74,8 @@
         <activity
             android:name="notificationSync.NotificationActivity"
             android:label="@string/title_angebote"
-            android:screenOrientation="portrait"
-            android:parentActivityName="login_register.Login" >
+            android:parentActivityName="login_register.Login"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="login_register.Login" />
@@ -101,6 +103,7 @@
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
+
             <meta-data
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator" />
@@ -112,6 +115,7 @@
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
             </intent-filter>
+
             <meta-data
                 android:name="android.content.SyncAdapter"
                 android:resource="@xml/syncadapter" />
@@ -147,4 +151,5 @@
         </service> 
         -->
     </application>
+
 </manifest>

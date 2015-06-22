@@ -33,4 +33,14 @@ public class FullScreenViewActivity extends Activity {
 		mPager.setCurrentItem(position);
 
 	}
+	@Override
+	protected void onNewIntent(Intent i) {
+		// Selected image id
+		int position = i.getExtras().getInt("position");
+		// setze das bild welches als erstes angezeit werden soll (das bild
+		// welches in der gallerie angeklickt wurde)
+		mPager.setCurrentItem(position);
+		
+		
+	}
 }
