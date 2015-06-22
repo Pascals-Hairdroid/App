@@ -63,6 +63,8 @@ public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONOb
 		return null;
 	}
 
+	// Lädt Daten herunter zB um Änderungen vom Server zu über nehmen 
+	// Speichern der geladenen Daten in die SharedPref
 	@Override
 	protected void onPostExecute(JSONObject result) {
 		try {
@@ -100,7 +102,7 @@ public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONOb
 					.putStringSet(Login.LOGIN_INTERESSEN, interessen)
 					.putBoolean(Login.LOGIN_FREIGESCHALTEN,
 							kunde.getBoolean("freischaltung")).commit();
-			// Wenn lastImgUpdate neuer dann neues Bild downloaden
+			// 
 			if (lastImgUpdate < preferences.getLong(
 					Login.LOGIN_LAST_IMAGE_UPDATE, 0)) {
 				ImageDownloader downloader = new ImageDownloader(
