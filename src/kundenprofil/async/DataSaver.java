@@ -72,6 +72,7 @@ public class DataSaver extends AsyncTask<List<NameValuePair>, Integer, JSONObjec
 			}
 		} else {
 			// ÄNDERUNG VON KÖNIG: GEHT NOCH NICHT!!!
+			/*
 			Login.CreateSyncAccount(kundenProfil.getApplicationContext());
 
 			try {
@@ -117,7 +118,7 @@ public class DataSaver extends AsyncTask<List<NameValuePair>, Integer, JSONObjec
 				e.printStackTrace();
 				Log.d("asdf", "FAIL");
 			}
-			
+			*/
 			//-------------------
 			
 			kundenProfil.onHttpFin(KundenProfil.DATA_CHANGED, result);

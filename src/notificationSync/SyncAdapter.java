@@ -101,7 +101,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 		
 		// Daten aus shared Preferences holen, aber wie???
 		long date = sp.getLong(LASTSYNC, 0);
-
+/*
 		Set<String> myInteressen = sp.getStringSet(Login.LOGIN_INTERESSEN, null);
 		
 		String[] allInteressen = getContext().getResources().getStringArray(R.array.interessen);
@@ -129,6 +129,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 				}
 			}
 		}
+		*/
 		// // Testen:
 		// //---
 		// Date date = new Date(0);
@@ -140,26 +141,23 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 		// myInteressen.add("6");
 		// //---
 
-		
-		return doRequest(URL, date, interessen);
+		String uid = sp.getString(Login.LOGIN_USERNAME, null);
+		return doRequest(URL, date, uid);
 	}
 
-	private JSONObject doRequest(String url, long date, String[] interessen) {
+	private JSONObject doRequest(String url, long date, String uid) {
 		HttpClient client = new DefaultHttpClient();
 
 		try {
 			HttpPost httpPost = new HttpPost(url); // Url
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
 			if(date!=0){
-				Log.d(TAG, "date:" + date);
+				Log.d(TAG, "date: " + date);
 				nameValuePairs.add(new BasicNameValuePair("date", date + ""));
 			}
-			if (interessen != null){
-				Log.d(TAG,"Interessen: ");
-				for (int i = 0; i < interessen.length; i++)
-					if(interessen[i]!=null)
-						Log.d(TAG,interessen[i]);
-				nameValuePairs.addAll(arrayAsNameValuePairs("interessen",interessen));
+			if(uid!=null){
+				Log.d(TAG, "uid: " + uid);
+				nameValuePairs.add(new BasicNameValuePair("email", uid));
 			}
 			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			Log.d(TAG, "Execute HttpPost...");
