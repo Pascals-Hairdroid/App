@@ -48,8 +48,8 @@ public class GridViewImageAdapter extends BaseAdapter {
  
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-    	//adapter shizzle
-    	//convert recycle entweder alten view verwenden oder neuen View erstellen
+    	//adapter dinge
+    	//convertView = recycle entweder alten view verwenden oder neuen View erstellen
         ImageView imageView;
         if (convertView == null) {
             imageView = new ImageView(context);

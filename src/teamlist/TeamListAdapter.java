@@ -1,13 +1,6 @@
 package teamlist;
 
-import java.util.List;
-
 import com.example.pascalshairdroid.R;
-import com.example.pascalshairdroid.R.array;
-import com.example.pascalshairdroid.R.drawable;
-import com.example.pascalshairdroid.R.id;
-import com.example.pascalshairdroid.R.layout;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.View;

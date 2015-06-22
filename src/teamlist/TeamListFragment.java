@@ -1,21 +1,12 @@
 package teamlist;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.example.pascalshairdroid.R;
-import com.example.pascalshairdroid.R.array;
-import com.example.pascalshairdroid.R.id;
-import com.example.pascalshairdroid.R.layout;
-
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;

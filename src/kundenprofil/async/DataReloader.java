@@ -34,20 +34,21 @@ public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONOb
 		this.sessionId = sessionId;
 	}
 	
+	// Class download the Data
 	// Class aktualisiert die Daten immer wenn Internetverbindung ist
+	
 
 	// run in background
 	@Override
 	protected JSONObject doInBackground(List<NameValuePair>... params) {
 		HttpClient client = new DefaultHttpClient(); // Http Client erstellen
 		try {
-
+			// Data von Server holen
 			HttpPost httpPost = new HttpPost(
 					"http://www.pascals.at/v2/PHD_DBA/DBA.php?f=kundeUpdaten"); // Url
 			httpPost.setEntity(new UrlEncodedFormEntity(params[0]));
 			HttpResponse httpResponse = client.execute(httpPost);
 			String s = EntityUtils.toString(httpResponse.getEntity());
-//			Log.d("test", s);
 			return new JSONObject(s);
 
 		} catch (ClientProtocolException e) {
@@ -99,6 +100,7 @@ public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONOb
 					.putStringSet(Login.LOGIN_INTERESSEN, interessen)
 					.putBoolean(Login.LOGIN_FREIGESCHALTEN,
 							kunde.getBoolean("freischaltung")).commit();
+			// Wenn lastImgUpdate neuer dann neues Bild downloaden
 			if (lastImgUpdate < preferences.getLong(
 					Login.LOGIN_LAST_IMAGE_UPDATE, 0)) {
 				ImageDownloader downloader = new ImageDownloader(

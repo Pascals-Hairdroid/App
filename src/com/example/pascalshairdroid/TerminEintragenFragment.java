@@ -1,6 +1,5 @@
 package com.example.pascalshairdroid;
 
-
 import utils.PrefUtils;
 import utils.Utils;
 import login_register.Login;

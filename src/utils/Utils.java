@@ -115,12 +115,7 @@ public class Utils {
 		return BitmapFactory.decodeFile(cursor.getString(column_index));
 	}
 
-	/**
-	 * datei path aus einer URI extrahieren. ruft methoden auf je nach api level von derzeitugem gerät
-	 * @param context
-	 * @param contentUri
-	 * @return
-	 */
+	 //datei path aus einer URI extrahieren. ruft methoden auf je nach api level von derzeitugem gerät
 	public static Bitmap getRealPathFromURI(Context context, Uri contentUri) {
 		Bitmap realPath;
 		if (Build.VERSION.SDK_INT < 11) {

@@ -310,7 +310,7 @@ public class NavigationDrawerFragment extends Fragment {
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 	}
 	/**
-	 *  item ausw‰hlen, Navigationdrawer schlieﬂen und callback aufrufen (fragment ‰nderen [in FSAC])
+	 *  item ausw‰hlen, Navigationdrawer schlieﬂen und callback aufrufen (fragment ‰nderen [in FriseurStudioActivity])
 	 * @param goupeposition
 	 * @param childPosition
 	 */
@@ -323,7 +323,7 @@ public class NavigationDrawerFragment extends Fragment {
 		if (mDrawerLayout != null && childPosition != -1) {
 			mDrawerLayout.closeDrawer(mFragmentContainerView);
 		}
-		//callback aufrufen
+		//callback aufrufen (informs a class if some work in other class is done) 
 		if (mCallbacks != null) {
 			mCallbacks.onNavigationDrawerItemSelected(goupeposition,
 					childPosition);
@@ -415,9 +415,7 @@ public class NavigationDrawerFragment extends Fragment {
 				int childPosition);
 	}
 	
-	/**
-	 * Kundenprofilbild laden und im drawer anzeigen.
-	 */
+//	 Kundenprofilbild laden und im drawer anzeigen.
 	public void reloadImage() 
 	{
 		

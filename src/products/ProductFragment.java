@@ -1,28 +1,18 @@
 package products;
 
 import utils.Utils;
-
 import com.example.pascalshairdroid.R;
-import com.example.pascalshairdroid.R.id;
-import com.example.pascalshairdroid.R.layout;
-
-import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class ProductFragment extends Fragment {
 	private String name;
 	private int id;
-//	private static final String ARG_SECTION_NUMBER = "section_number";
 
 	public ProductFragment(String name, int id) 
 	{

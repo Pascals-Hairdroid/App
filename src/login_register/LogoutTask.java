@@ -39,6 +39,7 @@ public class LogoutTask extends AsyncTask<String, Integer, JSONObject> {
 	{
 		HttpClient client = new DefaultHttpClient(); // Http Client erstellen
 		try {
+			// Server Abfrage
 			HttpPost httpPost = new HttpPost(params[0]); // Url
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	        nameValuePairs.add(new BasicNameValuePair("sessionId", params[1]));

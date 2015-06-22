@@ -12,17 +12,12 @@ import android.webkit.WebViewClient;
 
 public class DienstleistungenFragment extends Fragment {
 	
-	
-//		private static final String ARG_SECTION_NUMBER = "section_number";
-
 		public DienstleistungenFragment() {
 			// TODO Auto-generated constructor stub
 		}
 		// layout Fragment finden
 		// Webview finden
 		// neuen view initialisieren
-		
-		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {

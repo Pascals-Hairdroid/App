@@ -11,8 +11,6 @@ import android.webkit.WebViewClient;
 
 public class DasStudioFragment extends Fragment {
 	
-	
-
 		public DasStudioFragment() {
 			// TODO Auto-generated constructor stub
 		}
@@ -20,8 +18,6 @@ public class DasStudioFragment extends Fragment {
 		// layout Fragment finden
 		// Webview finden
 		// neuen view initialisieren
-		
-		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {

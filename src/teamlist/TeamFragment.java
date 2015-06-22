@@ -1,11 +1,7 @@
 package teamlist;
 
 import utils.Utils;
-
 import com.example.pascalshairdroid.R;
-import com.example.pascalshairdroid.R.id;
-import com.example.pascalshairdroid.R.layout;
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +14,6 @@ public class TeamFragment extends Fragment {
 	private String name;
 	private int id;
 //	private static final String ARG_SECTION_NUMBER = "section_number";
-
 	public TeamFragment(String name, int id) 
 	{
 		this.name = name;

@@ -1,26 +1,15 @@
 package login_register;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-
 import kundenprofil.async.ImageDownloader;
-
 import notificationSync.SyncConstants;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import utils.PrefUtils;
 import utils.Utils;
-
 import com.example.pascalshairdroid.Friseurstudio;
 import com.example.pascalshairdroid.R;
-import com.example.pascalshairdroid.R.id;
-import com.example.pascalshairdroid.R.layout;
-import com.example.pascalshairdroid.R.menu;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -211,7 +200,7 @@ public class Login extends Activity {
 	}
 	
 	/**
-	 * Olis schit
+	 * Olis code
 	 * @param context
 	 * @return
 	 */

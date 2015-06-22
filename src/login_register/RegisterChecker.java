@@ -39,8 +39,9 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 	{
 		HttpClient client = new DefaultHttpClient(); // Http Client erstellen
 		try {
-			
+			// Server Abfrage
 			HttpPost httpPost = new HttpPost(params[0]); // Url
+			// NameValuePair damit mehrere Parameter abgescheichert werden können
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
 			nameValuePairs.add(new BasicNameValuePair("vorname", params[1]));
 			nameValuePairs.add(new BasicNameValuePair("nachname", params[2]));
@@ -52,7 +53,6 @@ public class RegisterChecker extends AsyncTask<String, Integer, JSONObject> {
 			username = params[4];
 			//datei aus antwort von Server laden und in ein Json object umwandeln 
 			String s =EntityUtils.toString(httpResponse.getEntity());
-			//Log.d("test3",s);
 			return new JSONObject(s);
 			
 		} catch (ClientProtocolException e) {

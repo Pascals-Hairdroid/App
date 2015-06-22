@@ -1,6 +1,5 @@
 package com.example.pascalshairdroid;
 
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +8,6 @@ import android.view.ViewGroup;
 
 public class KontaktFragment extends Fragment {
 	
-//		private static final String ARG_SECTION_NUMBER = "section_number";
-
 		public KontaktFragment() {
 			// TODO Auto-generated constructor stub
 		}

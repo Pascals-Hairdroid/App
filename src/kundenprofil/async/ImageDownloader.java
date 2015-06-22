@@ -5,17 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
-
-import com.example.pascalshairdroid.Friseurstudio;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.content.LocalBroadcastManager;
-import android.widget.Toast;
 
 public class ImageDownloader extends AsyncTask<String, Integer, Boolean> {
 

@@ -58,10 +58,14 @@ public class GalerieFragment extends Fragment {
 		gridView.setNumColumns(AppConstantGalerie.NUM_OF_COLUMNS);
 		//breite der spalten setzen
 		gridView.setColumnWidth(columnWidth);
+		//StretchMode setzen
 		gridView.setStretchMode(GridView.NO_STRETCH);
+		// Setzt Padding 
 		gridView.setPadding((int) padding, (int) padding, (int) padding,
 				(int) padding);
+		// Space between Item
 		gridView.setHorizontalSpacing((int) padding);
+		// Space between Item
 		gridView.setVerticalSpacing((int) padding);
 	}
 }

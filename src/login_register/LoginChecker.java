@@ -40,8 +40,9 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 	{
 		HttpClient client = new DefaultHttpClient(); // Http Client erstellen
 		try {
-			
+			// Sever Abfrage
 			HttpPost httpPost = new HttpPost(params[0]); // Url
+			// NameValuePair damit mehrere Parameter abgescheichert werden können
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	        nameValuePairs.add(new BasicNameValuePair("email", params[1]));
 	        nameValuePairs.add(new BasicNameValuePair("passwort", Utils.MD5(params[2])));

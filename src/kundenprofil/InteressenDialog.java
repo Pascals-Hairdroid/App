@@ -67,8 +67,9 @@ public class InteressenDialog extends DialogFragment {
 						((KundenProfil) getActivity()).setChanged(KundenProfil.INTERESSEN_CHANGED);
 					}
 				});
-
+		// Dialog erstellen
 		Dialog dialog = builder.create();
+		// return des Dialogs
 		return dialog;
 	}
 }

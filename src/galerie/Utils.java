@@ -1,19 +1,9 @@
 package galerie;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Locale;
-
-import com.example.pascalshairdroid.R;
- 
-import android.R.string;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Point;
-import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
-import android.widget.Toast;
 public class Utils {
 	
 	    private Context _context;

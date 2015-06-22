@@ -10,8 +10,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class AngebotFragment extends Fragment {
-	
-	
 
 		public AngebotFragment() {
 			// TODO Auto-generated constructor stub
@@ -21,8 +19,6 @@ public class AngebotFragment extends Fragment {
 		// layout Fragment finden
 		// Webview finden
 		// neuen view initialisieren
-		
-		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
