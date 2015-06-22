@@ -52,7 +52,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
 	public static final String LASTSYNC = "lastSync";
 	public static final String NOTIFICATION_ID = "nid";
-	public static final String WERBUNG_URL_BEGINN = "http://pascals.at/v2/Seiten/werbung.php?nummer=";
+	public static final String WERBUNG_URL_BEGINN = "http://pascals.at/v2/Seiten/Angebote.php?web=1&nummer=";
 	public static final String SHOW_WEB = "show_werbung";
 	public static final String BROWSER_URL = "browser_url";
 	private static final String URL = "http://www.pascals.at/v2/PHD_DBA/Notification_Service.php";
