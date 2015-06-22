@@ -49,7 +49,7 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			String s = EntityUtils.toString(httpResponse.getEntity());
 			email= params[1];
-//			Log.d("test",s );
+			Log.d("test",s );
 //			Log.d("param1",params[1]);
 			
 			//datei aus antwort von Server laden und in ein Json object umwandeln 

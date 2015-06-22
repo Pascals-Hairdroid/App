@@ -60,7 +60,7 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		// notificationSync Account anlegen:
 		Log.i("notificationSync", "Lege Sync Account an...");
-		syncAcc = CreateSyncAccount(this);
+		syncAcc = CreateSyncAccount(this.getApplicationContext());
 		Log.i("notificationSync", syncAcc==null?"FAIL (Existiert Bereits?)":"OK");
 		if(syncAcc!=null){
 			Log.i("notificationSync", "Registriere Service...");

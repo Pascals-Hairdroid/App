@@ -44,6 +44,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -58,14 +59,17 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
 	private String TAG = "SyncAdapter";
 	private DatabaseHelper dbh;
+	private Context ctx;
 
 	public SyncAdapter(Context context, boolean autoInitialize) {
 		super(context, autoInitialize);
+		ctx = context;
 	}
 
 	public SyncAdapter(Context context, boolean autoInitialize,
 			boolean allowParallelSyncs) {
 		super(context, autoInitialize, allowParallelSyncs);
+		ctx = context;
 
 	}
 
@@ -79,7 +83,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 			boolean success = insert(j.getJSONArray("werbungen"));
 			Log.i(TAG, "insertion: " + (success ? "OK" : "FAIL"));
 			Log.d(TAG, "LastSync: " + j.getLong(LASTSYNC));
-			PrefUtils.getPreferences(getContext(), Login.PREF_TAG)
+			PrefUtils.getPreferences(ctx, Login.PREF_TAG)
 					.edit().putLong(LASTSYNC, j.getLong(LASTSYNC)).commit();
 			ArrayList<Notification> notifications = doNotifications();
 			Log.i(TAG, (notifications!=null?notifications.size():0) + " new Notifications.");
@@ -93,11 +97,13 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 	private JSONObject doSync() {
 
 		
-		SharedPreferences sp = PrefUtils.getPreferences(getContext(), Login.PREF_TAG);
+		SharedPreferences sp = PrefUtils.getPreferences(ctx, Login.PREF_TAG);
+		
 		// Daten aus shared Preferences holen, aber wie???
 		long date = sp.getLong(LASTSYNC, 0);
 
 		Set<String> myInteressen = sp.getStringSet(Login.LOGIN_INTERESSEN, null);
+		
 		String[] allInteressen = getContext().getResources().getStringArray(R.array.interessen);
 		String[] allInteressenIds = getContext().getResources().getStringArray(R.array.interessen_ids);
 		String[] interessen = null;
@@ -107,6 +113,11 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 			ints = new String[myInteressen.size()];
 			myInteressen.toArray(ints);
 		}
+		try{
+		for(String a:ints){
+			Log.d(TAG, "TEST:"+a);
+		}
+		}catch(Exception e){}
 		int a = 0;
 		if(myInteressen != null){
 			for (int j = 0; j < ints.length; j++) {
