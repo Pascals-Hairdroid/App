@@ -67,6 +67,25 @@ public class InteressenDialog extends DialogFragment {
 						((KundenProfil) getActivity()).setChanged(KundenProfil.INTERESSEN_CHANGED);
 					}
 				});
+		
+		// ok und Abbrechen Button mit ClickListener
+		builder.setPositiveButton(R.string.Ok,
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+					}
+				});
+
+		builder.setNegativeButton(R.string.Abbrechen,
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+					}
+				});
 		// Dialog erstellen
 		Dialog dialog = builder.create();
 		// return des Dialogs
