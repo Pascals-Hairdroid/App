@@ -102,7 +102,7 @@ public class DataReloader extends AsyncTask<List<NameValuePair>, Integer, JSONOb
 					.putStringSet(Login.LOGIN_INTERESSEN, interessen)
 					.putBoolean(Login.LOGIN_FREIGESCHALTEN,
 							kunde.getBoolean("freischaltung")).commit();
-			// 
+			// wenn letztes download bild älter ist als akutelles profilbild auf DB startet download für neues Pfrofilbild
 			if (lastImgUpdate < preferences.getLong(
 					Login.LOGIN_LAST_IMAGE_UPDATE, 0)) {
 				ImageDownloader downloader = new ImageDownloader(
