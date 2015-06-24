@@ -3,10 +3,7 @@ package notificationSync;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
-
 import login_register.Login;
 
 import org.apache.http.HttpResponse;
@@ -33,18 +30,14 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SyncResult;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -80,6 +73,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 		dbh = new DatabaseHelper(getContext());
 		try {
 			JSONObject j = doSync();
+			Log.d(TAG, "Json-Object: "+j.toString());
 			boolean success = insert(j.getJSONArray("werbungen"));
 			Log.i(TAG, "insertion: " + (success ? "OK" : "FAIL"));
 			Log.d(TAG, "LastSync: " + j.getLong(LASTSYNC));
@@ -161,9 +155,34 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 			}
 			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			Log.d(TAG, "Execute HttpPost...");
-			HttpResponse httpResponse = client.execute(httpPost); 
-			String s = EntityUtils.toString(httpResponse.getEntity());
+			HttpResponse httpResponse = client.execute(httpPost);
+			String s = EntityUtils.toString(httpResponse.getEntity(),"UTF-8");
 			Log.d(TAG, "Response: " + s);
+			try{
+				//s=org.apache.commons.lang.StringEscapeUtils.unescapeHtml(s);
+				//Log.d(TAG, "Encoded Response: "+s);
+				
+				s=unescape(s);
+				Log.d(TAG, "Encoded Response: "+s);
+				 JSONObject j = new JSONObject(s);
+//				 Log.e("jdfjsd", j.getJSONArray("werbungen").getJSONObject(0).getString("titel"));
+//				 Log.e("jdfjsd", org.apache.commons.lang.StringEscapeUtils.unescapeHtml(j.getJSONArray("werbungen").getJSONObject(0).getString("titel")));
+//				 Log.e("jdfjsd", org.apache.commons.lang.StringEscapeUtils.unescapeJava(j.getJSONArray("werbungen").getJSONObject(0).getString("titel")));
+//				 Log.e("jdfjsd", j.getJSONArray("werbungen").getJSONObject(0).getString("titel"));
+//				 Log.e("jdfjsd",  unescape(j.getJSONArray("werbungen").getJSONObject(0).getString("titel")));
+				 return j;
+				//s=org.apache.commons.lang.StringEscapeUtils.unescapeJava(s);
+//				JsonParser parser = new JsonParser();
+//				JsonElement element = parser.parse(loadJSONFromAsset());
+//				JsonObject obj = element.getAsJsonObject();
+				//Log.d(TAG, "Decoded Response1: " + s);
+			}
+			catch(Exception exc){
+				Log.d(TAG, "im o.");
+			}
+			
+			
+			
 			return new JSONObject(s);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
@@ -183,16 +202,36 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 		}
 		return null;
 	}
-
-	private List<BasicNameValuePair> arrayAsNameValuePairs(String name,
-			String[] values) {
-		List<BasicNameValuePair> basicNameValuePairs = new ArrayList<BasicNameValuePair>();
-		for (int i = 0; i < values.length; i++) {
-			basicNameValuePairs.add(new BasicNameValuePair("interessen[" + i
-					+ "]", values[i]));
+	private static String unescape(String s) {
+		return s.replace("\\u00c3\\u0083\\u00c2\\u00b6", "ö")
+				.replace("\\u00c3\\u0083\\u00e2\\u0080\\u0093", "Ö")
+				.replace("\\u00c3\\u0083\\u00c2\\u00a4", "ä")
+				.replace("\\u00c3\\u0083\\u00e2\\u0080\\u009e", "Ä")
+				.replace("\\u00c3\\u0083\\u00c2\\u00bc", "ü")
+				.replace("\\u00c3\\u0083\\u00c5\\u0093", "Ü")
+				.replace("\\u00c3\\u0083\\u00c5\\u00b8", "ß")
+				.replace("\\u00c3\\u00a2\\u00e2\\u0080\\u009a\\u00c2\\u00ac", "€")
+				.replace("\\u00c3\\u0082\\u00c2\\u00a7", "§")
+				.replace("\\u00c3\\u0082\\u00c2\\u00b4", "´")
+				.replace("\\u00c3\\u0083\\u00c2\\u00a1", "á")
+				.replace("\\u00c3\\u0083\\u00c2\\u00a0", "à")
+				.replace("\\u00c3\\u0083\\u00c2\\u00a9", "é")
+				.replace("\\u00c3\\u0083\\u00c2\\u00a8", "è")
+				.replace("\\u00c3\\u0082\\u00c2\\u00b2", "²")
+				.replace("\\u00c3\\u0082\\u00c2\\u00b3", "³")
+				.replace("\\u00c3\\u0082\\u00c2\\u00b0", "°");
+				
 		}
-		return basicNameValuePairs;
-	}
+
+//	private List<BasicNameValuePair> arrayAsNameValuePairs(String name,
+//			String[] values) {
+//		List<BasicNameValuePair> basicNameValuePairs = new ArrayList<BasicNameValuePair>();
+//		for (int i = 0; i < values.length; i++) {
+//			basicNameValuePairs.add(new BasicNameValuePair("interessen[" + i
+//					+ "]", values[i]));
+//		}
+//		return basicNameValuePairs;
+//	}
 
 	private boolean insert(JSONArray werbungen) {
 		SQLiteDatabase db = dbh.getWritableDatabase();
@@ -315,5 +354,5 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 		Log.d(TAG, "Notification build. Nr: "+nummer);
 		return builder.build();
 	}
-
+	
 }
