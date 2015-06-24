@@ -219,8 +219,9 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 				.replace("\\u00c3\\u0083\\u00c2\\u00a8", "è")
 				.replace("\\u00c3\\u0082\\u00c2\\u00b2", "²")
 				.replace("\\u00c3\\u0082\\u00c2\\u00b3", "³")
-				.replace("\\u00c3\\u0082\\u00c2\\u00b0", "°");
-				
+				.replace("\\u00c3\\u0082\\u00c2\\u00b0", "°")
+				.replace("\\r\\n", "\n")
+				.replace("\\n", "\n");
 		}
 
 //	private List<BasicNameValuePair> arrayAsNameValuePairs(String name,
