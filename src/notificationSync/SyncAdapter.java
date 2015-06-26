@@ -49,6 +49,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 	public static final String SHOW_WEB = "show_werbung";
 	public static final String BROWSER_URL = "browser_url";
 	private static final String URL = "http://www.pascals.at/v2/PHD_DBA/Notification_Service.php";
+	private static final long REMEMBER_ID = 0;
 
 	private String TAG = "SyncAdapter";
 	private DatabaseHelper dbh;
@@ -256,9 +257,18 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 						werbung.getString(DatabaseHelper.KEY_FOTO));
 				values.put(DatabaseHelper.KEY_STATUS, 0);
 				if (db.insert(DatabaseHelper.TABLE_WERBUNG, "", values) == -1){
-					values.remove(DatabaseHelper.KEY_NUMMER);
-					values.remove(DatabaseHelper.KEY_STATUS);
-					db.update(DatabaseHelper.TABLE_WERBUNG, values, DatabaseHelper.KEY_NUMMER + " = " + werbung.getLong(DatabaseHelper.KEY_NUMMER) + " AND " + DatabaseHelper.KEY_STATUS + " < 2", null);
+					if(werbung.getLong(DatabaseHelper.KEY_NUMMER)==REMEMBER_ID){
+						Cursor c = db.rawQuery("SELECT "+DatabaseHelper.KEY_FOTO+" FROM "+DatabaseHelper.TABLE_WERBUNG+" WHERE "+DatabaseHelper.KEY_NUMMER+"="+werbung.getLong(DatabaseHelper.KEY_NUMMER),null);
+						if(c.moveToFirst())
+							if(!c.getString(c.getColumnIndex(DatabaseHelper.KEY_FOTO)).equals(werbung.getString(DatabaseHelper.KEY_FOTO))){
+								values.remove(DatabaseHelper.KEY_NUMMER);
+								db.update(DatabaseHelper.TABLE_WERBUNG, values, DatabaseHelper.KEY_NUMMER + " = " + REMEMBER_ID, null);
+							}
+					}else{
+						values.remove(DatabaseHelper.KEY_NUMMER);
+						values.remove(DatabaseHelper.KEY_STATUS);
+						db.update(DatabaseHelper.TABLE_WERBUNG, values, DatabaseHelper.KEY_NUMMER + " = " + werbung.getLong(DatabaseHelper.KEY_NUMMER) + " AND " + DatabaseHelper.KEY_STATUS + " < 2", null);
+					}
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
