@@ -44,7 +44,6 @@ android:background="@color/white" >
         android:singleLine="true"
     	android:lines="1"
    		android:maxLines="1">
-
         <requestFocus android:layout_height="match_parent" />
 
     </EditText>
@@ -58,7 +57,6 @@ android:background="@color/white" >
         android:ems="10"
         android:hint="@string/nachname"
         android:inputType="text"
-        android:onClick="nachn"
         android:textColor="@color/orange" 
         android:nextFocusForward="@+id/passwort"
         android:imeOptions="actionNext"
