@@ -26,6 +26,7 @@ public class FriseurstudioFragment extends Fragment {
 				container, false);
 		WebView view = (WebView) rootView
 				.findViewById(R.id.frieseurstudio_webview);
+		view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 		view.setWebViewClient(new WebViewClient() {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {

@@ -32,6 +32,7 @@ public class TeamFragment extends Fragment {
 				false);
 		// Webview finden
 		WebView view = (WebView) rootView.findViewById(R.id.team_webview);
+		view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 		// neuen view initialisieren
 		view.setWebViewClient(new WebViewClient() {
 			@Override

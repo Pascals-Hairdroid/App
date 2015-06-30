@@ -31,6 +31,7 @@ public class NotificationActivity extends Activity {
 				// TODO: Zeige Werbung an
 				
 				WebView view = (WebView) findViewById(R.id.notification_webview);
+				view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 				if (Utils.isInternetAvailable(this)) {
 					view.loadUrl(SyncAdapter.WERBUNG_URL_BEGINN + nummer);
 				} else {

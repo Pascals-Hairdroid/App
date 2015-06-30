@@ -44,6 +44,7 @@ public class TerminEintragenFragment extends Fragment {
 			View rootView = inflater.inflate(R.layout.fragment_termin_eintragen, container,
 					false);
 			WebView view = (WebView)rootView.findViewById(R.id.termin_webview);
+			view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 			
 			// enabler Javasricpt im Webview
 			WebSettings webSettings = view.getSettings();

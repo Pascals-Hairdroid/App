@@ -1,11 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-  <!--   android:paddingBottom="12px"
-    android:paddingLeft="12px"
-    android:paddingRight="12px"
-    android:paddingTop="12px"  -->
+    android:layout_height="match_parent"
+     >
 
     <ListView
         android:id="@+id/listView1"
@@ -13,7 +10,11 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" 
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingBottom="12px"
+    android:paddingLeft="12px"
+    android:paddingRight="12px"
+    android:paddingTop="12px">
     </ListView>
 
 </RelativeLayout>

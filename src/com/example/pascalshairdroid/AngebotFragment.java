@@ -25,6 +25,7 @@ public class AngebotFragment extends Fragment {
 			View rootView = inflater.inflate(R.layout.fragment_angebot, container,
 					false);
 			WebView view = (WebView)rootView.findViewById(R.id.angebot_webview);
+			view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 			view.setWebViewClient(new WebViewClient(){
 				@Override
 				public boolean shouldOverrideUrlLoading(WebView view, String url) {
