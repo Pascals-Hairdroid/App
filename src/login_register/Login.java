@@ -129,7 +129,8 @@ public class Login extends Activity {
 	public void doLogin(JSONObject j, String username) {
 
 		try {
-//			 j = new JSONObject("{\"sessionId\":4568765467886546788654678, \"kunde\": {\"username\":\"username\",\"interessen\":[],\"vorname\":\"\",\"nachname\":\"\",\"freischaltung\":true,\"telNr\":\"\"}}");
+//			 j = new JSONObject("{\"sessionId\":4568765467886546788654678, \"kunde\": {\"username\":\"username\",\"interessen\":[],
+//				\"vorname\":\"\",\"nachname\":\"\",\"freischaltung\":true,\"telNr\":\"\"}}");
 
 			if (j == null) {
 				Toast.makeText(this, "Login faild", Toast.LENGTH_LONG).show();

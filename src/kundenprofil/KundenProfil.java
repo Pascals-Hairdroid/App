@@ -103,7 +103,8 @@ public class KundenProfil extends Activity {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				//wenn der text sich ändert DATA_CHANGED in dem changed Array auf true setzen damit es bei der save aktion auch die textfelder überträgt
+				//wenn der text sich ändert DATA_CHANGED in dem changed Array auf 
+				//true setzen damit es bei der save aktion auch die textfelder überträgt
 				changed[DATA_CHANGED] = true;
 			}
 
