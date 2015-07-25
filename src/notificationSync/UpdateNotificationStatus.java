@@ -1,12 +1,9 @@
 package notificationSync;
 
-import com.example.pascalshairdroid.Friseurstudio;
-
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
 
 public class UpdateNotificationStatus extends BroadcastReceiver{
@@ -30,8 +27,6 @@ public class UpdateNotificationStatus extends BroadcastReceiver{
 			.putExtra(DatabaseHelper.KEY_NUMMER, intent.getLongExtra(DatabaseHelper.KEY_NUMMER, -1))
 			.putExtra(SyncAdapter.SHOW_WEB, true)
 			.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-			
-			//context.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(SyncAdapter.WERBUNG_URL_BEGINN + intent.getLongExtra(DatabaseHelper.KEY_NUMMER, -1))).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 			
 		}
 		Log.i(TAG, "Fertig!");
