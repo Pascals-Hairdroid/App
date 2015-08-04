@@ -2,7 +2,7 @@ package galerie;
 
 import java.util.ArrayList;
 
-import com.example.pascalshairdroid.R;
+import com.pascalshairdroid.R;
 
 import android.app.Activity;
 import android.content.Context;

@@ -17,6 +17,6 @@
         android:layout_height="wrap_content"
         android:choiceMode="singleChoice"
         android:dividerHeight="1dp"
-        tools:context="com.example.pascalshairdroid.NavigationDrawerFragment" />
+        tools:context="com.pascalshairdroid.NavigationDrawerFragment" />
 
 </LinearLayout>

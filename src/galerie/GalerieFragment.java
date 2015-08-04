@@ -1,6 +1,6 @@
 package galerie;
 
-import com.example.pascalshairdroid.R;
+import com.pascalshairdroid.R;
 
 import android.app.Fragment;
 import android.content.res.Resources;

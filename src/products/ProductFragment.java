@@ -1,7 +1,7 @@
 package products;
 
 import utils.Utils;
-import com.example.pascalshairdroid.R;
+import com.pascalshairdroid.R;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;

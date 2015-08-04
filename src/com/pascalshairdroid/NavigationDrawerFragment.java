@@ -1,4 +1,4 @@
-package com.example.pascalshairdroid;
+package com.pascalshairdroid;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import com.example.pascalshairdroid.R;
 
 import utils.PrefUtils;
 import kundenprofil.KundenProfil;

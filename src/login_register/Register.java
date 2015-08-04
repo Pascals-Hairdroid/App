@@ -7,11 +7,11 @@ import org.json.JSONObject;
 
 import utils.PrefUtils;
 import utils.Utils;
-import com.example.pascalshairdroid.Friseurstudio;
-import com.example.pascalshairdroid.R;
-import com.example.pascalshairdroid.R.id;
-import com.example.pascalshairdroid.R.layout;
-import com.example.pascalshairdroid.R.menu;
+import com.pascalshairdroid.Friseurstudio;
+import com.pascalshairdroid.R;
+import com.pascalshairdroid.R.id;
+import com.pascalshairdroid.R.layout;
+import com.pascalshairdroid.R.menu;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;

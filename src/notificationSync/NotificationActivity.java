@@ -3,7 +3,7 @@ package notificationSync;
 import login_register.Login;
 import utils.Utils;
 
-import com.example.pascalshairdroid.R;
+import com.pascalshairdroid.R;
 
 import android.app.Activity;
 import android.content.Intent;

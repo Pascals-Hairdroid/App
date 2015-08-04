@@ -1,7 +1,10 @@
-package com.example.pascalshairdroid;
+package com.pascalshairdroid;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.example.pascalshairdroid.R;
+
 import utils.Utils;
 import android.content.Context;
 import android.util.Log;

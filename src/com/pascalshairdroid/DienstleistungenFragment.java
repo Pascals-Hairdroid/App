@@ -1,5 +1,7 @@
-package com.example.pascalshairdroid;
+package com.pascalshairdroid;
 
+
+import com.example.pascalshairdroid.R;
 
 import utils.Utils;
 import android.app.Fragment;

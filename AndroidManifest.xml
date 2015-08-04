@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pascalshairdroid"
+    package="com.pascalshairdroid"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -130,7 +130,7 @@
         
         
          <service
-            android:name="com.example.pascalshairdroid.simplesync.SimpleSyncAdapterService"
+            android:name="com.pascalshairdroid.simplesync.SimpleSyncAdapterService"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
@@ -142,7 +142,7 @@
         
         
         <service 
-            android:name="com.example.pascalshairdroid.simplesync.SimpleAuthenticatorService">
+            android:name="com.pascalshairdroid.simplesync.SimpleAuthenticatorService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>

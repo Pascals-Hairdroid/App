@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.pascalshairdroid.Home$PlaceholderFragment" >
+    tools:context="com.pascalshairdroid.Home$PlaceholderFragment" >
 
    <WebView
         android:id="@+id/angebot_webview"

@@ -7,8 +7,8 @@ import utils.PrefUtils;
 
 import login_register.Login;
 
-import com.example.pascalshairdroid.R;
-import com.example.pascalshairdroid.R.layout;
+import com.pascalshairdroid.R;
+import com.pascalshairdroid.R.layout;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

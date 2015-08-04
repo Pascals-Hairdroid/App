@@ -22,7 +22,7 @@ import utils.Utils;
 
 import login_register.Login;
 
-import com.example.pascalshairdroid.R;
+import com.pascalshairdroid.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

@@ -1,6 +1,6 @@
 package teamlist;
 
-import com.example.pascalshairdroid.R;
+import com.pascalshairdroid.R;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
