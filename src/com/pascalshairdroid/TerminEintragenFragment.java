@@ -1,6 +1,6 @@
 package com.pascalshairdroid;
 
-import com.example.pascalshairdroid.R;
+import com.pascalshairdroid.R;
 
 import utils.PrefUtils;
 import utils.Utils;

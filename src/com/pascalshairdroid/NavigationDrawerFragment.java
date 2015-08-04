@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import com.example.pascalshairdroid.R;
+import com.pascalshairdroid.R;
 
 import utils.PrefUtils;
 import kundenprofil.KundenProfil;

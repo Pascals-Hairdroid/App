@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.example.pascalshairdroid.R;
+import com.pascalshairdroid.R;
 
 import kundenprofil.async.DataReloader;
 import products.ProductFragment;

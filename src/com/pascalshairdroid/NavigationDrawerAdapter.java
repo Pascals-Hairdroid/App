@@ -3,7 +3,7 @@ package com.pascalshairdroid;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.example.pascalshairdroid.R;
+import com.pascalshairdroid.R;
 
 import utils.Utils;
 import android.content.Context;
