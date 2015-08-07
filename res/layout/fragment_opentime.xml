@@ -10,13 +10,95 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    -->
+    
    
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/oeffungszeiten" />
+        android:src="@drawable/oeffungszeiten" /> -->
        
+       
+        <ImageView
+        style="@style/BackGroundImageView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/galerie3" />
+         
+ 	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="true"
+	    android:gravity="center"
+	    android:orientation="vertical" >
+    
+    <TextView
+        android:id="@+id/company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:textSize="18pt"
+        android:textColor="@color/orange"
+        android:text="@string/company" />
+    
+    <TextView
+            android:id="@+id/opentime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/adresse"
+            android:layout_alignLeft="@+id/adresse"
+            android:layout_marginTop="37dp"
+            android:textSize="12pt"
+            android:text="@string/opentime" />
+
+    <TextView
+            android:id="@+id/days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/company_name"
+            android:layout_below="@+id/company_name"
+            android:textSize="12pt"
+            android:text="@string/days" />
+        
+        <TextView
+            android:id="@+id/vereinbarung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/adresse"
+            android:layout_below="@+id/adresse"
+            android:textSize="12pt"
+            android:text="@string/vereibarung" />
+
+        <TextView
+            android:id="@+id/pascalNr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/mofr"
+            android:layout_alignLeft="@+id/ort"
+            android:layout_below="@+id/ort"
+            android:layout_marginTop="40dp"
+            android:textSize="12pt"
+            android:text="@string/PascalNr" />
+
+        <TextView
+            android:id="@+id/matthiasNr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/adresse"
+            android:layout_below="@+id/mobil"
+            android:textSize="12pt"
+            android:text="@string/MatthiasNr" />
+        
+         <TextView
+            android:id="@+id/borisNr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/adresse"
+            android:layout_below="@+id/mobil"
+            android:textSize="12pt"
+            android:text="@string/BorisNr" />
+        </LinearLayout>
 </RelativeLayout>

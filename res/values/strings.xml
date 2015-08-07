@@ -25,6 +25,15 @@
     <string name="back">zurück</string>
     <string name="title_angebote">Angebote</string>
     
+        <!-- Opentime -->
+     <string name="opentime">Öffnungszeiten</string>
+     <string name="days">Dienstag - Samstag</string>
+     <string name="vereibarung">Termine nach Vereinbarung</string>
+     <string name="PascalNr">Pascal 0676 9238217</string>
+     <string name="MatthiasNr">Matthias 0664 3966824</string>
+     <string name="BorisNr">Boris 0660 6023000</string>
+         
+    
     <!-- Navidrawer Hauptmenü -->
     <string-array name="navigation_items">
         <item>Zeichen</item>
@@ -106,6 +115,8 @@
         <item>7</item>
         <item>8</item>
     </string-array>
+    
+
     
     
     <!-- nicht gebraucht -->
