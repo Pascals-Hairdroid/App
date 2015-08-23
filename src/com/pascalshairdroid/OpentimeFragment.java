@@ -20,7 +20,8 @@ public class OpentimeFragment extends Fragment {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_opentime, container,
 					false);
-			ImageView view = (ImageView)rootView.findViewById(R.id.imageView1);
+//			ImageView view = (ImageView)rootView.findViewById(R.id.imageView1);
+			
 			return rootView;
 		}
 }
