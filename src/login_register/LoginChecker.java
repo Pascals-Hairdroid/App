@@ -46,8 +46,10 @@ public class LoginChecker extends AsyncTask<String, Integer, JSONObject> {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 	        nameValuePairs.add(new BasicNameValuePair("email", params[1]));
 	        nameValuePairs.add(new BasicNameValuePair("passwort", Utils.MD5(params[2])));
+//	        URL Encoding POST data --> Before making HTTP request you need to encode the post data 
 	        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
+//	        Finally making HTTP Request	--> Finally you need to execute httpPost using the httpClient created before.
+	        HttpResponse httpResponse = client.execute(httpPost); // ausführen von httpreqeuest return HttpResponse (antwort von Server)
 			String s = EntityUtils.toString(httpResponse.getEntity());
 			email= params[1];
 			
