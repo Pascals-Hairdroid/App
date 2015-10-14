@@ -275,9 +275,9 @@ public class KundenProfil extends Activity {
 	 */
 	private String[] interessenToIds(Set<String> values) {
 		String[] allId = getResources().getStringArray(R.array.interessen_ids);
-		for (Iterator iterator = values.iterator(); iterator.hasNext();) {
-			iterator.next();
-		}
+//		for (Iterator iterator = values.iterator(); iterator.hasNext();) {
+//			iterator.next();
+//		}
 		String[] ids = new String[values.size()];
 		String[] all = getResources().getStringArray(R.array.interessen);
 		int idIndex = 0;

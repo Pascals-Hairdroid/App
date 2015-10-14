@@ -50,7 +50,7 @@ public class Friseurstudio extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// Broadcast receiver registrieren auf alle BC die "reloadimage" als action haben
+		// Broadcast receiver registrieren auf alle BC die "reloadimage" als action haben hören
 		LocalBroadcastManager.getInstance(this).registerReceiver(
 				mMessageReceiver, new IntentFilter("reloadImage"));
 		
